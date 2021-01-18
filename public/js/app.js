@@ -7023,7 +7023,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".nav {\n  height: 100vh;\n}\n.nav h3 {\n  color: white;\n}\n.nav a {\n  color: grey;\n}\n\n.main-container {\n  padding: 0;\n  width: 75%;\n  margin: 0;\n}", ""]);
+exports.push([module.i, ".nav {\n  height: 100%;\n}\n.nav h3 {\n  color: white;\n}\n.nav a {\n  color: grey;\n}\n\n.main-container {\n  padding: 0;\n  width: 75%;\n  margin: 0;\n}", ""]);
 
 // exports
 
