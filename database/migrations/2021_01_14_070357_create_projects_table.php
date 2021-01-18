@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->string('description');
             $table->string('github')->unique();
             $table->timestamps();
-            $table->timestamp('finished_at', $precision = 0);
+            $table->timestamp('finished_at', $precision = 0)-> nullable();
             $table->timestamp('deadline', $precision = 0);
         });
     }
