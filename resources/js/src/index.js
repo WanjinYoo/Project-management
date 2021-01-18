@@ -8,6 +8,7 @@ import Tickets from './components/tickets';
 import Progress from './components/progress';
 import Settings from './components/settings';
 import Navbar from './components/Navbar';
+import HorizontalNavbar from './components/HorizontalNavbar';
 import Dashboard from './components/Dashboard';
 
 
@@ -18,6 +19,7 @@ function Index(props) {
         <BrowserRouter>
         <div className = "row">
         <Navbar />
+        <HorizontalNavbar />
         <Switch>
         <Route exact={true} path = "/" component= {Dashboard} />
         <Route path  = "/tickets" component= {Tickets} />
