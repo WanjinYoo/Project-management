@@ -16,9 +16,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'telephone', 'team', 'slack_account', 'position', 'responds_to','email', 'password'
+        'email', 'password', 'telephone', 'team', 'slack_account', 'position', 'responds_to', 'first_name', 'last_name',
 
-        // check 'first_name', 'last_name', 'email' and 'password'
     ];
 
     /**
@@ -26,16 +25,16 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password', 'remember_token',
+    // ];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 }
