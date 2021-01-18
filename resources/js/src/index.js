@@ -9,7 +9,7 @@ import Progress from "./components/progress";
 import Settings from "./components/settings";
 import Navbar from "./components/Navbar";
 import HorizontalNavbar from "./components/HorizontalNavbar";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/dashboard/Dashboard";
 
 const store = createStore(reducer);
 
