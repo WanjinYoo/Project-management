@@ -2,7 +2,7 @@ import React from "react";
 import "../componentsstyling/HorizontalNavbar.scss";
 export default function HorizontalNavbar() {
     return (
-        <div className="col-9 pl-0">
+        <div className="container-fluid">
             <nav className="navbar bg-light navbar-light border-bottom">
                 <form className="d-inline my-2 my-lg-0 ml-3 nav-input">
                     <input

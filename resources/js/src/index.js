@@ -18,8 +18,8 @@ function Index(props) {
         <BrowserRouter>
             <div className="row">
                 <Navbar />
-                <div>
-                    <div id="HorizontalNavbar">
+                <div className="main-container">
+                    <div className="row">
                         <HorizontalNavbar />
                     </div>
 
