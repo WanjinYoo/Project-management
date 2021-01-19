@@ -36,7 +36,7 @@ const StatisticsWidget = props => {
                     )}
                     title={"props.description"}
                 >
-                    {"props.title"}
+                    {"tickets"}
                 </h5>
                 <h3 className={classNames("mt-3", "mb-3", textClass)}>
                     {"props.stats"}
@@ -53,7 +53,9 @@ const StatisticsWidget = props => {
                             <i className={classNames(props.trend.icon)}></i>{" "}
                             {"props.trend.value"}
                         </span>
-                        <span className="text-nowrap">{props.trend.time}</span>
+                        <span className="text-nowrap">
+                            {"props.trend.time"}
+                        </span>
                     </p>
                 )}
             </CardBody>

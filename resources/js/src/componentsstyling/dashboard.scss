@@ -6,7 +6,7 @@
     margin-bottom: 0px;
 }
 .mainElements {
-    padding: 3%;
+    margin: 3%;
 }
 .dashboardRender {
     display: flex;
@@ -14,4 +14,12 @@
 }
 #ticketStats {
     min-width: 65%;
+}
+#dashboardSide {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.dashboardRender {
+    margin: 3%;
 }
