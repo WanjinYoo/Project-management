@@ -3,6 +3,7 @@ import React from "react";
 import { Card, CardBody } from "reactstrap";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import img from "../img/ticket.png";
 
 // let props = {
 //     textClass?: string,
@@ -24,9 +25,7 @@ const StatisticsWidget = props => {
             <CardBody>
                 {props.icon && (
                     <div className="float-right">
-                        <i
-                            className={classNames(props.icon, "widget-icon")}
-                        ></i>
+                        <i className={classNames(img, "widget-icon")}></i>
                     </div>
                 )}
                 <h5
@@ -35,12 +34,12 @@ const StatisticsWidget = props => {
                         "mt-0",
                         textClass
                     )}
-                    title={props.description}
+                    title={"props.description"}
                 >
-                    {props.title}
+                    {"props.title"}
                 </h5>
                 <h3 className={classNames("mt-3", "mb-3", textClass)}>
-                    {props.stats}
+                    {"props.stats"}
                 </h3>
 
                 {props.trend && (
@@ -52,7 +51,7 @@ const StatisticsWidget = props => {
                             )}
                         >
                             <i className={classNames(props.trend.icon)}></i>{" "}
-                            {props.trend.value}
+                            {"props.trend.value"}
                         </span>
                         <span className="text-nowrap">{props.trend.time}</span>
                     </p>
