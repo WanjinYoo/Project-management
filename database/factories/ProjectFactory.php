@@ -16,6 +16,7 @@ $factory->define(Project::class, function (Faker $faker) {
         'finished_at'=> $faker->optional($weight = 0.5)->dateTimeBetween($startDate = $create_date, $endDate = 'now', $timezone = null),
         'deadline' => $faker->dateTimeBetween($startDate = $create_date, $endDate = '+1 year', $timezone = null),
         'start_date' => $faker->dateTimeBetween($startDate = $create_date, $endDate = '+1 year', $timezone = null),
-        'status_id' => $faker->numberBetween($min = 1, $max = 6)
+        'status_id' => $faker->numberBetween($min = 1, $max = 6),
+        'repository' => $faker->unique()->url
     ];
 });

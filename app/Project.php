@@ -8,7 +8,7 @@ class Project extends Model
 {
 
     protected $fillable = [
-        'name', 'product', 'description', 'github', 'deadline', 'start_date', 'status_id'
+        'name', 'product', 'description', 'github', 'deadline', 'start_date', 'status_id', 'repository'
     ];
 
     // 'start_date' missing and deadline is not time stamp
