@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('users','projects@index');
+Route::get('tickets','TicketController@index');

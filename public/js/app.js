@@ -87143,10 +87143,31 @@ function Settings() {
 
 /***/ }),
 
-/***/ "./resources/js/src/components/tickets.js":
-/*!************************************************!*\
-  !*** ./resources/js/src/components/tickets.js ***!
-  \************************************************/
+/***/ "./resources/js/src/components/tickets/ticketItem.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/src/components/tickets/ticketItem.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TicketItem; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function TicketItem(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "list-group-item"
+  }, props.description);
+}
+
+/***/ }),
+
+/***/ "./resources/js/src/components/tickets/tickets.js":
+/*!********************************************************!*\
+  !*** ./resources/js/src/components/tickets/tickets.js ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -87155,9 +87176,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Tickets; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ticketItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ticketItem */ "./resources/js/src/components/tickets/ticketItem.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 function Tickets() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tickets");
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      ticket = _useState2[0],
+      setTicket = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/tickets').then(function (res) {
+      setTicket(res.data);
+    });
+  }, []);
+  var tickets = ticket.map(function (item) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ticketItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      description: item.description
+    });
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "list-group"
+  }, tickets);
 }
 
 /***/ }),
@@ -87239,7 +87294,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/reducer */ "./resources/js/src/redux/reducer.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _components_tickets__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/tickets */ "./resources/js/src/components/tickets.js");
+/* harmony import */ var _components_tickets_tickets__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/tickets/tickets */ "./resources/js/src/components/tickets/tickets.js");
 /* harmony import */ var _components_progress__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/progress */ "./resources/js/src/components/progress.js");
 /* harmony import */ var _components_settings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/settings */ "./resources/js/src/components/settings.js");
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Navbar */ "./resources/js/src/components/Navbar.js");
@@ -87272,7 +87327,7 @@ function Index(props) {
     component: _components_dashboard_Dashboard__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/tickets",
-    component: _components_tickets__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _components_tickets_tickets__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/progress",
     component: _components_progress__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -87348,8 +87403,8 @@ var reducer = function reducer() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/zhaxxdev/lighthouse/fINALPROEJCTLHL/project-management/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/zhaxxdev/lighthouse/fINALPROEJCTLHL/project-management/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/wanjinyoo/Desktop/php/lhl-final/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/wanjinyoo/Desktop/php/lhl-final/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
