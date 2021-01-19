@@ -18,14 +18,21 @@ export default function Tickets() {
     const tickets = ticket.map((item) => {
         return (
             <Ticketitem
-            description = {item.description}
+            pull_request_number = {item.pull_request_number}
+            deadline = {item.deadline}
+            id = {item.id}
             />
         );
     })
 
     return (
-    <ul className="list-group">
-        {tickets}
-    </ul>
+    <div className = "container">
+        <br />
+        <button className = "btn btn-secondary"> New Ticket+ </button>
+         <hr />
+         <ul className="list-group">
+               {tickets}
+         </ul>
+         </div>
     )
 }
