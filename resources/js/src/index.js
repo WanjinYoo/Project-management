@@ -19,16 +19,21 @@ function Index(props) {
             <div className="row">
                 <Navbar />
                 <div className="main-container">
-                    <div className="row">
+                    <div className="row" id="horizontalNav">
                         <HorizontalNavbar />
                     </div>
-
-                    <Switch>
-                        <Route exact={true} path="/" component={Dashboard} />
-                        <Route path="/tickets" component={Tickets} />
-                        <Route path="/progress" component={Progress} />
-                        <Route path="/settings" component={Settings} />
-                    </Switch>
+                    <div className="mainElements">
+                        <Switch>
+                            <Route
+                                exact={true}
+                                path="/"
+                                component={Dashboard}
+                            />
+                            <Route path="/tickets" component={Tickets} />
+                            <Route path="/progress" component={Progress} />
+                            <Route path="/settings" component={Settings} />
+                        </Switch>
+                    </div>
                 </div>
             </div>
         </BrowserRouter>
