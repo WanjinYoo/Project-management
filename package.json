@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
-        "axios": "^0.19",
+        "axios": "^0.19.2",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
         "jquery": "^3.2",
@@ -70,6 +70,7 @@
         "react-select": "^3.1.0",
         "react-simplemde-editor": "^4.1.1",
         "react-text-mask": "^5.4.3",
+        "react-window": "^1.8.6",
         "reactstrap": "^8.8.1",
         "redux": "^4.0.5",
         "redux-saga": "^1.1.3",

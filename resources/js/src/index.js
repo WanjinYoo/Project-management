@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import reducer from "./redux/reducer";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import Tickets from "./components/tickets";
+import Tickets from "./components/tickets/tickets";
 import Progress from "./components/progress";
 import Settings from "./components/settings";
 import Navbar from "./components/Navbar";
