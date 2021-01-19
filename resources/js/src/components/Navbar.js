@@ -17,8 +17,9 @@ const Navbar = props => {
                     <br />
                     <NavbarItems name="Dashboard" to="/" />
                     <NavbarItems name="Tickets" to="/tickets" />
+                    <NavbarItems name="Calendar" to="/calendar" />
                     <NavbarItems name="Progress" to="/progress" />
-                    <NavbarItems name="Settings" to="settings" />
+                    <NavbarItems name="Settings" to="/settings" />
                 </div>
             </div>
         </Fragment>

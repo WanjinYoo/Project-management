@@ -10,6 +10,7 @@ import Settings from "./components/settings";
 import Navbar from "./components/Navbar";
 import HorizontalNavbar from "./components/HorizontalNavbar";
 import Dashboard from "./components/dashboard/Dashboard";
+import Calendar from "./components/Calendar";
 
 const store = createStore(reducer);
 
@@ -30,6 +31,7 @@ function Index(props) {
                                 component={Dashboard}
                             />
                             <Route path="/tickets" component={Tickets} />
+                            <Route path="/calendar" component={Calendar} />
                             <Route path="/progress" component={Progress} />
                             <Route path="/settings" component={Settings} />
                         </Switch>
