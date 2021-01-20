@@ -6,6 +6,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import BootstrapTheme from "@fullcalendar/bootstrap";
+import "./calendar.scss";
 
 const CalendarApp = () => {
     const events = [
