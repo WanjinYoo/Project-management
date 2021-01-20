@@ -6,5 +6,20 @@
     margin-bottom: 0px;
 }
 .mainElements {
-    width: 500px;
+    margin: 3%;
+}
+.dashboardRender {
+    display: flex;
+    justify-content: space-evenly;
+}
+#ticketStats {
+    min-width: 65%;
+}
+#dashboardSide {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.dashboardRender {
+    margin: 3%;
 }
