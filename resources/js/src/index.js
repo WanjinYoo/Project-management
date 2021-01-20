@@ -5,6 +5,8 @@ import reducer from "./redux/reducer";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import Tickets from "./components/tickets/tickets";
+import TicketNew from "./components/tickets/ticketNew";
+import TicketSpecific from "./components/tickets/ticketSpecific";
 import Progress from "./components/progress";
 import Settings from "./components/settings";
 import Navbar from "./components/Navbar";
