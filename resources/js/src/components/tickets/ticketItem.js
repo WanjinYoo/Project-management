@@ -9,7 +9,7 @@ export default function TicketItem(props) {
         <p> {`Deadline : ${props.deadline}`}</p>
         <Link
         className= "btn btn-secondary"
-        to = {`/tickets/${props.id}`}>Manage</Link>
+        to = {`/tickets/${props.id}`}>View</Link>
         </li>
     )
 }

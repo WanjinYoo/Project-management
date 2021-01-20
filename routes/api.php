@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('tickets','TicketController@index');
+Route::get('tickets/{id}','TicketController@show');

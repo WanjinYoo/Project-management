@@ -9,7 +9,6 @@ export default function Tickets() {
 
     return (
     <div className = "container">
-        <br />
         <Switch>
               <Route strict = {true} exact = {true} path="/tickets/new" component={TicketNew} />
               <Route path="/tickets/:id" component={TicketSpecific} />
