@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::apiresource('tickets','TicketController');
-//Route::get('tickets/{id}','TicketController@show');
+Route::post('login','UserController@verify');
