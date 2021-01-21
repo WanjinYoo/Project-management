@@ -29,7 +29,7 @@ class Tickets extends Migration
             $table->timestamp('finished_at', $precision = 0) -> nullable();
             $table->timestamp('deadline');
             $table->string('description');
-            $table->integer('pull_request_number');
+            $table->integer('pull_request_number') -> nullable();
 
         });
     }

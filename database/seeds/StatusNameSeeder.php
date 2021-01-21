@@ -40,5 +40,10 @@ class StatusNameSeeder extends Seeder
             'name' => 'Concluded',
             'description' => 'Project finalized'
         ]);
+
+        App\StatusName::create([
+            'name' => 'Canceled',
+            'description' => 'Process cancelled'
+        ]);
     }
 }

@@ -19,6 +19,7 @@ $factory->define(Ticket::class, function (Faker $faker) {
         'description' => $faker->text($maxNbChars = 200),
         'pull_request_number' => $faker->numberBetween($min = 1000, $max = 9000),
         'start_at' => $faker->dateTimeBetween($startDate = $create_date, $endDate = '+1 year', $timezone = null),
-        'priority_level' => $faker->numberBetween($min = 1, $max = 5)
+        'priority_level' => $faker->numberBetween($min = 1, $max = 4),
+        'subject' => $faker->text($maxNbChars = 50)
     ];
 });
