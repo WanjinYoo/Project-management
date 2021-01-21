@@ -10,9 +10,10 @@ import axios from "axios";
 export default function Dashboard() {
     return (
         <div>
+            <h1>Dashboard</h1>
+            <Progress />
             <div className="dashboardRender">
                 <div id="dashboardSide">
-                    <h1>Dashboard</h1>
                     <div id="dashboardClock">
                         <p>Today is: </p>
                         <Clock
@@ -32,7 +33,6 @@ export default function Dashboard() {
                     <LineAnnotationChart />
                 </div>
             </div>
-            <Progress />
         </div>
     );
 }
