@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     public function verify(Reqeust $requst)
     {
         $verify = USER::where('email','=',$id);
