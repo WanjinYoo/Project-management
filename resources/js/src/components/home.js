@@ -53,7 +53,10 @@ const mapStateToProps = state => {
   }
   const mapDispatchToProps = (dispatch) => {
     return {
-      loginUser : () => dispatch({type: "LOG_IN_USER", logIn: true}),
+      loginUser : (id) => dispatch({
+          type: "LOG_IN_USER",
+          logIn: true,
+          userid: id }),
     }
   }
 
@@ -109,8 +112,9 @@ const SignInSide = (props) => {
                     password
                 })
                 .then((res) => {
-                    if(res.data === "successful") {
-                        props.loginUser();
+                    if(res.data) {
+                        console.log(res.data);
+                        props.loginUser(res.data);
                     }
                     else {
                         alert('Invalid input');

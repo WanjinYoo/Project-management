@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import reducer from "./redux/reducer";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import  config  from "./redux/configureStore";
+import { PersistGate } from 'redux-persist/integration/react'
+
 import App from "./app";
 
-const store = createStore(reducer);
-
+const { store,persistor} = config();
 function Index(props) {
+
     return (
        <App />
     );
@@ -17,7 +18,9 @@ export default (Index);
 if (document.getElementById("root")) {
     ReactDOM.render(
         <Provider store={store}>
-            <Index />
+            <PersistGate loading={null} persistor={persistor}>
+                <Index />
+            </PersistGate>
         </Provider>,
         document.getElementById("root")
     );

@@ -1,6 +1,9 @@
 const initialState = {
     pageContent: "Dashboard",
-    logIn: false,
+    logIn: {
+        isLoggedIn: false,
+        userId: null
+    },
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,8 +16,12 @@ const reducer = (state = initialState, action) => {
         case "LOG_IN_USER":
             return {
                     ...state,
-                    logIn: action.logIn
+                    logIn: {
+                        isLoggedIn: action.logIn,
+                        userId: action.userid
+                    }
                 };
+
         default:
             return state;
     }

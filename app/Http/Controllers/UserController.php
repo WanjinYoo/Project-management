@@ -17,10 +17,10 @@ class UserController extends Controller
                 ->first();
         if($user) {
             Auth::login($user);
-            return "successful";
+            return $user->id;
         }
         else {
-            return "fail";
+            return null;
         }
 
      }
