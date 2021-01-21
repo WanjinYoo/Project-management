@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('tickets','TicketController@index');
-Route::get('tickets/{id}','TicketController@show');
+Route::apiresource('tickets','TicketController');
+//Route::get('tickets/{id}','TicketController@show');

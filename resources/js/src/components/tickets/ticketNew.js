@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function ticketNew() {
     return (
-        <form>
+        <form action = "/api/tickets" method = "POST">
             <div className="form-group">
-                <label Htmlfor="exampleFormControlInput1">Assign it to: </label>
-                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+                <label Htmlfor="email">Assign it to: </label>
+                <input type="email" className="form-control" id="email" placeholder="name@example.com" />
             </div>
             <div className="form-group">
                 <label Htmlfor="priority_level">Priority Level</label>

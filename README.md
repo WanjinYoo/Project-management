@@ -62,9 +62,47 @@ project_users
 - project_id
 - user_id
 
-##Pages##
+### Pages ###
 
-Login
+## How a user interact with the app ##
+Goes to Welcome page where users can type their id and password
+If logged in, user will go to the user landing page
+
+# On the landing page # 
+- A list of the projects that a user is currently working on.
+- Clock
+- Upcoming due dates for projects should be placed on the top
+- Ability to filter the project list
+
+# Dashboard of the specific project #
+- Projected Launch date that inludes that deadline
+- status
+- Progress bar
+- workload (graph)
+- upcoming deadlines for their tickets
+- Overdue tickets
+# Tickets page for a user #
+- A tab that displays all the tickets that have been assigned to ther user with the status.
+- A tab that displays submitted/pedning/recent tickets that have been assigned to ther user.
+- On the pendding tickets' tab, there will overdue/upcoming(1day) warnings
+
+# Ticket specific page #
+- display the properties of the ticket ex. name issuer id ....
+- input box to enter the pull_request_number for the ticket (pending -> submmited)
+If not, stay on the same page with the message 
+# Calender #
+- tickets' deadline
+- When user clicks on the ticket on the calender, it takes users to the ticket specific page.
+- project's deadline
+
+
+
+--How a manger interact with the app
+
+Endpoints
+
+
+
 
 
 
