@@ -2,8 +2,10 @@ import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function TicketHome() {
+export default function OverDueTicket(props) {
     const [tdata, setTicketData] = useState([]);
+    let projectID = props.projectid;
+    let userID = props.id;
 
     useEffect(() => {
         axios.get("/api/tickets").then(res => {
@@ -19,8 +21,8 @@ export default function TicketHome() {
             let currentTime = new Date();
 
             if (
-                tdata[b].project_id === 1 &&
-                tdata[b].status_id === 2 &&
+                tdata[b].project_id === projectID &&
+                tdata[b].receiver_id === userID &&
                 currentTime > ticketTime
             ) {
                 adata++;

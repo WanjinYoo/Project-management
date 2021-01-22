@@ -14,6 +14,9 @@ import Chart from "./DonutChart.js";
 import "../../componentsstyling/dashboard.scss";
 
 export default function Dashboard() {
+    let personid = 20;
+    let thisProjectId = 11;
+
     return (
         <div>
             <h1>Dashboard</h1>{" "}
@@ -28,22 +31,46 @@ export default function Dashboard() {
                 />
             </div>
             <div className="dashboardRender">
-                <Chart />
+                <Chart id={personid} projectid={thisProjectId} />
                 <div id="widgetBar">
                     <div id="dashStatWidgets">
-                        <OverdueTicketNum />
-                        <AlmostTicketNum />
-                        <WaitingApprovalNum />
+                        <OverdueTicketNum
+                            id={personid}
+                            projectid={thisProjectId}
+                        />
+                        <AlmostTicketNum
+                            id={personid}
+                            projectid={thisProjectId}
+                        />
+                        <WaitingApprovalNum
+                            id={personid}
+                            projectid={thisProjectId}
+                        />
                     </div>
                     <div id="dashStatWidgets">
-                        <RejectedTicketNum />
-                        <NewTicketNum />
-                        <PendingTicketNum />
+                        <NewTicketNum id={personid} projectid={thisProjectId} />
+                        <PendingTicketNum
+                            id={personid}
+                            projectid={thisProjectId}
+                        />
+                        <RejectedTicketNum
+                            id={personid}
+                            projectid={thisProjectId}
+                        />
                     </div>
                     <div id="dashStatWidgets">
-                        <ActiveTicketNum />
-                        <TotalTicketNum />
-                        <OpenProjectNum />
+                        <ActiveTicketNum
+                            id={personid}
+                            projectid={thisProjectId}
+                        />
+                        <TotalTicketNum
+                            id={personid}
+                            projectid={thisProjectId}
+                        />
+                        <OpenProjectNum
+                            id={personid}
+                            projectid={thisProjectId}
+                        />
                     </div>
                 </div>
             </div>

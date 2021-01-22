@@ -2,8 +2,10 @@ import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function TicketHome() {
+export default function PendingTicket(props) {
     const [tdata, setTicketData] = useState([]);
+    let projectID = props.projectid;
+    let userID = props.id;
 
     useEffect(() => {
         axios.get("/api/tickets").then(res => {
@@ -16,9 +18,9 @@ export default function TicketHome() {
     if (tdata[0] !== undefined) {
         for (let b in tdata) {
             if (
-                tdata[b].project_id === 1 &&
-                tdata[b].status_id !== 4 &&
-                tdata[b].status_id !== 3
+                tdata[b].project_id === projectID &&
+                tdata[b].receiver_id === userID &&
+                tdata[b].status_id === 2
             ) {
                 adata++;
             }
@@ -29,7 +31,7 @@ export default function TicketHome() {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <p>Pending tickets</p>
+                <p>Tickets Pending Work</p>
                 <ul>{ticketData}</ul>
             </div>
         </React.Fragment>
