@@ -36,7 +36,7 @@ export default function TicketHome() {
             <div id="ticketNumStats">
                 <p>There are: </p>
                 <ul>{ticketData}</ul>
-                <p>Tickets almost due.</p>
+                <p>Tickets almost due</p>
             </div>
         </React.Fragment>
     );

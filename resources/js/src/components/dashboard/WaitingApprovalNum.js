@@ -27,7 +27,7 @@ export default function TicketHome() {
             <div id="ticketNumStats">
                 <p>There are: </p>
                 <ul>{ticketData}</ul>
-                <p>Tickets Pending for Approval.</p>
+                <p>Tickets Pending for Approval</p>
             </div>
         </React.Fragment>
     );
