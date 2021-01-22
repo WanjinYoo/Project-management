@@ -7,12 +7,14 @@ import ActiveTicketNum from "./ActiveTicketNum.js";
 import WaitingApprovalNum from "./WaitingApprovalNum.js";
 import OverdueTicketNum from "./OverdueTicketNum.js";
 import AlmostTicketNum from "./AlmostTicketNum.js";
+import Chart from "./DonutChart.js";
 import "../../componentsstyling/dashboard.scss";
 
 export default function Dashboard() {
     return (
         <div>
             <h1>Dashboard</h1>
+            <Chart />
             {/* <Progress /> */}
             <div className="dashboardRender">
                 <div id="dashboardSide">
