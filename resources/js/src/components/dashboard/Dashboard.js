@@ -14,9 +14,9 @@ export default function Dashboard() {
     return (
         <div>
             <h1>Dashboard</h1>
-            <Chart />
             {/* <Progress /> */}
             <div className="dashboardRender">
+                <Chart />
                 <div id="dashboardSide">
                     <div id="dashboardClock">
                         <p>Today is: </p>
