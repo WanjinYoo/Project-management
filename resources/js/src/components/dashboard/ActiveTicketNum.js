@@ -25,9 +25,9 @@ export default function TicketHome() {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <p>There are: </p>
-                <ul>{ticketData}</ul>
+                {" "}
                 <p>Active tickets</p>
+                <ul>{ticketData}</ul>
             </div>
         </React.Fragment>
     );

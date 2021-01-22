@@ -14,7 +14,6 @@ export default function TicketHome() {
     let adata = 0;
 
     if (tdata[0] !== undefined) {
-        console.log(Date());
         for (let b in tdata) {
             let ticketTime = new Date(tdata[b].deadline);
             let currentTime = new Date();
@@ -33,9 +32,8 @@ export default function TicketHome() {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <p>There are: </p>
-                <ul>{ticketData}</ul>
                 <p>OverDue tickets</p>
+                <ul>{ticketData}</ul>
             </div>
         </React.Fragment>
     );

@@ -7,6 +7,9 @@ import WaitingApprovalNum from "./WaitingApprovalNum.js";
 import OverdueTicketNum from "./OverdueTicketNum.js";
 import AlmostTicketNum from "./AlmostTicketNum.js";
 import OpenProjectNum from "./OpenProjectNum.js";
+import PendingTicketNum from "./PendingTicketNum.js";
+import RejectedTicketNum from "./RejectedTicketNum.js";
+import NewTicketNum from "./NewTicketNum.js";
 import Chart from "./DonutChart.js";
 import "../../componentsstyling/dashboard.scss";
 
@@ -28,9 +31,14 @@ export default function Dashboard() {
                 <Chart />
                 <div id="widgetBar">
                     <div id="dashStatWidgets">
-                        <AlmostTicketNum />
                         <OverdueTicketNum />
+                        <AlmostTicketNum />
                         <WaitingApprovalNum />
+                    </div>
+                    <div id="dashStatWidgets">
+                        <RejectedTicketNum />
+                        <NewTicketNum />
+                        <PendingTicketNum />
                     </div>
                     <div id="dashStatWidgets">
                         <ActiveTicketNum />
