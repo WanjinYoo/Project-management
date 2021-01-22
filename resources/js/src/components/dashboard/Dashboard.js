@@ -4,13 +4,14 @@ import Progress from "./Progress";
 import Clock from "react-live-clock";
 import TotalTicketNum from "./TotalTicketNum.js";
 import ActiveTicketNum from "./ActiveTicketNum.js";
+import WaitingApprovalNum from "./WaitingApprovalNum.js";
 import "../../componentsstyling/dashboard.scss";
 
 export default function Dashboard() {
     return (
         <div>
             <h1>Dashboard</h1>
-            <Progress />
+            {/* <Progress /> */}
             <div className="dashboardRender">
                 <div id="dashboardSide">
                     <div id="dashboardClock">
@@ -28,10 +29,11 @@ export default function Dashboard() {
                     </div>
                     <TotalTicketNum />
                     <ActiveTicketNum />
+                    <WaitingApprovalNum />
                 </div>
-                <div id="ticketStats">
+                {/* <div id="ticketStats">
                     <LineAnnotationChart />
-                </div>
+                </div> */}
             </div>
         </div>
     );
