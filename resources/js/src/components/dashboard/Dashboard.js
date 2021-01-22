@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import LineAnnotationChart from "./LineAnnotationChart";
-import Progress from "./Progress";
+// import LineAnnotationChart from "./LineAnnotationChart";
+// import Progress from "./Progress";
 import Clock from "react-live-clock";
 import TotalTicketNum from "./TotalTicketNum.js";
 import ActiveTicketNum from "./ActiveTicketNum.js";
 import WaitingApprovalNum from "./WaitingApprovalNum.js";
+import OverdueTicketNum from "./OverdueTicketNum.js";
+import AlmostTicketNum from "./AlmostTicketNum.js";
 import "../../componentsstyling/dashboard.scss";
 
 export default function Dashboard() {
@@ -30,6 +32,8 @@ export default function Dashboard() {
                     <TotalTicketNum />
                     <ActiveTicketNum />
                     <WaitingApprovalNum />
+                    <OverdueTicketNum />
+                    <AlmostTicketNum />
                 </div>
                 {/* <div id="ticketStats">
                     <LineAnnotationChart />

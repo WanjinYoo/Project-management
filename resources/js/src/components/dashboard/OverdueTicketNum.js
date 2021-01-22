@@ -14,8 +14,16 @@ export default function TicketHome() {
     let adata = 0;
 
     if (tdata[0] !== undefined) {
+        console.log(Date());
         for (let b in tdata) {
-            if (tdata[b].project_id === 1 && tdata[b].status_id === 3) {
+            let ticketTime = new Date(tdata[b].deadline);
+            let currentTime = new Date();
+
+            if (
+                tdata[b].project_id === 1 &&
+                tdata[b].status_id === 2 &&
+                currentTime > ticketTime
+            ) {
                 adata++;
             }
         }
@@ -27,7 +35,7 @@ export default function TicketHome() {
             <div id="ticketNumStats">
                 <p>There are: </p>
                 <ul>{ticketData}</ul>
-                <p>Tickets Pending for Approval.</p>
+                <p>OverDue tickets.</p>
             </div>
         </React.Fragment>
     );

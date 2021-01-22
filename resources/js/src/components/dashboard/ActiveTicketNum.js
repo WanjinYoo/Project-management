@@ -15,7 +15,7 @@ export default function TicketHome() {
 
     if (tdata[0] !== undefined) {
         for (let b in tdata) {
-            if (tdata[b].project_id === 1 && tdata[b].finished_at === null) {
+            if (tdata[b].project_id === 1 && tdata[b].status_id !== 4) {
                 adata++;
             }
         }
