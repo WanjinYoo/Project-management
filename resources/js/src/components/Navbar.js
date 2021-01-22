@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import NavbarItems from "./NavbarItems";
+import React from "react";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import { Link } from 'react-router-dom'
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
 import ReceiptIcon from '@material-ui/icons/Receipt';
@@ -13,31 +13,42 @@ import EventNoteIcon from '@material-ui/icons/EventNote';
 export const navbar =
      (
         <div>
-    <ListItem button>
+    <ListItem
+    button
+    component={Link}
+    to="/">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-    <ListItem button>
+    <ListItem button
+    component={Link}
+    to="/projects">
       <ListItemIcon>
         <ChromeReaderModeIcon />
       </ListItemIcon>
       <ListItemText primary="Project" />
     </ListItem>
-    <ListItem button>
+    <ListItem button
+    component={Link}
+    to="/tickets">
       <ListItemIcon>
         <ReceiptIcon />
       </ListItemIcon>
       <ListItemText primary="Tickets" />
     </ListItem>
-    <ListItem button>
+    <ListItem button
+    component={Link}
+    to="/calander">
       <ListItemIcon>
         <EventNoteIcon />
       </ListItemIcon>
       <ListItemText primary="Calender" />
     </ListItem>
-    <ListItem button>
+    <ListItem button
+    component={Link}
+    to="/report">
       <ListItemIcon>
         <LibraryBooksIcon/>
       </ListItemIcon>
