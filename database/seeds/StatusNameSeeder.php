@@ -22,6 +22,11 @@ class StatusNameSeeder extends Seeder
         ]);
 
         App\StatusName::create([
+            'name' => 'Concluded',
+            'description' => 'Project finalized'
+        ]);
+
+        App\StatusName::create([
             'name' => 'Submitted',
             'description' => 'Ticket submmited for approval'
         ]);
@@ -36,10 +41,6 @@ class StatusNameSeeder extends Seeder
             'description' => 'Ticket rejected'
         ]);
 
-        App\StatusName::create([
-            'name' => 'Concluded',
-            'description' => 'Project finalized'
-        ]);
 
         App\StatusName::create([
             'name' => 'Canceled',
