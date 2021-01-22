@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Tickets from "./components/tickets/tickets";
 import Progress from "./components/progress";
 import Settings from "./components/settings";
-
+import Project from "./components/projects/projects";
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -14,6 +14,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Calendar from "./components/Calendar";
 import Home from "./components/home"
 import "./app.scss";
+import projects from "./components/projects/projects";
 
 const mapStateToProps = state => {
     return {
@@ -58,10 +59,11 @@ function App(props) {
                                         path="/"
                                         component={Dashboard}
                                     />
+                                    <Route path="/projects" component={Project} />
                                     <Route path="/tickets" component={Tickets} />
                                     <Route path="/calendar" component={Calendar} />
                                     <Route path="/progress" component={Progress} />
-                                    <Route path="/settings" component={Settings} />
+                                    <Route path="/report" component={Settings} />
                                 </Switch>
                             </Container>
                     </main>
