@@ -11,7 +11,7 @@ $factory->define(Ticket::class, function (Faker $faker) {
         'project_id' => $faker->numberBetween($min = 1, $max = 30),
         'issuer_id' => $faker->numberBetween($min = 1, $max = 100),
         'receiver_id' => $faker->numberBetween($min = 1, $max = 100),
-        'status_id' => $faker->numberBetween($min = 1, $max = 6),
+        'status_id' => $faker->numberBetween($min = 2, $max = 6),
         'created_at' => $create_date,
         'updated_at' => $faker->dateTimeBetween($startDate = $create_date, $endDate = 'now', $timezone = null),
         'finished_at'=> $faker->optional($weight = 0.5)->dateTimeBetween($startDate = $create_date, $endDate = 'now', $timezone = null),

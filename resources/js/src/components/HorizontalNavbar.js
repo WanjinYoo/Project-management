@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "../componentsstyling/HorizontalNavbar.scss";
 import { connect } from 'react-redux';
-import  { navbar } from './Navbar'
+import { Link } from 'react-router-dom'
 import clsx from 'clsx';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import EventNoteIcon from '@material-ui/icons/EventNote';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -23,6 +31,7 @@ import Button from '@material-ui/core/Button';
 const mapStateToProps = state => {
     return {
         logIn: state.logIn,
+        pageContent: state.pageContent,
     };
   }
   const mapDispatchToProps = (dispatch) => {
@@ -30,6 +39,7 @@ const mapStateToProps = state => {
       logoutUser : () => dispatch({type: "LOG_IN_USER",
       logIn: false,
       userId: null }),
+      changeContent: (content) => dispatch({type: "GET_CONTENT", content: content}),
     }
   }
 
@@ -143,7 +153,7 @@ const HorizontalNavbar = (props) => {
               <MenuIcon />
             </IconButton>
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-              Dashboard
+                 {props.pageContent}
             </Typography>
             <SearchBar/>
             <IconButton color="inherit">
@@ -173,49 +183,73 @@ const HorizontalNavbar = (props) => {
             </IconButton>
           </div>
           <Divider />
-          <List>{navbar}</List>
+          <List>
+              {/* Horizontal navbar */}
+              <div>
+                    <ListItem
+                    button
+                    component={Link}
+                    to="/"
+                    onClick= {() => {
+                        props.changeContent('Dashboard');
+                    }}
+                    >
+                    <ListItemIcon>
+                        <DashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
+                    </ListItem>
+                    <ListItem button
+                    component={Link}
+                    to="/projects"
+                    onClick= {() => {
+                        props.changeContent('Project');
+                    }}>
+                    <ListItemIcon>
+                        <ChromeReaderModeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Project" />
+                    </ListItem>
+                    <ListItem button
+                    component={Link}
+                    to="/tickets"
+                    onClick= {() => {
+                        props.changeContent('Tickets');
+                    }}>
+                    <ListItemIcon>
+                        <ReceiptIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Tickets" />
+                    </ListItem>
+                    <ListItem button
+                    component={Link}
+                    to="/calander"
+                    onClick= {() => {
+                        props.changeContent('Calander');
+                    }}>
+                    <ListItemIcon>
+                        <EventNoteIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Calender" />
+                    </ListItem>
+                    <ListItem button
+                    component={Link}
+                    to="/report"
+                    onClick= {() => {
+                        props.changeContent('Report');
+                    }}
+                    >
+                    <ListItemIcon>
+                        <LibraryBooksIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Report" />
+                    </ListItem>
+                </div>
+         </List>
 
         </Drawer>
         </React.Fragment>
 
-        // <div className="container-fluid">
-        //     <nav className="navbar bg-light navbar-light border-bottom">
-        //         <form className="d-inline my-2 my-lg-0 ml-3 nav-input">
-        //             <input
-        //                 className="nav-form"
-        //                 type="search"
-        //                 placeholder="Project"
-        //                 aria-label="Project"
-        //             />
-        //             <button
-        //                 className="btn btn-outline-dark pt-1 my-2 my-sm-0"
-        //                 type="submit"
-        //             >
-        //                 Search
-        //             </button>
-        //         </form>
-        //         <div>
-        //             <button
-        //                 className="btn btn-primary rounded-pill new_messages m-2"
-        //                 type="button"
-        //             >
-        //                 Notifications{" "}
-        //                 <span className="badge badge-secondary rounded-pill">
-        //                     4
-        //                 </span>
-        //             </button>
-        //             <button
-        //                 className="btn btn-dark m-2 rounded-pill"
-        //                 type="button"
-        //                 onClick = {() => {
-        //                     props.logoutUser();
-        //                 }}
-        //             >
-        //                 Logout
-        //             </button>
-        //         </div>
-        //     </nav>
-        // </div>
     );
 }
 export default connect(mapStateToProps,mapDispatchToProps)(HorizontalNavbar)

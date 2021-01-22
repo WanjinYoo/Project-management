@@ -21,4 +21,5 @@ use Illuminate\Support\Facades\Route;
 Route::apiresource('tickets','TicketController');
 Route::post('tickets/{ticket}/close','TicketController@complete');
 Route::post('login','UserController@verify');
+Route::get('users/projects/{id}','UserController@get_projects');
 Route::apiresource('projects','ProjectController');
