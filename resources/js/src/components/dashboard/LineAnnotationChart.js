@@ -1,10 +1,19 @@
 // @flow
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import { Card, CardBody } from "reactstrap";
-
+import axios from "axios";
 // line chart with annotations
+
 const LineAnnotationChart = () => {
+    const [gtdata, setGTicketData] = useState([]);
+
+    useEffect(() => {
+        axios.get("/api/tickets").then(res => {
+            setGTicketData(res.data);
+        });
+    }, []);
+
     const apexLineChartWithAnnotationOpts = {
         annotations: {
             yaxis: [
@@ -77,26 +86,35 @@ const LineAnnotationChart = () => {
             id: "areachart-2"
         },
         labels: [
-            "13 Nov 2017",
-            "14 Nov 2017",
-            "15 Nov 2017",
-            "16 Nov 2017",
-            "17 Nov 2017",
-            "20 Nov 2017",
-            "21 Nov 2017",
-            "22 Nov 2017",
-            "23 Nov 2017",
-            "24 Nov 2017",
-            "27 Nov 2017",
-            "28 Nov 2017",
-            "29 Nov 2017",
-            "30 Nov 2017",
-            "01 Dec 2017",
-            "04 Dec 2017",
-            "05 Dec 2017",
-            "06 Dec 2017",
-            "07 Dec 2017",
-            "08 Dec 2017"
+            "2020-02-24 16:17:59",
+            "2020-12-30 07:37:45",
+            "2020-07-31 18:04:55",
+            "2020-09-18 14:23:57",
+            "2020-08-29 01:08:23",
+            "2020-02-22 02:53:21",
+            "2020-12-08 00:55:48",
+            "2020-10-14 12:29:35",
+            "2020-03-14 05:32:32",
+            "2021-01-04 18:14:48",
+            "2020-06-30 02:25:18",
+            "2020-07-26 09:45:28",
+            "2020-08-10 21:27:07",
+            "2020-08-26 19:48:08",
+            "2020-05-26 00:28:23",
+            "2020-05-16 13:49:27",
+            "2020-02-21 07:39:39",
+            "2021-01-08 04:51:24",
+            "2020-01-20 06:23:41",
+            "2020-05-09 04:52:09",
+            "2020-09-21 23:12:16",
+            "2020-05-21 08:02:17",
+            "2020-11-22 11:58:29",
+            "2020-07-04 04:16:27",
+            "2020-04-06 02:21:05",
+            "2020-02-04 16:10:18",
+            "2021-01-15 03:44:00",
+            "2020-02-22 21:08:28",
+            "2020-01-29 07:14:54"
         ],
         colors: ["#39afd1"],
         dataLabels: {

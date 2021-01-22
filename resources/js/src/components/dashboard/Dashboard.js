@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import LineAnnotationChart from "./LineAnnotationChart";
 import Progress from "./Progress";
-import StatisticsWidget from "../hyper/components/StatisticsWidget.js";
 import Clock from "react-live-clock";
-import TicketNum from "./TicketNum.js";
+import TotalTicketNum from "./TotalTicketNum.js";
+import ActiveTicketNum from "./ActiveTicketNum.js";
 import "../../componentsstyling/dashboard.scss";
-import axios from "axios";
 
 export default function Dashboard() {
     return (
@@ -27,7 +26,8 @@ export default function Dashboard() {
                             timezone={"US/Pacific"}
                         />
                     </div>
-                    <TicketNum />
+                    <TotalTicketNum />
+                    <ActiveTicketNum />
                 </div>
                 <div id="ticketStats">
                     <LineAnnotationChart />
