@@ -21,12 +21,11 @@ export default function TicketHome() {
             if (
                 tdata[b].project_id === 1 &&
                 tdata[b].status_id === 2 &&
-                currentTime > ticketTime
+                ticketTime - currentTime < 86400000 &&
+                ticketTime - currentTime > 0
             ) {
                 adata++;
-                console.log(currentTime);
-                console.log(ticketTime);
-                console.log(currentTime - ticketTime);
+                // console.log(tdata[b]);
             }
         }
     }
