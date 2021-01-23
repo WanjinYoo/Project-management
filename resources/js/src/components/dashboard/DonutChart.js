@@ -26,6 +26,19 @@ const DonutChart = props => {
             if (
                 tdata[b].project_id === projectID &&
                 tdata[b].receiver_id === userID &&
+                tdata[b].status_id !== 4
+            ) {
+                aldata++;
+            }
+        }
+    }
+
+    //pending work teickets
+    if (tdata[0] !== undefined) {
+        for (let b in tdata) {
+            if (
+                tdata[b].project_id === projectID &&
+                tdata[b].receiver_id === userID &&
                 tdata[b].status_id === 2
             ) {
                 adata++;
@@ -64,9 +77,9 @@ const DonutChart = props => {
     }
 
     //Percentage calculations
-    let adataPercent = 0;
-    let odataPercent = 0;
-    let wadataPercent = 0;
+    let pdataPercent = Math.round((adata / aldata) * 100);
+    let odataPercent = Math.round((odata / aldata) * 100);
+    let wadataPercent = Math.round((wadata / aldata) * 100);
 
     const donutData = [
         { name: "Pending Work", id: 1, quantity: adata, percentage: 5 },
@@ -75,7 +88,7 @@ const DonutChart = props => {
             name: "Waiting Approval",
             id: 4,
             quantity: wadata,
-            percentage: 11
+            percentage: wadataPercent
         }
         // { name: "Sparkling", id: 5, quantity: 36, percentage: 2 },
         // { name: "Other", id: 0, quantity: 814, percentage: 48 }
