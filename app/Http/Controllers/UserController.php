@@ -29,6 +29,16 @@ class UserController extends Controller
         }
 
      }
+
+    public function show($id)
+    {
+        $user = User::where('id','=',$id)
+                        ->select('users.*')
+                        -> first();
+        return $user;
+    }
+
+
     public function get_projects($id)
     {
         $projects = UsersProject::where('user_id','=',$id)
