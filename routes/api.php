@@ -18,9 +18,19 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+
+Route::post('login','UserController@verify');
+
+Route::get('users/{id}','UserController@show');
+Route::get('users/tickets/{user}','UserController@get_tickets');
+Route::get('users/projects/{user}','UserController@get_projects');
+Route::patch('users/{id}','UserController@update');
+
+Route::apiresource('projects','ProjectController');
+Route::get('projects/{project}/tickets','ProjectController@tickets_per_project');
+Route::get('projects/{project_id}/tickets/{user_id}','ProjectController@tickets_project_user');
+Route::post('projects/{project}/member','ProjectController@add_member');
+
 Route::apiresource('tickets','TicketController');
 Route::post('tickets/{ticket}/close','TicketController@complete');
-Route::post('login','UserController@verify');
-Route::get('users/projects/{id}','UserController@get_projects');
-Route::get('users/tickets/{id}','UserController@get_tickets');
-Route::apiresource('projects','ProjectController');
+

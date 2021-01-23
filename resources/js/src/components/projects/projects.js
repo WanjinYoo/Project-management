@@ -1,55 +1,54 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import CheckIcon from "@material-ui/icons/Check";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import Box from "@material-ui/core/Box";
+import ProjectTable from "./ProjectTable";
 
-const StyledTableCell = withStyles(theme => ({
-    head: {
-        backgroundColor: theme.palette.primary.dark,
-        color: theme.palette.common.white
-    },
-    body: {
-        fontSize: 14
-    }
-}))(TableCell);
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
 
-const StyledTableRow = withStyles(theme => ({
-    root: {
-        "&:nth-of-type(odd)": {
-            backgroundColor: theme.palette.action.hover
-        }
-    }
-}))(TableRow);
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && <Box p={3}>{children}</Box>}
+        </div>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired
+};
+
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        "aria-controls": `simple-tabpanel-${index}`
+    };
+}
 
 const mapStateToProps = state => {
     return {
         logIn: state.logIn
     };
 };
-const useStyles = makeStyles({
-    table: {
-        minWidth: 700
-    }
-});
 
 const projects = props => {
     const [projects, setProjects] = useState([]);
-    const classes = useStyles();
-    const [sortby, setSortby] = useState("Sort by");
+    const [sortby, setSortby] = useState("All");
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(0);
 
@@ -73,9 +72,15 @@ const projects = props => {
             setProjects(res.data);
         });
     };
-
     useEffect(() => {
-        getData();
+        let isMounted = true;
+        if (isMounted) {
+            getData();
+        }
+        return () => {
+            isMounted = false;
+            setProjects([]);
+        };
     }, []);
 
     return (
@@ -89,10 +94,9 @@ const projects = props => {
                 value={sortby}
                 onChange={handleChange}
             >
-                <MenuItem value="Sort by">
-                    <em>Sort by</em>
+                <MenuItem value="All">
+                    <em>All</em>
                 </MenuItem>
-                <MenuItem value="All">All</MenuItem>
                 <MenuItem value="Pending">Pending Projects</MenuItem>
                 <MenuItem value="Concluded">Concluded Projects</MenuItem>
             </Select>
@@ -104,70 +108,31 @@ const projects = props => {
                     textColor="primary"
                     centered
                 >
-                    <Tab label="ALL" />
-                    <Tab label="Collaborator" />
-                    <Tab label="Manager" />
+                    <Tab label="ALL" {...a11yProps(0)} />
+                    <Tab label="Collaborator" {...a11yProps(1)} />
+                    <Tab label="Manager" {...a11yProps(2)} />
                 </Tabs>
-                <Table className={classes.table} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell>My Projects</StyledTableCell>
-                            <StyledTableCell align="right">
-                                Status
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                StartDate
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                Deadline
-                            </StyledTableCell>
-                            <StyledTableCell align="center">
-                                Manager
-                            </StyledTableCell>
-                            <StyledTableCell align="center">
-                                View
-                            </StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {projects.map(row => (
-                            <StyledTableRow key={row.name}>
-                                <StyledTableCell component="th" scope="row">
-                                    {row.name}
-                                </StyledTableCell>
-                                <StyledTableCell align="right">
-                                    {row.status_name}
-                                </StyledTableCell>
-                                <StyledTableCell align="right">
-                                    {row.start_date}
-                                </StyledTableCell>
-                                <StyledTableCell align="right">
-                                    {row.deadline}
-                                </StyledTableCell>
-                                {row.isManager === 1 && (
-                                    <StyledTableCell align="center">
-                                        <CheckIcon />
-                                    </StyledTableCell>
-                                )}
-                                {row.isManager === 0 && (
-                                    <StyledTableCell align="right"></StyledTableCell>
-                                )}
-                                <StyledTableCell align="left">
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        size="small"
-                                        className="ml-5"
-                                        component={Link}
-                                        to="/adminDash"
-                                    >
-                                        VIEW
-                                    </Button>
-                                </StyledTableCell>
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                <TabPanel value={value} index={0}>
+                    <ProjectTable
+                        projects={projects}
+                        sort="all"
+                        sort2={sortby}
+                    />
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <ProjectTable
+                        projects={projects}
+                        sort="collaborator"
+                        sort2={sortby}
+                    />
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    <ProjectTable
+                        projects={projects}
+                        sort="manager"
+                        sort2={sortby}
+                    />
+                </TabPanel>
             </TableContainer>
         </div>
     );

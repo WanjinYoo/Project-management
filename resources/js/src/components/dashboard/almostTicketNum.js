@@ -2,8 +2,10 @@ import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function TicketHome() {
+export default function AlmostTicket(props) {
     const [tdata, setTicketData] = useState([]);
+    let projectID = props.projectid;
+    let userID = props.id;
 
     useEffect(() => {
         axios.get("/api/tickets").then(res => {
@@ -14,18 +16,19 @@ export default function TicketHome() {
     let adata = 0;
 
     if (tdata[0] !== undefined) {
-        console.log(Date());
         for (let b in tdata) {
             let ticketTime = new Date(tdata[b].deadline);
             let currentTime = new Date();
 
             if (
-                tdata[b].project_id === 1 &&
+                tdata[b].project_id === projectID &&
+                tdata[b].receiver_id === userID &&
                 tdata[b].status_id === 2 &&
-                currentTime > ticketTime
+                ticketTime - currentTime < 86400000 &&
+                ticketTime - currentTime > 0
             ) {
                 adata++;
-                // console.log(currentTime - ticketTime);
+                // console.log(tdata[b]);
             }
         }
     }
@@ -34,9 +37,8 @@ export default function TicketHome() {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <p>There are: </p>
+                <p>Tickets Almost Due</p>
                 <ul>{ticketData}</ul>
-                <p>Tickets almost due.</p>
             </div>
         </React.Fragment>
     );
