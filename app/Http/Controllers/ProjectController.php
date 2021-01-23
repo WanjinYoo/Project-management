@@ -61,26 +61,35 @@ class ProjectController extends Controller
         return $tickets;
     }
 
-    public function tickets_project_user($id)
+    public function tickets_project_user($project_id, $user_id)
     {
-        $user = Auth::user();
-        print_r($user);
-        $tickets = Ticket::where('project_id','=',$id)
-                    ->where('receiver_id','=',$user->id)
+        // $user = auth()->user();
+                // print_r($user);
+        $tickets = Ticket::where('project_id','=',$project_id)
+                    ->where('receiver_id','=',$user_id)
                     ->join('projects', 'projects.id', '=', 'tickets.project_id')
                     ->join('status_names', 'status_names.id', '=', 'tickets.status_id')
                     ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
                     ->select('tickets.*', 'projects.name as project_name','status_names.name as status_name', 'status_names.description as status_description', 'priority_names.name as priority_name', 'priority_names.description as priority_description')
                     -> get();
-        return $tickets;
+         return $tickets;
     }
 
     public function add_member(Request $request,$id) // post request
     {
-        $ticket = Project::where('id','=',$id);
-        $ticket->pull_request_number = $request->input('pull_request_number');
-        $ticket->save();
-        return redirect('/ticket');
+        $user_email = $request->input('email');
+        $user_id = User::where('email','=',$user_email)
+                    ->first();
+        $member = new UsersProject;
+      $member->project_id = $request->$id;
+      $member->user_id = $user_id->id;
+      $member->isManager = $request->input('isManager');
+
+      $member->save();
+
+      return response()->json([
+        "message" => "New Member added"
+      ], 201);
     }
 
 }

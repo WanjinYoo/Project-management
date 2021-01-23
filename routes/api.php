@@ -28,7 +28,7 @@ Route::patch('users/{id}','UserController@update');
 
 Route::apiresource('projects','ProjectController');
 Route::get('projects/{project}/tickets','ProjectController@tickets_per_project');
-Route::get('projects/{project}/tickets/user','ProjectController@tickets_project_user');
+Route::get('projects/{project_id}/tickets/{user_id}','ProjectController@tickets_project_user');
 Route::post('projects/{project}/member','ProjectController@add_member');
 
 Route::apiresource('tickets','TicketController');
