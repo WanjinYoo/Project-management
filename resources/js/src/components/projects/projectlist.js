@@ -5,8 +5,22 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
 
-export default function Projectlist(props) {
+
+const mapStateToProps = state => {
+    return {
+        pageContent: state.pageContent,
+    };
+  }
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      changeContent: (content) => dispatch({type: "GET_CONTENT", content: content}),
+    }
+  }
+
+
+const Projectlist = (props) => {
 
     const StyledTableCell = withStyles((theme) => ({
         head: {
@@ -52,6 +66,9 @@ export default function Projectlist(props) {
                 id: props.id
             }
             }}
+        onClick = {() => {
+            props.changeContent(`${props.name}`);
+        }}
         className = "ml-5"
         >
          VIEW
@@ -60,3 +77,4 @@ export default function Projectlist(props) {
         </StyledTableRow>
     )
 }
+export default connect(mapStateToProps,mapDispatchToProps)(Projectlist)
