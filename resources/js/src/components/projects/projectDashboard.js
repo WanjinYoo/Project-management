@@ -30,7 +30,7 @@ export default function ProjectDashboard(props) {
         </div>
         <div className = "row mt-4">
         <div className = "col-4 progressbar">
-        <h5 className = "mt-2">Progress Bar</h5>
+        <h5 className = "mt-2 text-center">Progress Bar</h5>
         <ProgressBar animated now={45} />
         </div>
         <div className = "col-8">
