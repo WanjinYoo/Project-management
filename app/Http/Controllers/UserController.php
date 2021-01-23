@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Project;
 use App\UsersProject;
+use App\PriorityName;
+use App\Ticket;
 use App\StatusName;
 use Illuminate\Http\Request;
 use Validator;
@@ -32,7 +34,20 @@ class UserController extends Controller
         $projects = UsersProject::where('user_id','=',$id)
                         ->join('projects', 'projects.id', '=', 'users_projects.project_id')
                         ->join('status_names', 'status_names.id', '=', 'projects.status_id')
+                        ->select('users_projects.*', 'projects.*', 'users_projects.id as users_projects_id', 'status_names.name as status_name', 'status_names.description as status_description')
                         -> get();
         return $projects;
+    }
+
+    public function get_tickets($id)
+    {
+        $ticketInfo = Ticket::where('receiver_id','=',$id)
+                        ->join('projects', 'projects.id', '=', 'tickets.project_id')
+                        ->join('status_names', 'status_names.id', '=', 'tickets.status_id')
+                        ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
+                        ->select('tickets.*', 'projects.name as project_name','status_names.name as status_name', 'status_names.description as status_description', 'priority_names.name as priority_name', 'priority_names.description as priority_description')
+                        -> get();
+
+        return $ticketInfo;
     }
  }

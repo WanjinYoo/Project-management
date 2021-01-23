@@ -22,4 +22,5 @@ Route::apiresource('tickets','TicketController');
 Route::post('tickets/{ticket}/close','TicketController@complete');
 Route::post('login','UserController@verify');
 Route::get('users/projects/{id}','UserController@get_projects');
+Route::get('users/tickets/{id}','UserController@get_tickets');
 Route::apiresource('projects','ProjectController');
