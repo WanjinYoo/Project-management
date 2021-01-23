@@ -62,6 +62,7 @@ export default function ProjectTable(props) {
                         <Projectlist
                         key = {index}
                         name = {row.name}
+                        id = {row.project_id}
                         status_name = {row.status_name}
                         start_date = {row.start_date}
                         deadline = {row.deadline}
@@ -74,6 +75,7 @@ export default function ProjectTable(props) {
                         <Projectlist
                         key = {index}
                         name = {row.name}
+                        id = {row.project_id}
                         status_name = {row.status_name}
                         start_date = {row.start_date}
                         deadline = {row.deadline}
@@ -88,6 +90,7 @@ export default function ProjectTable(props) {
                 <Projectlist
                 key = {index}
                 name = {row.name}
+                id = {row.project_id}
                 status_name = {row.status_name}
                 start_date = {row.start_date}
                 deadline = {row.deadline}
@@ -100,6 +103,7 @@ export default function ProjectTable(props) {
                     <Projectlist
                     key = {index}
                     name = {row.name}
+                    id = {row.project_id}
                     status_name = {row.status_name}
                     start_date = {row.start_date}
                     deadline = {row.deadline}
@@ -112,6 +116,7 @@ export default function ProjectTable(props) {
                     <Projectlist
                     key = {index}
                     name = {row.name}
+                    id = {row.project_id}
                     status_name = {row.status_name}
                     start_date = {row.start_date}
                     deadline = {row.deadline}
@@ -126,6 +131,7 @@ export default function ProjectTable(props) {
                 <Projectlist
                 key = {index}
                 name = {row.name}
+                id = {row.project_id}
                 status_name = {row.status_name}
                 start_date = {row.start_date}
                 deadline = {row.deadline}
@@ -138,6 +144,7 @@ export default function ProjectTable(props) {
                     <Projectlist
                     key = {index}
                     name = {row.name}
+                    id = {row.project_id}
                     status_name = {row.status_name}
                     start_date = {row.start_date}
                     deadline = {row.deadline}
@@ -150,6 +157,7 @@ export default function ProjectTable(props) {
                     <Projectlist
                     key = {index}
                     name = {row.name}
+                    id = {row.project_id}
                     status_name = {row.status_name}
                     start_date = {row.start_date}
                     deadline = {row.deadline}
