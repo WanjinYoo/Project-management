@@ -32,6 +32,7 @@ class UserController extends Controller
         $projects = UsersProject::where('user_id','=',$id)
                         ->join('projects', 'projects.id', '=', 'users_projects.project_id')
                         ->join('status_names', 'status_names.id', '=', 'projects.status_id')
+                        ->select('projects.name as projectName', 'status_names.name as status', 'projects.start_date as startdate', 'projects.deadline as deadline','users_projects.isManager as Manager')
                         -> get();
         return $projects;
     }
