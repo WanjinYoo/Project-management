@@ -8,13 +8,12 @@ import Settings from "./components/settings";
 import Project from "./components/projects/projects";
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-
 import HorizontalNavbar from "./components/HorizontalNavbar";
 import Dashboard from "./components/dashboard/Dashboard";
 import Calendar from "./components/Calendar";
 import Home from "./components/home"
 import "./app.scss";
-import projects from "./components/projects/projects";
+import ProjectDashboard from "./components/projects/projectDashboard";
 
 const mapStateToProps = state => {
     return {
@@ -64,6 +63,7 @@ function App(props) {
                                     <Route path="/calendar" component={Calendar} />
                                     <Route path="/progress" component={Progress} />
                                     <Route path="/report" component={Settings} />
+                                    <Route path="/projectdashboard" component={ProjectDashboard} />
                                 </Switch>
                             </Container>
                     </main>

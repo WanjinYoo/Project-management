@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import TicketNew from './ticketNew';
 import TicketSpecific from './ticketSpecific';
 import TicketHome from './ticketHome';
