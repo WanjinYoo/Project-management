@@ -32,6 +32,7 @@ export default function ProjectDashboard(props) {
         <div className = "col-4 progressbar">
         <h5 className = "mt-2 text-center">Progress Bar</h5>
         <ProgressBar animated now={45} />
+        <p className = "mt-0 mb-0 text-center"> 50%</p>
         </div>
         <div className = "col-8">
         <div className =  "justify-content-around d-flex">
