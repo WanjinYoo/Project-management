@@ -10,6 +10,7 @@
 }
 .dashboardRender {
     display: flex;
+    margin: 3%;
     justify-content: space-evenly;
 }
 #ticketStats {
@@ -20,6 +21,25 @@
     justify-content: space-evenly;
     flex-direction: column;
 }
-.dashboardRender {
-    margin: 3%;
+#widgetBar {
+    width: 75%;
+}
+#dashStatWidgets {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#dashboardClock {
+    display: flex;
+    flex-direction: row;
+}
+
+#ticketNumStats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    border: solid grey 5px;
+    background-color: white;
 }

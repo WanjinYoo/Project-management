@@ -15,7 +15,7 @@ class AddColumnsToTickets extends Migration
     {
         Schema::table('tickets', function (Blueprint $table) {
             $table->timestamp('start_at', $precision = 0);
-            $table->string('priority_level');
+
         });
     }
 
