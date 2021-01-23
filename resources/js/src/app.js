@@ -13,6 +13,7 @@ import HorizontalNavbar from "./components/HorizontalNavbar";
 import Dashboard from "./components/dashboard/Dashboard";
 import Calendar from "./components/Calendar";
 import Home from "./components/home";
+import adminDash from "./components/adminDash/adminDash";
 import "./app.scss";
 import projects from "./components/projects/projects";
 
@@ -62,6 +63,10 @@ function App(props) {
                                 <Route path="/calendar" component={Calendar} />
                                 <Route path="/progress" component={Progress} />
                                 <Route path="/report" component={Settings} />
+                                <Route
+                                    path="/adminDash"
+                                    component={adminDash}
+                                />
                             </Switch>
                         </Container>
                     </main>

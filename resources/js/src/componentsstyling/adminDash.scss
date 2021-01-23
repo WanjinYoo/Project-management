@@ -1,0 +1,24 @@
+.bulletinBoardSend {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.bulletinBoard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.epicDataStuff {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.epicDataStuff img {
+    width: 5%;
+}
+.epicDateStuff {
+    display: flex;
+}

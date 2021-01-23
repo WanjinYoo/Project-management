@@ -30,7 +30,6 @@ export default function ActiveTicket(props) {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                {" "}
                 <p>Active tickets</p>
                 <ul>{ticketData}</ul>
             </div>
