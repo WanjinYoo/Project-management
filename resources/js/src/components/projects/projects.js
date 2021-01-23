@@ -127,17 +127,17 @@ const projects = (props) => {
                 <TableBody>
                 {projects.map((row) => (
 
-                    <StyledTableRow key={row.projectName}>
+                    <StyledTableRow key={row.name}>
                     <StyledTableCell component="th" scope="row">
-                        {row.projectName}
+                        {row.name}
                     </StyledTableCell>
-                    <StyledTableCell  align="right">{row.status}</StyledTableCell>
-                    <StyledTableCell  align="right">{row.startdate}</StyledTableCell>
+                    <StyledTableCell  align="right">{row.status_name}</StyledTableCell>
+                    <StyledTableCell  align="right">{row.start_date}</StyledTableCell>
                     <StyledTableCell  align="right">{row.deadline}</StyledTableCell>
-                    {row.Manager === 1 &&
+                    {row.isManager === 1 &&
                         <StyledTableCell  align="center"><CheckIcon /></StyledTableCell>
                     }
-                    {row.Manager === 0 &&
+                    {row.isManager === 0 &&
                     <StyledTableCell  align="right"></StyledTableCell>
                     }
                      <StyledTableCell  align="left">
