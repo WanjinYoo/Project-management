@@ -19,7 +19,10 @@ export default function Dashboard() {
 
     return (
         <div>
-            <h1>Dashboard</h1>{" "}
+            <h1>Dashboard</h1>
+            <p>
+                Hello user {personid} you are on project {thisProjectId}
+            </p>
             <div id="dashboardClock">
                 <p>Today is: </p>
                 <Clock format={"dddd, MMMM Mo, YYYY"} timezone={"US/Pacific"} />

@@ -97,7 +97,9 @@ const DonutChart = props => {
     return (
         <Card>
             <CardBody>
-                <h4 className="header-title mb-4">Project {projectID}</h4>
+                <h4 className="header-title mb-4">
+                    Project {projectID} Active tickets
+                </h4>
                 <div className="donut-container">
                     <ResponsiveContainer
                         render={() => (
