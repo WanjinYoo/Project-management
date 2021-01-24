@@ -72,10 +72,13 @@ class ProjectController extends Controller
     }
 
 
-    public function delete($id) // get request
+    public function delete_member($id) // get request
     {
-        $res = Project::where('id','=',$id)
+        $res = UsersProject::where('id','=',$id)
                 ->delete();
+        return response()->json([
+            "message" => "Member Removed from Project"
+        ], 201);
 
     }
     public function show($id)
