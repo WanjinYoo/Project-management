@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Project;
+use App\ProjectBulletinBoard;
+use App\UsersProject;
 use App\User;
 use App\Ticket;
 use App\StatusName;
@@ -23,12 +25,50 @@ class ProjectController extends Controller
         // $tickets->description = $request->input('description');
         // $tickets->save();
     }
-    public function complete(Reqeust $requst,$id) // post request
+    public function complete(Request $request,$id) // post request
     {
-        $ticket = Project::where('id','=',$id);
-        $ticket->pull_request_number = $request->input('pull_request_number');
-        $ticket->save();
-        return redirect('/ticket');
+        $status = 3;
+        $finish = Project::where('id','=',$id)
+                    ->first();
+        $finish->status_id = $status;
+        $finish->save();
+        return response()->json([
+            "message" => "Project Finalized"
+          ], 201);
+    }
+
+    public function cancel(Request $request,$id) // post request
+    {
+        $status = 7;
+        $finish = Project::where('id','=',$id)
+                    ->first();
+        $finish->status_id = $status;
+        $finish->save();
+        return response()->json([
+            "message" => "Project Cancelled"
+          ], 201);
+    }
+
+    public function change_start(Request $request,$id) // post request
+    {
+        $project = Project::where('id','=',$id)
+                    ->first();
+        $project->start_date = $request->input('start_date');
+        $project->save();
+        return response()->json([
+            "message" => "Start Date Changed"
+          ], 201);
+    }
+
+    public function change_deadline(Request $request,$id) // post request
+    {
+        $project = Project::where('id','=',$id)
+                    ->first();
+        $project->deadline = $request->input('deadline');
+        $project->save();
+        return response()->json([
+            "message" => "Deadline Changed"
+          ], 201);
     }
 
 
@@ -81,15 +121,35 @@ class ProjectController extends Controller
         $user_id = User::where('email','=',$user_email)
                     ->first();
         $member = new UsersProject;
-      $member->project_id = $request->$id;
-      $member->user_id = $user_id->id;
-      $member->isManager = $request->input('isManager');
+        $member->project_id = $request->$id;
+        $member->user_id = $user_id['id'];
+        $member->isManager = $request->input('isManager');
 
-      $member->save();
+        $member->save();
 
-      return response()->json([
-        "message" => "New Member added"
-      ], 201);
+        return response()->json([
+            "message" => "New Member added"
+        ], 201);
+    }
+
+    public function fetch_member($id)
+    {
+        $comments = UsersProject::where('project_id','=',$id)
+                        ->join('projects', 'projects.id', '=', 'users_projects.project_id')
+                        ->join('users', 'users.id', '=', 'users_projects.user_id')
+                        ->select('users.*','users_projects.project_id', 'projects.name as project_name')
+                        -> get();
+        return $comments;
+    }
+
+    public function fetch_comment($id)
+    {
+        $comments = ProjectBulletinBoard::where('project_id','=',$id)
+                        ->join('projects', 'projects.id', '=', 'project_bulletin_boards.project_id')
+                        ->join('users', 'users.id', '=', 'project_bulletin_boards.user_id')
+                        ->select('project_bulletin_boards.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
+                        -> get();
+        return $comments;
     }
 
 }

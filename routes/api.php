@@ -24,13 +24,41 @@ Route::post('login','UserController@verify');
 Route::get('users/{id}','UserController@show');
 Route::get('users/tickets/{user}','UserController@get_tickets');
 Route::get('users/projects/{user}','UserController@get_projects');
-Route::patch('users/{id}','UserController@update');
+Route::put('users/{id}','UserController@update');
 
 Route::apiresource('projects','ProjectController');
 Route::get('projects/{project}/tickets','ProjectController@tickets_per_project');
 Route::get('projects/{project_id}/tickets/{user_id}','ProjectController@tickets_project_user');
+Route::get('projects/{project}/member','ProjectController@fetch_member');
 Route::post('projects/{project}/member','ProjectController@add_member');
+Route::put('projects/{project}/close','ProjectController@complete');
+Route::put('projects/{project}/cancel','ProjectController@cancel');
+Route::put('projects/{project}/start','ProjectController@change_start');
+Route::put('projects/{project}/deadline','ProjectController@change_deadline');
+Route::get('projects/{project}/comment','ProjectController@fetch_comment');
+
 
 Route::apiresource('tickets','TicketController');
-Route::post('tickets/{ticket}/close','TicketController@complete');
+Route::put('tickets/{ticket}/close','TicketController@complete');
+Route::put('tickets/{ticket}/cancel','TicketController@cancel');
+Route::put('tickets/{ticket}/approve','TicketController@approve');
+Route::put('tickets/{ticket}/reject','TicketController@reject');
+Route::put('tickets/{ticket}/submit','TicketController@submit');
+Route::put('tickets/{ticket}/start','TicketController@change_start');
+Route::put('tickets/{ticket}/deadline','TicketController@change_deadline');
+Route::put('tickets/{ticket}/description','TicketController@description');
+Route::put('tickets/{ticket}/priority','TicketController@priority');
+Route::put('tickets/{ticket}/receiver','TicketController@receiver');
+Route::post('tickets/{ticket}/comment','TicketController@create_comment');
+Route::get('tickets/{ticket}/comment','TicketController@fetch_comment');
+
+
+
+
+
+
+
+
+
+
 
