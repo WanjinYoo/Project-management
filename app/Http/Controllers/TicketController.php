@@ -8,7 +8,7 @@ use App\StatusName;
 use App\PriorityName;
 use App\CommentsTicket;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -178,15 +178,16 @@ class TicketController extends Controller
           ], 201);
     }
 
-    public function create_comment(Request $request,$id) // post request
+    public function create_comment(Request $request,$id,$user) // post request
     {
-        $user_id = \Auth::user();
+        $user_id = User::where('id','=',$user)
+                        ->first();
         $ticket_id = Ticket::where('id','=',$id)
                         ->first();
 
         $comment = new CommentsTicket;
         $comment->ticket_id = $ticket_id->id;
-        $comment->user_id = $user_id['id'];
+        $comment->user_id = $user_id->id;
         $comment->comment = $request->input('comment');
 
         $comment->save();

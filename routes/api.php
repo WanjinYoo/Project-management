@@ -37,7 +37,7 @@ Route::put('projects/{project}/cancel','ProjectController@cancel');
 Route::put('projects/{project}/start','ProjectController@change_start');
 Route::put('projects/{project}/deadline','ProjectController@change_deadline');
 Route::get('projects/{project}/comment','ProjectController@fetch_comment');
-
+Route::post('projects/{project}/comment/{user}','ProjectController@create_comment');
 
 Route::apiresource('tickets','TicketController');
 Route::put('tickets/{ticket}/close','TicketController@complete');
@@ -50,7 +50,7 @@ Route::put('tickets/{ticket}/deadline','TicketController@change_deadline');
 Route::put('tickets/{ticket}/description','TicketController@description');
 Route::put('tickets/{ticket}/priority','TicketController@priority');
 Route::put('tickets/{ticket}/receiver','TicketController@receiver');
-Route::post('tickets/{ticket}/comment','TicketController@create_comment');
+Route::post('tickets/{ticket}/comment/{user}','TicketController@create_comment');
 Route::get('tickets/{ticket}/comment','TicketController@fetch_comment');
 
 
