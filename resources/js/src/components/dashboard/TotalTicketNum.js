@@ -17,10 +17,7 @@ export default function TotaltTicket(props) {
 
     if (tdata[0] !== undefined) {
         for (let b in tdata) {
-            if (
-                tdata[b].project_id === projectID &&
-                tdata[b].receiver_id === userID
-            ) {
+            if (tdata[b].receiver_id === userID) {
                 adata++;
             }
         }

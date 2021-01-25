@@ -2,9 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Button, TextField } from "@material-ui/core";
 import axios from "axios";
 import { connect } from "react-redux";
-export default function ProfileForm(props) {
+
+const mapStateToProps = state => {
+    return {
+        logIn: state.logIn
+    };
+};
+
+const ProfileForm = props => {
     const [values, setData] = useState([]);
-    let userID = 2;
+    let userID = props.logIn.userId;
+    console.log(props.logIn.userId);
     useEffect(() => {
         axios.get(`/api/users/${userID}`).then(res => {
             setData(res.data);
@@ -151,4 +159,5 @@ export default function ProfileForm(props) {
             </Button>
         </div>
     );
-}
+};
+export default connect(mapStateToProps)(ProfileForm);

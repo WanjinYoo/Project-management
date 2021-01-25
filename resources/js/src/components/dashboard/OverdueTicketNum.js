@@ -20,11 +20,7 @@ export default function OverDueTicket(props) {
             let ticketTime = new Date(tdata[b].deadline);
             let currentTime = new Date();
 
-            if (
-                tdata[b].project_id === projectID &&
-                tdata[b].receiver_id === userID &&
-                currentTime > ticketTime
-            ) {
+            if (tdata[b].receiver_id === userID && currentTime > ticketTime) {
                 adata++;
             }
         }
