@@ -25,6 +25,13 @@ Route::get('users/{id}','UserController@show');
 Route::get('users/tickets/{user}','UserController@get_tickets');
 Route::get('users/projects/{user}','UserController@get_projects');
 Route::put('users/{id}','UserController@update');
+Route::get('users/{user}/issuer_overdue','UserController@overdue_issuer');
+Route::get('users/{user}/receiver_overdue','UserController@overdue_receiver');
+Route::get('users/{user}/issuer_due','UserController@fetch_upcoming_due_date_issuer');
+Route::get('users/{user}/receiver_due','UserController@fetch_upcoming_due_date_receiver');
+Route::get('users/{user}/issuer_submitted','UserController@fetch_waiting_approval_issuer');
+Route::get('users/{user}/receiver_submitted','UserController@fetch_waiting_approval_receiver');
+
 
 Route::apiresource('projects','ProjectController');
 Route::get('projects/{project}/tickets','ProjectController@tickets_per_project');
@@ -52,6 +59,7 @@ Route::put('tickets/{ticket}/priority','TicketController@priority');
 Route::put('tickets/{ticket}/receiver','TicketController@receiver');
 Route::post('tickets/{ticket}/comment/{user}','TicketController@create_comment');
 Route::get('tickets/{ticket}/comment','TicketController@fetch_comment');
+
 
 
 
