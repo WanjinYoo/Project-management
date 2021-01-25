@@ -56,7 +56,7 @@ const DonutChart = props => {
 
             if (
                 tdata[b].receiver_id === userID &&
-                tdata[b].status_id === 2 &&
+                tdata[b].status_id !== 4 &&
                 currentTime > ticketTime
             ) {
                 odata++;
@@ -112,7 +112,9 @@ const DonutChart = props => {
     return (
         <Card>
             <CardBody>
-                <h4 className="header-title mb-4">{aldata} Active tickets</h4>
+                <h4 className="header-title mb-4">
+                    You have {aldata} Active tickets
+                </h4>
                 <div className="donut-container">
                     <ResponsiveContainer
                         render={() => (
