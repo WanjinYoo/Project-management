@@ -16,11 +16,7 @@ export default function ActiveTicket(props) {
 
     if (tdata[0] !== undefined) {
         for (let b in tdata) {
-            if (
-                tdata[b].project_id === projectID &&
-                tdata[b].receiver_id === userID &&
-                tdata[b].status_id !== 4
-            ) {
+            if (tdata[b].receiver_id === userID && tdata[b].status_id !== 4) {
                 adata++;
             }
         }

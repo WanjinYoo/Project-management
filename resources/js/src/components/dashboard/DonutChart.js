@@ -23,11 +23,7 @@ const DonutChart = props => {
     //all active tickets
     if (tdata[0] !== undefined) {
         for (let b in tdata) {
-            if (
-                tdata[b].project_id === projectID &&
-                tdata[b].receiver_id === userID &&
-                tdata[b].status_id !== 4
-            ) {
+            if (tdata[b].receiver_id === userID && tdata[b].status_id !== 4) {
                 aldata++;
             }
         }
@@ -36,11 +32,7 @@ const DonutChart = props => {
     //pending work teickets
     if (tdata[0] !== undefined) {
         for (let b in tdata) {
-            if (
-                tdata[b].project_id === projectID &&
-                tdata[b].receiver_id === userID &&
-                tdata[b].status_id === 2
-            ) {
+            if (tdata[b].receiver_id === userID && tdata[b].status_id === 2) {
                 adata++;
             }
         }
@@ -53,7 +45,6 @@ const DonutChart = props => {
             let currentTime = new Date();
 
             if (
-                tdata[b].project_id === projectID &&
                 tdata[b].receiver_id === userID &&
                 tdata[b].status_id === 2 &&
                 currentTime > ticketTime
@@ -66,11 +57,7 @@ const DonutChart = props => {
     //Waiting approval tickets
     if (tdata[0] !== undefined) {
         for (let b in tdata) {
-            if (
-                tdata[b].project_id === projectID &&
-                tdata[b].receiver_id === userID &&
-                tdata[b].status_id === 3
-            ) {
+            if (tdata[b].receiver_id === userID && tdata[b].status_id === 3) {
                 wadata++;
             }
         }

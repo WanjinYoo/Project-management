@@ -21,7 +21,6 @@ export default function AlmostTicket(props) {
             let currentTime = new Date();
 
             if (
-                tdata[b].project_id === projectID &&
                 tdata[b].receiver_id === userID &&
                 tdata[b].status_id === 2 &&
                 ticketTime - currentTime < 86400000 &&

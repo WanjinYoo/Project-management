@@ -20,7 +20,6 @@ export default function NewTicket(props) {
             let ticketTime = new Date(tdata[b].created_at);
             let currentTime = new Date();
             if (
-                tdata[b].project_id === projectID &&
                 tdata[b].receiver_id === userID &&
                 ticketTime - currentTime < 86400000 &&
                 ticketTime - currentTime > 0
