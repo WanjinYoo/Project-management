@@ -120,11 +120,13 @@ class ProjectController extends Controller
 
     public function add_member(Request $request,$id) // post request
     {
+        $project_id = Project::where('id','=',$id)
+                    ->first();
         $user_email = $request->input('email');
         $user_id = User::where('email','=',$user_email)
                     ->first();
         $member = new UsersProject;
-        $member->project_id = $request->$id;
+        $member->project_id = $project_id['id'];
         $member->user_id = $user_id['id'];
         $member->isManager = $request->input('isManager');
 
@@ -153,6 +155,24 @@ class ProjectController extends Controller
                         ->select('project_bulletin_boards.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
                         -> get();
         return $comments;
+    }
+
+    public function create_comment(Request $request,$id,$user) // post request
+    {
+        $user_id = User::where('id','=',$user)
+                        ->first();
+        $project_id = Project::where('id','=',$id)
+                        ->first();
+
+        $comment = new ProjectBulletinBoard;
+        $comment->project_id = $project_id->id;
+        $comment->user_id = $user_id->id;
+        $comment->comment = $request->input('comment');
+
+        $comment->save();
+        return response()->json([
+            "message" => "Comment Added to project bulletin board"
+          ], 201);
     }
 
 }

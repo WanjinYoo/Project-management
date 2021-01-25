@@ -10,6 +10,7 @@ use App\StatusName;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -63,27 +64,103 @@ class UserController extends Controller
 
     public function update(Request $request,$id)
     {
-        if (User::where('id', $id)->exists()) {
-            $user = User::find($id);
+        $user = User::where('id','=',$id)
+                    ->first();
+        $user->first_name = $request->input('first_name');
+            $user->last_name = $request->input('last_name');
+            $user->email = $request->input('email');
+            $user->password = $request->input('password');
+            $user->telephone = $request->input('telephone');
+            $user->slack_account = $request->input('slack_account');
+            // $user->responds_to = $request->input('responds_to');
+            $user->team = $request->input('team');
+            $user->position = $request->input('position');
+        $user->save();
+        return response()->json([
+            "message" => "records updated successfully"
+          ], 201);
 
-            $user->first_name = is_null($request->name) ? $user->first_name : $user->first_name;
-            $user->last_name = is_null($request->last_name) ? $user->last_name : $user->last_name;
-            $user->email = is_null($request->email) ? $user->email : $user->email;
-            $user->password = is_null($request->password) ? $user->password : $user->password;
-            $user->telephone = is_null($request->telephone) ? $user->telephone : $user->telephone;
-            $user->slack_account = is_null($request->slack_account) ? $user->slack_account : $user->slack_account;
-            $user->responds_to = is_null($request->responds_to) ? $user->responds_to : $user->responds_to;
-            $user->team = is_null($request->team) ? $user->team : $user->team;
-            $user->position = is_null($request->position) ? $user->position : $user->position;
-            $user->save();
-
-            return response()->json([
-              "message" => "records updated successfully"
-            ], 200);
-          } else {
-            return response()->json([
-              "message" => "User not found"
-            ], 404);
-          };
     }
-}
+
+    public function overdue_issuer($user_id)
+    {
+        $today = Carbon::today();
+        $status = 2;
+        $comments = Ticket::where('tickets.issuer_id','=',$user_id)
+                    ->where('tickets.deadline', '<', $today)
+                    ->where('tickets.status_id','=', $status)
+                    ->join('projects', 'projects.id', '=', 'tickets.project_id')
+                    ->join('users', 'users.id', '=', 'tickets.issuer_id')
+                    ->select('tickets.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
+                    -> get();
+        return $comments;
+    }
+
+    public function overdue_receiver($user_id)
+    {
+        $today = Carbon::today();
+        $status = 2;
+        $ticket = Ticket::where('tickets.receiver_id','=',$user_id)
+                    ->where('tickets.deadline', '<', $today)
+                    ->where('tickets.status_id','=', $status)
+                    ->join('projects', 'projects.id', '=', 'tickets.project_id')
+                    ->join('users', 'users.id', '=', 'tickets.receiver_id')
+                    ->select('tickets.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
+                    -> get();
+        return $ticket;
+    }
+
+    public function fetch_upcoming_due_date_issuer($user_id)
+    {
+        $status = 2;
+        $today = Carbon::today();
+        $to= Carbon::today()->addDays(5);
+        $ticket = Ticket::where('tickets.issuer_id','=',$user_id)
+                    ->whereBetween('tickets.deadline', [$today, $to])
+                    ->where('tickets.status_id','=', $status)
+                    ->join('projects', 'projects.id', '=', 'tickets.project_id')
+                    ->join('users', 'users.id', '=', 'tickets.issuer_id')
+                    ->select('tickets.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
+                    -> get();
+        return $ticket;
+    }
+
+    public function fetch_upcoming_due_date_receiver($user_id)
+    {
+        $status = 2;
+        $today = Carbon::today();
+        $to= Carbon::today()->addDays(5);
+        $ticket = Ticket::where('tickets.receiver_id','=',$user_id)
+                    ->whereBetween('tickets.deadline', [$today, $to])
+                    ->where('tickets.status_id','=', $status)
+                    ->join('projects', 'projects.id', '=', 'tickets.project_id')
+                    ->join('users', 'users.id', '=', 'tickets.receiver_id')
+                    ->select('tickets.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
+                    -> get();
+        return $ticket;
+    }
+
+    public function fetch_waiting_approval_receiver($user_id)
+    {
+        $status = 4;
+        $ticket = Ticket::where('tickets.receiver_id','=',$user_id)
+                    ->where('tickets.status_id','=', $status)
+                    ->join('projects', 'projects.id', '=', 'tickets.project_id')
+                    ->join('users', 'users.id', '=', 'tickets.receiver_id')
+                    ->select('tickets.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
+                    -> get();
+        return $ticket;
+    }
+
+    public function fetch_waiting_approval_issuer($user_id)
+    {
+        $status = 4;
+        $ticket = Ticket::where('tickets.issuer_id','=',$user_id)
+                    ->where('tickets.status_id','=', $status)
+                    ->join('projects', 'projects.id', '=', 'tickets.project_id')
+                    ->join('users', 'users.id', '=', 'tickets.issuer_id')
+                    ->select('tickets.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
+                    -> get();
+        return $ticket;
+    }
+};
