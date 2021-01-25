@@ -8,6 +8,7 @@ use App\User;
 use App\Ticket;
 use App\StatusName;
 use Auth;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -25,47 +26,109 @@ class ProjectController extends Controller
         // $tickets->description = $request->input('description');
         // $tickets->save();
     }
-    public function complete(Request $request,$id) // post request
+    public function complete(Request $request,$id, $user_id) // post request
     {
-        $status = 3;
-        $finish = Project::where('id','=',$id)
+        $project = Project::where('id','=',$id)
                     ->first();
-        $finish->status_id = $status;
-        $finish->save();
+
+        $new_comment = "Project finished.";
+
+        $user = User::where('id','=',$user_id)
+                    ->first();
+
+        $status = 3;
+
+        $project->status_id = $status;
+        $project->save();
+
+        $comment = new ProjectBulletinBoard;
+        $comment->project_id = $project->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Project Finalized"
           ], 201);
     }
 
-    public function cancel(Request $request,$id) // post request
+    public function cancel(Request $request,$id, $user_id) // post request
     {
-        $status = 7;
-        $finish = Project::where('id','=',$id)
+        $project = Project::where('id','=',$id)
                     ->first();
-        $finish->status_id = $status;
-        $finish->save();
+
+        $new_comment = "Project cancelled.";
+
+        $user = User::where('id','=',$user_id)
+                    ->first();
+
+        $status = 7;
+
+        $project->status_id = $status;
+        $project->save();
+
+        $comment = new ProjectBulletinBoard;
+        $comment->project_id = $project->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Project Cancelled"
           ], 201);
     }
 
-    public function change_start(Request $request,$id) // post request
+    public function change_start(Request $request,$id, $user_id) // post request
     {
         $project = Project::where('id','=',$id)
                     ->first();
-        $project->start_date = $request->input('start_date');
+
+        $old_date = $project->start_date;
+
+        $new_date = $request->input('start_date');
+
+        $new_comment = "Project start date changed from {$old_date} to {$new_date}.";
+
+        $user = User::where('id','=',$user_id)
+                    ->first();
+
+        $project->start_date = $new_date;
         $project->save();
+
+        $comment = new ProjectBulletinBoard;
+        $comment->project_id = $project->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Start Date Changed"
           ], 201);
     }
 
-    public function change_deadline(Request $request,$id) // post request
+    public function change_deadline(Request $request,$id, $user_id) // post request
     {
         $project = Project::where('id','=',$id)
                     ->first();
+
+        $old_date = $project->deadline;
+
+        $new_date = $request->input('deadline');
+
+        $new_comment = "Project deadline changed from {$old_date} to {$new_date}.";
+
+        $user = User::where('id','=',$user_id)
+                    ->first();
+
         $project->deadline = $request->input('deadline');
         $project->save();
+
+        $comment = new ProjectBulletinBoard;
+        $comment->project_id = $project->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Deadline Changed"
           ], 201);
