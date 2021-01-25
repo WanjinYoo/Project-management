@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import cards from "./cards";
 import Board from "./board";
+import Comment from './commentinput'
 export default function ProjectDashboard(props) {
     const [project, setProject] = useState([]);
     axios.get(`/api/projects/${props.location.aboutProps.id}`).then(res => {
@@ -62,6 +63,9 @@ export default function ProjectDashboard(props) {
                 {cards}
             </div>
             <h3 className="text-center mt-3"> Bulleting Board</h3>
+            <Comment project_id = {project.id}/>
+            <hr />
+            <Board project_id = {project.id}/>
             <hr />
         </React.Fragment>
     );
