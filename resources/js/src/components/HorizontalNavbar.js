@@ -26,6 +26,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import SearchBar from "material-ui-search-bar";
 import Button from "@material-ui/core/Button";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 
 const mapStateToProps = state => {
     return {
@@ -240,13 +241,13 @@ const HorizontalNavbar = props => {
                             component={Link}
                             to="/calander"
                             onClick={() => {
-                                props.changeContent("Calander");
+                                props.changeContent("Calendar");
                             }}
                         >
                             <ListItemIcon>
                                 <EventNoteIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Calender" />
+                            <ListItemText primary="Calendar" />
                         </ListItem>
                         <ListItem
                             button
@@ -270,7 +271,7 @@ const HorizontalNavbar = props => {
                             }}
                         >
                             <ListItemIcon>
-                                <LibraryBooksIcon />
+                                <AccountBoxIcon />
                             </ListItemIcon>
                             <ListItemText primary="Profile" />
                         </ListItem>
