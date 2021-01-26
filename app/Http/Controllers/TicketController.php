@@ -55,7 +55,7 @@ class TicketController extends Controller
 
     public function show($id)
     {
-        $ticketInfo = Ticket::where('receiver_id','=',$id)
+        $ticketInfo = Ticket::where('tickets.id','=',$id)
                         ->join('projects', 'projects.id', '=', 'tickets.project_id')
                         ->join('status_names', 'status_names.id', '=', 'tickets.status_id')
                         ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
