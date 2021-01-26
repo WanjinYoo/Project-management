@@ -55,14 +55,14 @@ Route::post('projects/{project}/comment/{user}','ProjectController@create_commen
 Route::apiresource('tickets','TicketController');
 Route::get('tickets/{ticket}/comment','TicketController@fetch_comment');
 Route::put('tickets/{ticket}/close','TicketController@complete');
-Route::put('tickets/{ticket}/cancel','TicketController@cancel');
-Route::put('tickets/{ticket}/approve','TicketController@approve');
-Route::put('tickets/{ticket}/reject','TicketController@reject');
-Route::put('tickets/{ticket}/submit','TicketController@submit');
-Route::put('tickets/{ticket}/start','TicketController@change_start');
-Route::put('tickets/{ticket}/deadline','TicketController@change_deadline');
-Route::put('tickets/{ticket}/description','TicketController@description');
-Route::put('tickets/{ticket}/priority','TicketController@priority');
+Route::put('tickets/{ticket}/cancel/{user}','TicketController@cancel');
+Route::put('tickets/{ticket}/approve/{user}','TicketController@approve');
+Route::put('tickets/{ticket}/reject/{user}','TicketController@reject');
+Route::put('tickets/{ticket}/submit/{user}','TicketController@submit');
+Route::put('tickets/{ticket}/start/{user}','TicketController@change_start');
+Route::put('tickets/{ticket}/deadline/{user}','TicketController@change_deadline');
+Route::put('tickets/{ticket}/description/{user}','TicketController@description');
+Route::put('tickets/{ticket}/priority/{user}','TicketController@priority');
 Route::put('tickets/{ticket}/receiver','TicketController@receiver');
 Route::post('tickets/{ticket}/comment/{user}','TicketController@create_comment');
 

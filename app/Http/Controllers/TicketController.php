@@ -55,111 +55,243 @@ class TicketController extends Controller
 
     public function show($id)
     {
-        $ticketInfo = Ticket::where('id','=',$id)
+        $ticketInfo = Ticket::where('receiver_id','=',$id)
+                        ->join('projects', 'projects.id', '=', 'tickets.project_id')
+                        ->join('status_names', 'status_names.id', '=', 'tickets.status_id')
+                        ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
+                        ->select('tickets.*', 'projects.name as project_name','status_names.name as status_name', 'status_names.description as status_description', 'priority_names.name as priority_name', 'priority_names.description as priority_description')
                         -> first();
-         $issuer = User::find($ticketInfo->issuer_id);
-         $ticketInfo->issuer_firstname = $issuer->first_name;
-         $ticketInfo->issuer_lasttname = $issuer->last_name;
-         $status = StatusName::find($ticketInfo->status_id);
-         $ticketInfo->status_name = $status->name;
-         $ticketInfo->status_description = $status->description;
-         $receiver = User::find($ticketInfo->receiver_id);
-         $ticketInfo->receiver_firstname = $receiver->first_name;
-         $ticketInfo->receiver_lastname = $receiver->last_name;
+        // $ticketInfo = Ticket::where('id','=',$id)
+        //                 -> first();
+        //  $issuer = User::find($ticketInfo->issuer_id);
+        //  $ticketInfo->issuer_firstname = $issuer->first_name;
+        //  $ticketInfo->issuer_lasttname = $issuer->last_name;
+        //  $status = StatusName::find($ticketInfo->status_id);
+        //  $ticketInfo->status_name = $status->name;
+        //  $ticketInfo->status_description = $status->description;
+        //  $receiver = User::find($ticketInfo->receiver_id);
+        //  $ticketInfo->receiver_firstname = $receiver->first_name;
+        //  $ticketInfo->receiver_lastname = $receiver->last_name;
+        //  $receiver = PriorityName::find($ticketInfo->receiver_id);
+        //  $ticketInfo->receiver_firstname = $receiver->first_name;
+        //  $ticketInfo->receiver_lastname = $receiver->last_name;
          return $ticketInfo;
     }
 
-    public function cancel(Request $request,$id) // post request
+    public function cancel(Request $request,$id, $user_id) // post request
     {
+        $new_comment = "Ticket cancelled.";
+
+        $user = User::where('id','=',$user_id)
+                    ->first();
+
         $status = 7;
+
         $ticketInfo = Ticket::where('id','=',$id)
                     ->first();
+
         $ticketInfo->status_id = $status;
         $ticketInfo->save();
+
+        $comment = new CommentsTicket;
+        $comment->ticket_id = $ticketInfo->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
         return response()->json([
             "message" => "Ticket Cancelled"
           ], 201);
     }
 
-    public function approve(Request $request,$id) // post request
+    public function approve(Request $request,$id, $user_id) // post request
     {
+        $new_comment = "Ticket approved.";
+
+        $user = User::where('id','=',$user_id)
+                    ->first();
+
         $status = 5;
+
         $ticketInfo = Ticket::where('id','=',$id)
                     ->first();
+
         $ticketInfo->status_id = $status;
         $ticketInfo->save();
+
+        $comment = new CommentsTicket;
+        $comment->ticket_id = $ticketInfo->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
         return response()->json([
             "message" => "Ticket Approved"
           ], 201);
     }
 
-    public function reject(Request $request,$id) // post request
+    public function reject(Request $request,$id, $user_id) // post request
     {
+
+        $user = User::where('id','=',$user_id)
+        ->first();
+
         $status = 6;
+
         $ticketInfo = Ticket::where('id','=',$id)
-                    ->first();
+        ->first();
+
+        $user_comment = $request->input('comment');
+        $new_comment = "Ticket rejected: {$user_comment}";
+
         $ticketInfo->status_id = $status;
         $ticketInfo->save();
+
+        $comment = new CommentsTicket;
+        $comment->ticket_id = $ticketInfo->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Ticket Rejected"
           ], 201);
     }
 
-    public function submit(Request $request,$id) // post request
+    public function submit(Request $request,$id, $user_id) // post request
     {
+        $user = User::where('id','=',$user_id)
+        ->first();
+
         $status = 4;
+
         $ticketInfo = Ticket::where('id','=',$id)
                     ->first();
-        $ticketInfo->pull_request_number = $request->input('pull_request_number');
+        $pull_request = $request->input('pull_request_number');
+        $new_comment = "Pull Request #{$pull_request} submitted.";
+
+        $ticketInfo->pull_request_number = $pull_request;
         $ticketInfo->status_id = $status;
         $ticketInfo->save();
+
+        $comment = new CommentsTicket;
+        $comment->ticket_id = $ticketInfo->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Ticket Submitted"
           ], 201);
     }
 
-    public function change_start(Request $request,$id) // post request
+    public function change_start(Request $request,$id, $user_id) // post request
     {
+        $user = User::where('id','=',$user_id)
+                    ->first();
+
         $ticketInfo = Ticket::where('id','=',$id)
                     ->first();
-        $ticketInfo->start_at = $request->input('start_at');
+
+        $old_date = $ticketInfo->start_at;
+
+        $new_date = $request->input('start_at');
+
+        $new_comment = "Ticket start date changed from {$old_date} to {$new_date}.";
+
+        $ticketInfo->start_at = $new_date;
         $ticketInfo->save();
+
+        $comment = new CommentsTicket;
+        $comment->ticket_id = $ticketInfo->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Ticket Start Date Changed"
           ], 201);
     }
 
-    public function change_deadline(Request $request,$id) // post request
+    public function change_deadline(Request $request,$id, $user_id) // post request
     {
+        $user = User::where('id','=',$user_id)
+                    ->first();
+
         $ticketInfo = Ticket::where('id','=',$id)
                     ->first();
-        $ticketInfo->deadline = $request->input('deadline');
+
+        $old_date = $ticketInfo->deadline;
+
+        $new_date = $request->input('deadline');
+
+        $new_comment = "Ticket deadline changed from {$old_date} to {$new_date}.";
+
+
+        $ticketInfo->deadline = $new_date;
         $ticketInfo->save();
+
+        $comment = new CommentsTicket;
+        $comment->ticket_id = $ticketInfo->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Ticket Deadline Date Changed"
           ], 201);
     }
 
-    public function description(Request $request,$id) // post request
+    public function description(Request $request,$id, $user_id) // post request
     {
+        $user = User::where('id','=',$user_id)
+        ->first();
+
         $ticketInfo = Ticket::where('id','=',$id)
                     ->first();
+        $new_comment = "Ticket description updated.";
+
         $ticketInfo->description = $request->input('description');
         $ticketInfo->save();
+
+        $comment = new CommentsTicket;
+        $comment->ticket_id = $ticketInfo->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Description updated"
           ], 201);
     }
 
-    public function priority(Request $request,$id) // post request
+    public function priority(Request $request,$id, $user_id) // post request
     {
-        $priority_level = PriorityName::where('name','=',$request->input('priority'))
-                        ->first();
+        $user = User::where('id','=',$user_id)
+                    ->first();
 
         $ticketInfo = Ticket::where('id','=',$id)
-                    ->first();
+                        ->first();
+
+        $current_priority_id = $ticketInfo->priority_level;
+
+        $current_priority_name = PriorityName::where('id','=', $current_priority)
+                        ->first();
+
+
+        $old_priority = $priority_level->name;
+
+        $new_priority = $request->input('priority_level');
+
+        $new_comment = "Ticket priority level changed from {$old_priority} to {$new_priority}.";
+
         $ticketInfo->priority_level = $priority_level->id;
         $ticketInfo->save();
+
+        $comment = new CommentsTicket;
+        $comment->ticket_id = $ticketInfo->id;
+        $comment->user_id = $user->id;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Priority Level updated"
           ], 201);
@@ -167,13 +299,29 @@ class TicketController extends Controller
 
     public function receiver(Request $request,$id) // post request
     {
+
         $receiver_id = User::where('email','=',$request->input('email'))
-                        ->first();
+        ->first();
+
+        $receiver = $receiver_id->id;
+        $receiver_first_name = $receiver_id->first_name;
+        $receiver_last_name = $receiver_id->last_name;
+        $receiver_email = $receiver_id->email;
 
         $ticketInfo = Ticket::where('id','=',$id)
-                    ->first();
-        $ticketInfo->receiver_id = $receiver_id->id;
+        ->first();
+
+        $new_comment = "Ticket reassigned to {$receiver_last_name}, {$receiver_first_name} - e-mail: {$receiver_email}.";
+
+        $ticketInfo->receiver_id = $receiver;
         $ticketInfo->save();
+
+        $comment = new CommentsTicket;
+        $comment->ticket_id = $ticketInfo->id;
+        $comment->user_id = $receiver;
+        $comment->comment = $new_comment;
+        $comment->save();
+
         return response()->json([
             "message" => "Ticket Reassigned"
           ], 201);
