@@ -1,6 +1,7 @@
 import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import NumWidget from "../hyper/components/StatisticsWidget";
 
 export default function OverDueTicket(props) {
     const [tdata, setTicketData] = useState([]);
@@ -34,9 +35,9 @@ export default function OverDueTicket(props) {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <p>OverDue tickets</p>
-                <ul>{ticketData}</ul>
+                <NumWidget title="Overdue Tickets" stats={adata} />
             </div>
+            ;
         </React.Fragment>
     );
 }

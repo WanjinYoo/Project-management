@@ -1,6 +1,7 @@
 import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import NumWidget from "../hyper/components/StatisticsWidget";
 
 export default function RejectedTicekt(props) {
     const [tdata, setTicketData] = useState([]);
@@ -27,9 +28,9 @@ export default function RejectedTicekt(props) {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <p>Rejected Tickets</p>
-                <ul>{ticketData}</ul>
+                <NumWidget title="Rejected Tickets" stats={adata} />
             </div>
+            ;
         </React.Fragment>
     );
 }

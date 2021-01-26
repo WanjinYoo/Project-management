@@ -3,7 +3,7 @@ import React from "react";
 export default function RenderStats(props) {
     return (
         <div>
-            <p>{props.num}</p>
+            <h3>{props.num}</h3>
         </div>
     );
 }
