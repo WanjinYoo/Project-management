@@ -71,8 +71,9 @@ export default function ProjectDashboard(props) {
 
                             <Viewmembers id = {project.id}/>
                     </div>
+                    { props.location.aboutProps.isManager === 1 &&
                     <div className="justify-content-around d-flex manager_view">
-                        <Button variant="contained" color="secondary">
+                     <Button variant="contained" color="secondary">
                             Finish Project
                         </Button>
                         <Button variant="contained" color="primary">
@@ -86,6 +87,7 @@ export default function ProjectDashboard(props) {
                         </Button>
 
                     </div>
+                    }
                 </div>
                 {cards}
             </div>

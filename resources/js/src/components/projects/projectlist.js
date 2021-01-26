@@ -63,7 +63,8 @@ const Projectlist = (props) => {
         to= {{
             pathname: "/projectdashboard",
             aboutProps: {
-                id: props.id
+                id: props.id,
+                isManager: props.isManager
             }
             }}
         onClick = {() => {

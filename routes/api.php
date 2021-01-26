@@ -24,12 +24,18 @@ Route::post('login','UserController@verify');
 Route::get('users/{id}','UserController@show');
 Route::get('users/tickets/{user}','UserController@get_tickets');
 Route::get('users/projects/{user}','UserController@get_projects');
-Route::get('users/{user}/issuer_overdue','UserController@overdue_issuer');
-Route::get('users/{user}/receiver_overdue','UserController@overdue_receiver');
-Route::get('users/{user}/issuer_due','UserController@fetch_upcoming_due_date_issuer');
-Route::get('users/{user}/receiver_due','UserController@fetch_upcoming_due_date_receiver');
-Route::get('users/{user}/issuer_submitted','UserController@fetch_waiting_approval_issuer');
-Route::get('users/{user}/receiver_submitted','UserController@fetch_waiting_approval_receiver');
+Route::get('users/tickets/{user}/issuer_overdue','UserController@overdue_issuer_ticket');
+Route::get('users/tickets/{user}/receiver_overdue','UserController@overdue_receiver_ticket');
+Route::get('users/tickets/{user}/issuer_due','UserController@fetch_upcoming_due_date_issuer_ticket');
+Route::get('users/tickets/{user}/receiver_due','UserController@fetch_upcoming_due_date_receiver_ticket');
+Route::get('users/tickets/{user}/issuer_submitted','UserController@fetch_waiting_approval_issuer_ticket');
+Route::get('users/tickets/{user}/receiver_submitted','UserController@fetch_waiting_approval_receiver_ticket');
+Route::get('users/tickets/{user}/issuer_overdue/{project}','UserController@overdue_issuer_ticket_proj');
+Route::get('users/tickets/{user}/receiver_overdue/{project}','UserController@overdue_receiver_ticket_proj');
+Route::get('users/tickets/{user}/issuer_due/{project}','UserController@fetch_upcoming_due_date_issuer_ticket_proj');
+Route::get('users/tickets/{user}/receiver_due/{project}','UserController@fetch_upcoming_due_date_receiver_ticket_proj');
+Route::get('users/tickets/{user}/issuer_submitted/{project}','UserController@fetch_waiting_approval_issuer_ticket_proj');
+Route::get('users/tickets/{user}/receiver_submitted/{project}','UserController@fetch_waiting_approval_receiver_ticket_proj');
 Route::put('users/{id}','UserController@update');
 
 
