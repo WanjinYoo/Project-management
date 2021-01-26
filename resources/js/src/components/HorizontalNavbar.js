@@ -169,24 +169,6 @@ const HorizontalNavbar = props => {
                     <Button
                         variant="contained"
                         color="primary"
-                        size="small"
-                        component={Link}
-                        to={{
-                            pathname: "/profile",
-                            aboutProps: {
-                                id: props.id
-                            }
-                        }}
-                        onClick={() => {
-                            props.changeContent(`${props.name}`);
-                        }}
-                        className="ml-5"
-                    >
-                        PROFILE
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="primary"
                         onClick={() => {
                             props.logoutUser();
                         }}
@@ -278,6 +260,19 @@ const HorizontalNavbar = props => {
                                 <LibraryBooksIcon />
                             </ListItemIcon>
                             <ListItemText primary="Report" />
+                        </ListItem>
+                        <ListItem
+                            button
+                            component={Link}
+                            to="/profile"
+                            onClick={() => {
+                                props.changeContent("Profile");
+                            }}
+                        >
+                            <ListItemIcon>
+                                <LibraryBooksIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Profile" />
                         </ListItem>
                     </div>
                 </List>

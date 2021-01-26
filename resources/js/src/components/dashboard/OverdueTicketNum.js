@@ -23,7 +23,7 @@ export default function OverDueTicket(props) {
 
             if (
                 tdata[b].receiver_id === userID &&
-                tdata[b].status_id !== 4 &&
+                tdata[b].status_id === 2 &&
                 currentTime > ticketTime
             ) {
                 adata++;
