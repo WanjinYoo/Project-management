@@ -15,6 +15,7 @@ import Home from "./components/home";
 import Profile from "./components/profile/profile";
 import "./app.scss";
 import ProjectDashboard from "./components/projects/projectDashboard";
+import TicketSpecific from "./components/tickets/ticketSpecific"
 
 const mapStateToProps = state => {
     return {
@@ -65,6 +66,10 @@ function App(props) {
                                 <Route
                                     path="/projectdashboard"
                                     component={ProjectDashboard}
+                                />
+                                <Route
+                                    path="/tickedetails"
+                                    component={TicketSpecific}
                                 />
                                 <Route path="/profile" component={Profile} />
                             </Switch>

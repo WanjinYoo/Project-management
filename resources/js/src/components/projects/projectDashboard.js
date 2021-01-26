@@ -11,7 +11,7 @@ import Comment from './commentinput'
 import Projectdescription from './description'
 import Viewmembers from './viewmembers'
 import ViewTickets from './viewtickets'
-import { getTickets } from './helper/getProgress'
+
 
 
 

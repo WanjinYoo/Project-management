@@ -63,15 +63,15 @@ class TicketController extends Controller
                         -> first();
         // $ticketInfo = Ticket::where('id','=',$id)
         //                 -> first();
-        //  $issuer = User::find($ticketInfo->issuer_id);
-        //  $ticketInfo->issuer_firstname = $issuer->first_name;
-        //  $ticketInfo->issuer_lasttname = $issuer->last_name;
+          $issuer = User::find($ticketInfo->issuer_id);
+          $ticketInfo->issuer_firstname = $issuer->first_name;
+          $ticketInfo->issuer_lasttname = $issuer->last_name;
         //  $status = StatusName::find($ticketInfo->status_id);
         //  $ticketInfo->status_name = $status->name;
         //  $ticketInfo->status_description = $status->description;
-        //  $receiver = User::find($ticketInfo->receiver_id);
-        //  $ticketInfo->receiver_firstname = $receiver->first_name;
-        //  $ticketInfo->receiver_lastname = $receiver->last_name;
+          $receiver = User::find($ticketInfo->receiver_id);
+          $ticketInfo->receiver_firstname = $receiver->first_name;
+          $ticketInfo->receiver_lastname = $receiver->last_name;
         //  $receiver = PriorityName::find($ticketInfo->receiver_id);
         //  $ticketInfo->receiver_firstname = $receiver->first_name;
         //  $ticketInfo->receiver_lastname = $receiver->last_name;

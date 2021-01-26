@@ -55,14 +55,13 @@ const TicketsItem = (props) => {
         size="small"
         component={Link}
         to= {{
-            pathname: "/projectdashboard",
+            pathname: "/tickedetails",
             aboutProps: {
                 id: props.id,
-                isManager: props.isManager
             }
             }}
         onClick = {() => {
-            props.changeContent(`${props.name}`);
+            props.changeContent(`Ticket #${props.id} ${props.name}`);
         }}
         className = "ml-5"
         >

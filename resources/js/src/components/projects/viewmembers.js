@@ -65,7 +65,10 @@ export default function Viewmembers(props) {
           <p id="simple-modal-description">
             <b>Name</b> {` ${item.first_name} ${item.last_name}`} <br />
             <b>Team</b> {` ${item.team}`} <br />
-            <b>Position</b> {` ${item.position}`}
+            <b>Position</b> {` ${item.position}`} <br />
+            <b>Email</b> {` ${item.email}`} <br />
+            <b>Telephone no.</b> {` ${item.telephone}`} <br />
+            <b>Slack Account</b> {` ${item.slack_account}`}
           </p>
           <hr />
         </React.Fragment>
