@@ -11,9 +11,6 @@ import Comment from "./commentinput";
 import Projectdescription from "./description";
 import Viewmembers from "./viewmembers";
 import ViewTickets from "./viewtickets";
-import { getTickets } from "./helper/getProgress";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
 const getProgress = data => {
     let approved = 0;

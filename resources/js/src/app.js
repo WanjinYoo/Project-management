@@ -15,7 +15,11 @@ import Home from "./components/home";
 import Profile from "./components/profile/profile";
 import "./app.scss";
 import ProjectDashboard from "./components/projects/projectDashboard";
+<<<<<<< HEAD
 import addMember from "./components/addMember/addMember";
+=======
+import TicketSpecific from "./components/tickets/ticketSpecific"
+>>>>>>> bd921a6065a3cf76ef3d5411ebdcd3c8938ef0cd
 
 const mapStateToProps = state => {
     return {
@@ -66,6 +70,10 @@ function App(props) {
                                 <Route
                                     path="/projectdashboard"
                                     component={ProjectDashboard}
+                                />
+                                <Route
+                                    path="/tickedetails"
+                                    component={TicketSpecific}
                                 />
                                 <Route path="/profile" component={Profile} />
                                 <Route

@@ -67,7 +67,7 @@ class ProjectController extends Controller
         $project->status_id = $status;
         $project->save();
 
-        $comment = new ProjectBulletinBoard;
+        $comment = new CommentsTicket;
         $comment->project_id = $project->id;
         $comment->user_id = $user->id;
         $comment->comment = $new_comment;
