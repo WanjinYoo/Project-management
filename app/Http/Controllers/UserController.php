@@ -62,6 +62,19 @@ class UserController extends Controller
         return $ticketInfo;
     }
 
+    public function get_tickets_issuer($id)
+    {
+        $ticketInfo = Ticket::where('issuer_id','=',$id)
+                        ->join('projects', 'projects.id', '=', 'tickets.project_id')
+                        ->join('status_names', 'status_names.id', '=', 'tickets.status_id')
+                        ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
+                        ->select('tickets.*', 'projects.name as project_name','status_names.name as status_name', 'status_names.description as status_description', 'priority_names.name as priority_name', 'priority_names.description as priority_description')
+                        -> get();
+
+        return $ticketInfo;
+    }
+
+
     public function update(Request $request,$id)
     {
         $user = User::where('id','=',$id)

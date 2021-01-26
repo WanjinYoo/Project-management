@@ -215,6 +215,7 @@ class ProjectController extends Controller
         $comments = ProjectBulletinBoard::where('project_id','=',$id)
                         ->join('projects', 'projects.id', '=', 'project_bulletin_boards.project_id')
                         ->join('users', 'users.id', '=', 'project_bulletin_boards.user_id')
+                        ->orderBy('created_at', 'DESC')
                         ->select('project_bulletin_boards.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
                         -> get();
         return $comments;

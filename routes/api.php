@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('login','UserController@verify');
 
 Route::get('users/{id}','UserController@show');
+Route::get('users/tickets/{user}/issuer','UserController@get_tickets_issuer');
 Route::get('users/tickets/{user}','UserController@get_tickets');
 Route::get('users/projects/{user}','UserController@get_projects');
 Route::get('users/tickets/{user}/issuer_overdue','UserController@overdue_issuer_ticket');

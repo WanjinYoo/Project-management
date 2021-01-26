@@ -345,12 +345,12 @@ class TicketController extends Controller
           ], 201);
     }
 
-    public function fetch_comment($id)
+    public function fetch_comment(Request $request,$id)
     {
         $comments = CommentsTicket::where('ticket_id','=',$id)
-                    ->join('projects', 'projects.id', '=', 'comments_tickets.ticket_id')
                     ->join('users', 'users.id', '=', 'comments_tickets.user_id')
-                    ->select('comments_tickets.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
+                    ->orderBy('created_at', 'DESC')
+                    ->select('comments_tickets.*','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
                     -> get();
         return $comments;
     }
