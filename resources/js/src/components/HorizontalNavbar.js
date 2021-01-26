@@ -163,7 +163,7 @@ const HorizontalNavbar = props => {
                     </Typography>
                     <SearchBar />
                     <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
+                        <Badge badgeContent={7} color="secondary">
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>

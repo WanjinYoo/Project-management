@@ -7,7 +7,9 @@ export default function Card(props) {
                 <h3 className="card-title text-center">Description</h3>
                 <p className="card-text text-center">{props.description}</p>
             </div>
+            { props.issuer_id === props.user_id &&
             <button className = "btn btn-secondary"> Update </button>
+            }
         </div>
     )
 }
