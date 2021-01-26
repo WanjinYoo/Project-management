@@ -1,6 +1,7 @@
 import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import NumWidget from "../hyper/components/StatisticsWidget";
 
 export default function AlmostTicket(props) {
     const [tdata, setTicketData] = useState([]);
@@ -36,9 +37,12 @@ export default function AlmostTicket(props) {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <p>Tickets Almost Due</p>
-                <ul>{ticketData}</ul>
+                <NumWidget title="Tickets Almost Due" stats={adata} />
             </div>
         </React.Fragment>
     );
 }
+// <div id="ticketNumStats">
+//     <p>Tickets Almost Due</p>
+//     <ul>{ticketData}</ul>
+// </div>

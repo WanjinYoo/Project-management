@@ -56,7 +56,7 @@ const DonutChart = props => {
 
             if (
                 tdata[b].receiver_id === userID &&
-                tdata[b].status_id !== 4 &&
+                tdata[b].status_id === 2 &&
                 currentTime > ticketTime
             ) {
                 odata++;
@@ -87,7 +87,7 @@ const DonutChart = props => {
             percentage: pdataPercent
         },
         {
-            name: "Waiting Approval",
+            name: "Pending Approval",
             id: 3,
             quantity: wadata,
             percentage: wadataPercent

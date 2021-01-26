@@ -3,17 +3,6 @@ import React from "react";
 import { Card, CardBody } from "reactstrap";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import img from "../img/ticket.png";
-
-// let props = {
-//     textClass?: string,
-//     bgclassName?: string,
-//     icon?: string,
-//     title: string,
-//     description: string,
-//     stats?: string,
-//     trend: PropTypes.object,
-// };
 
 /**
  * Statistics widget
@@ -25,7 +14,9 @@ const StatisticsWidget = props => {
             <CardBody>
                 {props.icon && (
                     <div className="float-right">
-                        <i className={classNames(img, "widget-icon")}></i>
+                        <i
+                            className={classNames(props.icon, "widget-icon")}
+                        ></i>
                     </div>
                 )}
                 <h5
@@ -34,13 +25,11 @@ const StatisticsWidget = props => {
                         "mt-0",
                         textClass
                     )}
-                    title={"props.description"}
+                    title={props.description}
                 >
-                    {"tickets"}
+                    {props.title}
                 </h5>
-                <h3 className={classNames("mt-3", "mb-3", textClass)}>
-                    {"props.stats"}
-                </h3>
+                <h3 className="my-2 py-1">{props.stats}</h3>
 
                 {props.trend && (
                     <p className={classNames("mb-0", textClass)}>
@@ -51,11 +40,9 @@ const StatisticsWidget = props => {
                             )}
                         >
                             <i className={classNames(props.trend.icon)}></i>{" "}
-                            {"props.trend.value"}
+                            {props.trend.value}
                         </span>
-                        <span className="text-nowrap">
-                            {"props.trend.time"}
-                        </span>
+                        <span className="text-nowrap">{props.trend.time}</span>
                     </p>
                 )}
             </CardBody>

@@ -11,7 +11,8 @@ import PendingTicketNum from "./PendingTicketNum.js";
 import RejectedTicketNum from "./RejectedTicketNum.js";
 import NewTicketNum from "./NewTicketNum.js";
 import Chart from "./DonutChart.js";
-import { Button, Menu, MenuItem } from "@material-ui/core";
+import NumWidget from "../hyper/components/StatisticsWidget";
+import { Button, Menu, MenuItem, Typography } from "@material-ui/core";
 import "../../componentsstyling/dashboard.scss";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -41,19 +42,22 @@ const Dashboard = props => {
     }, []);
 
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <p>Hello {firstName}</p>
-            <div id="dashboardClock">
-                <p>Today is: </p>
-                <Clock format={"dddd, MMMM Mo, YYYY"} timezone={"US/Pacific"} />
-                <p>The time is: </p>
+        <div className="alldash">
+            <h1>Your Dashboard</h1>
+            <Typography component="h1" variant="h5" noWrap>
+                Hello {firstName}
+            </Typography>
+            <Typography component="h1" variant="h6" noWrap>
+                Today is:{" "}
+                <Clock format={"dddd, MMMM Mo, YYYY"} timezone={"US/Pacific"} />{" "}
+                The time is:{" "}
                 <Clock
                     format={"h:mm:ss A"}
                     ticking={true}
                     timezone={"US/Pacific"}
                 />
-            </div>
+            </Typography>
+
             <div className="dashboardRender">
                 <Chart id={personid} />
                 <div id="widgetBar">

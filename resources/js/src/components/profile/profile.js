@@ -26,7 +26,6 @@ const Profile = props => {
         <div>
             <h1>Edit Profile</h1>{" "}
             <h5>{`Profile Created: ${Date(data.created_at)}`}</h5>
-            <h5>{`Last Edit: ${lastEdit}`}</h5>
             <ProfileForm />
         </div>
     );

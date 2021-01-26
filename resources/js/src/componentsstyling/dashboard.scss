@@ -36,10 +36,11 @@
 }
 
 #ticketNumStats {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: 1%;
     width: 30%;
-    border: solid grey 5px;
-    background-color: white;
+}
+
+.alldash {
+    padding: 2%;
+    border: solid rgb(238, 238, 238);
 }

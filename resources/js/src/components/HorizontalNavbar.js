@@ -26,6 +26,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import SearchBar from "material-ui-search-bar";
 import Button from "@material-ui/core/Button";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 
 const mapStateToProps = state => {
     return {
@@ -169,24 +170,6 @@ const HorizontalNavbar = props => {
                     <Button
                         variant="contained"
                         color="primary"
-                        size="small"
-                        component={Link}
-                        to={{
-                            pathname: "/profile",
-                            aboutProps: {
-                                id: props.id
-                            }
-                        }}
-                        onClick={() => {
-                            props.changeContent(`${props.name}`);
-                        }}
-                        className="ml-5"
-                    >
-                        PROFILE
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="primary"
                         onClick={() => {
                             props.logoutUser();
                         }}
@@ -258,13 +241,13 @@ const HorizontalNavbar = props => {
                             component={Link}
                             to="/calander"
                             onClick={() => {
-                                props.changeContent("Calander");
+                                props.changeContent("Calendar");
                             }}
                         >
                             <ListItemIcon>
                                 <EventNoteIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Calender" />
+                            <ListItemText primary="Calendar" />
                         </ListItem>
                         <ListItem
                             button
@@ -278,6 +261,19 @@ const HorizontalNavbar = props => {
                                 <LibraryBooksIcon />
                             </ListItemIcon>
                             <ListItemText primary="Report" />
+                        </ListItem>
+                        <ListItem
+                            button
+                            component={Link}
+                            to="/profile"
+                            onClick={() => {
+                                props.changeContent("Profile");
+                            }}
+                        >
+                            <ListItemIcon>
+                                <AccountBoxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Profile" />
                         </ListItem>
                     </div>
                 </List>

@@ -1,6 +1,7 @@
 import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import NumWidget from "../hyper/components/StatisticsWidget";
 
 export default function NewTicket(props) {
     const [tdata, setTicketData] = useState([]);
@@ -33,8 +34,7 @@ export default function NewTicket(props) {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <p>New Tickets</p>
-                <ul>{ticketData}</ul>
+                <NumWidget title="New Tickets" stats={adata} />
             </div>
         </React.Fragment>
     );

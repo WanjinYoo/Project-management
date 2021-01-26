@@ -1,6 +1,7 @@
 import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import NumWidget from "../hyper/components/StatisticsWidget";
 
 export default function PendingTicket(props) {
     const [tdata, setTicketData] = useState([]);
@@ -27,8 +28,7 @@ export default function PendingTicket(props) {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <p>Tickets Pending Work</p>
-                <ul>{ticketData}</ul>
+                <NumWidget title="Tickets Pending Work" stats={adata} />
             </div>
         </React.Fragment>
     );
