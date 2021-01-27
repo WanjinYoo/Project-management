@@ -74,6 +74,7 @@ const ProfileForm = props => {
                     label="Password"
                     style={{ margin: 8 }}
                     value={values.password}
+                    type="password"
                     name="password"
                     onChange={handleInputChange}
                     fullWidth
