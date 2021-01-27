@@ -30,7 +30,6 @@ export default function TotaltTicket(props) {
             <div id="ticketNumStats">
                 <NumWidget title="Total Tickets" stats={adata} />
             </div>
-            ;
         </React.Fragment>
     );
 }

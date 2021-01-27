@@ -12,7 +12,6 @@ const mapStateToProps = state => {
 const ProfileForm = props => {
     const [values, setData] = useState([]);
     let userID = props.logIn.userId;
-    console.log(props.logIn.userId);
     useEffect(() => {
         axios.get(`/api/users/${userID}`).then(res => {
             setData(res.data);

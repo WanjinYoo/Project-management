@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -24,14 +24,20 @@ const useStyles = makeStyles({
 });
 
 export default function BasicTable(props) {
-    const [state, setState] = useState({
-        checked: false
-    });
+    const [state, setState] = useState({});
     const handleClick = asd => {
-        axios.get("/api/tickets").then(alert("Successfully Added!"));
+        // let managerIs = state[event.target.name];
+        // console.log(mangerIs);
+        let pushData = { email: asd.email, is_manager: "sdljfsldk" };
+        console.log(pushData);
+        // axios
+        //     .put(`/api/projects/${props.id}/member`, pushData)
+        //     .then(alert("Successfully Added!"));
     };
+
     const handleChange = event => {
-        setState({ ...state, [event.target.name]: event.target.checked });
+        setState({ ...state, checked: event.target.checked });
+        console.log(state);
     };
     const classes = useStyles();
     const [rows, getRows] = useState([]);
@@ -68,7 +74,6 @@ export default function BasicTable(props) {
                                 <FormControlLabel
                                     control={
                                         <Checkbox
-                                            checked={state.checkedB}
                                             onChange={handleChange}
                                             name="checked"
                                             color="primary"
@@ -84,7 +89,19 @@ export default function BasicTable(props) {
                                     color="primary"
                                     size="small"
                                     onClick={() => {
-                                        handleClick(row.id);
+                                        axios
+                                            .post(
+                                                `/api/projects/${props.id}/member`,
+                                                {
+                                                    email: row.email,
+                                                    is_manager: state.checked
+                                                }
+                                            )
+                                            .then(alert("Successfully Added!"));
+                                        // console.log({
+                                        //     email: row.email,
+                                        //     is_manager: state.checked
+                                        // });
                                     }}
                                     className="ml-5"
                                 >
