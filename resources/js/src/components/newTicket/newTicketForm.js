@@ -48,9 +48,11 @@ const ProfileForm = props => {
 
     const onUpdate = () => {
         console.log(values);
-        alert("Ticket Created!"), props.changeContent("projectdashboard");
-        // console.log(values);
-        // axios.put(`/api/users/${userID}`, values).then(res => console.log(res));
+        axios.post(`/api/tickets`, values).then(res => {
+            console.log(res),
+                alert("Ticket Created!"),
+                props.changeContent("projectdashboard");
+        });
     };
     const handleInputChange = e => {
         const { name, value } = e.target;
@@ -116,11 +118,12 @@ const ProfileForm = props => {
                     style={{ margin: 8 }}
                     value={values.project_name}
                     name="project_name"
-                    fullWidth
-                    margin="normal"
                     InputLabelProps={{
                         shrink: true
                     }}
+                    fullWidth
+                    placeholder="please dont change this"
+                    margin="normal"
                     variant="outlined"
                 />
                 <TextField
@@ -131,23 +134,16 @@ const ProfileForm = props => {
                     fullWidth
                     margin="normal"
                     onChange={handleInputChange}
-                    InputLabelProps={{
-                        shrink: true
-                    }}
                     variant="outlined"
                 />
                 <TextField
                     label="Receiver Email"
-                    required
                     name="email"
                     style={{ margin: 8 }}
                     value={values.receiver_email}
                     fullWidth
                     onChange={handleInputChange}
                     margin="normal"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
                     variant="outlined"
                 />
 
@@ -159,9 +155,6 @@ const ProfileForm = props => {
                     onChange={handleInputChange}
                     fullWidth
                     margin="normal"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
                     variant="outlined"
                 />
                 <TextField
@@ -172,22 +165,21 @@ const ProfileForm = props => {
                     onChange={handleInputChange}
                     fullWidth
                     margin="normal"
-                    InputLabelProps={{
-                        shrink: true
-                    }}
                     variant="outlined"
                 />
                 <TextField
-                    label="Start_at"
+                    label="Start Time"
                     style={{ margin: 8 }}
                     value={values.start_at}
                     onChange={handleInputChange}
                     name="start_at"
+                    placeholder="yyyy-mm-dd hh:mm:ss"
+                    helperText="yyyy-mm-dd hh:mm:ss"
                     fullWidth
-                    margin="normal"
                     InputLabelProps={{
                         shrink: true
                     }}
+                    margin="normal"
                     variant="outlined"
                 />
             </div>
