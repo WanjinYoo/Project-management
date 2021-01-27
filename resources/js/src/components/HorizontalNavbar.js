@@ -239,7 +239,7 @@ const HorizontalNavbar = props => {
                         <ListItem
                             button
                             component={Link}
-                            to="/calander"
+                            to="/calendar"
                             onClick={() => {
                                 props.changeContent("Calendar");
                             }}

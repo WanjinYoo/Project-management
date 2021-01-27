@@ -11,7 +11,8 @@ import Comment from "./commentinput";
 import Projectdescription from "./description";
 import Viewmembers from "./viewmembers";
 import ViewTickets from "./viewtickets";
-
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 const getProgress = data => {
     let approved = 0;
     for (const item of data) {
@@ -108,7 +109,7 @@ const ProjectDashboard = props => {
                 </div>
                 {cards}
             </div>
-            <h3 className="text-center mt-3"> Bulleting Board</h3>
+            <h3 className="text-center mt-3"> Bulletin Board</h3>
             <Comment project_id={project.id} />
             <hr />
             <Board project_id={project.id} />

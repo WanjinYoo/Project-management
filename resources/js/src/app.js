@@ -10,16 +10,13 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import HorizontalNavbar from "./components/HorizontalNavbar";
 import Dashboard from "./components/dashboard/Dashboard";
-import Calendar from "./components/Calendar";
+import Calendar from "./components/Calendar/Calendar";
 import Home from "./components/home";
 import Profile from "./components/profile/profile";
 import "./app.scss";
 import ProjectDashboard from "./components/projects/projectDashboard";
-<<<<<<< HEAD
 import addMember from "./components/addMember/addMember";
-=======
-import TicketSpecific from "./components/tickets/ticketSpecific"
->>>>>>> bd921a6065a3cf76ef3d5411ebdcd3c8938ef0cd
+import TicketSpecific from "./components/tickets/ticketSpecific";
 
 const mapStateToProps = state => {
     return {
