@@ -46,7 +46,7 @@ Route::get('projects/{project}/tickets','ProjectController@tickets_per_project')
 Route::get('projects/{project_id}/tickets/{user_id}','ProjectController@tickets_project_user');
 Route::get('projects/{project}/member','ProjectController@fetch_member');
 Route::get('projects/{project}/comment','ProjectController@fetch_comment');
-Route::delete('projects/{project}/member','ProjectController@delete_member');
+Route::delete('projects/{project}/member/{user}','ProjectController@delete_member');
 Route::put('projects/{project}/close/{user}','ProjectController@complete');
 Route::put('projects/{project}/cancel/{user}','ProjectController@cancel');
 Route::put('projects/{project}/start/{user}','ProjectController@change_start');
