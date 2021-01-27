@@ -11,9 +11,10 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
+import { connect } from "react-redux";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-
+import { Link } from "react-router-dom";
 const useStyles = makeStyles({
     table: {
         minWidth: 650
@@ -22,9 +23,22 @@ const useStyles = makeStyles({
         fontWeight: "bold"
     }
 });
+const mapStateToProps = state => {
+    return {
+        logIn: state.logIn,
+        pageContent: state.pageContent
+    };
+};
 
-export default function BasicTable(props) {
-    const [state, setState] = useState({});
+const mapDispatchToProps = dispatch => {
+    return {
+        changeContent: content =>
+            dispatch({ type: "GET_CONTENT", content: content })
+    };
+};
+
+const BasicTable = props => {
+    const [state, setState] = useState({ checked: false });
     const handleClick = asd => {
         // let managerIs = state[event.target.name];
         // console.log(mangerIs);
@@ -37,7 +51,7 @@ export default function BasicTable(props) {
 
     const handleChange = event => {
         setState({ ...state, checked: event.target.checked });
-        console.log(state);
+        console.log(props);
     };
     const classes = useStyles();
     const [rows, getRows] = useState([]);
@@ -88,16 +102,25 @@ export default function BasicTable(props) {
                                     variant="contained"
                                     color="primary"
                                     size="small"
+                                    component={Link}
+                                    to={{
+                                        pathname: "/projectdashboard",
+                                        aboutProps: {
+                                            id: props.id,
+                                            isManager: 1
+                                        }
+                                    }}
                                     onClick={() => {
                                         axios
                                             .post(
                                                 `/api/projects/${props.id}/member`,
                                                 {
                                                     email: row.email,
-                                                    is_manager: state.checked
+                                                    isManager: state.checked
                                                 }
                                             )
                                             .then(alert("Successfully Added!"));
+                                        props.changeContent("projectdashboard");
                                         // console.log({
                                         //     email: row.email,
                                         //     is_manager: state.checked
@@ -114,4 +137,5 @@ export default function BasicTable(props) {
             </Table>
         </TableContainer>
     );
-}
+};
+export default connect(mapStateToProps, mapDispatchToProps)(BasicTable);

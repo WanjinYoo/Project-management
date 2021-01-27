@@ -40,6 +40,7 @@
         "britecharts-react": "^0.5.4",
         "chart.js": "^2.9.3",
         "classnames": "^2.2.6",
+        "date-fns": "^2.16.1",
         "draft-js": "^0.11.5",
         "draftjs-to-html": "^0.9.1",
         "frappe-gantt": "^0.3.0",
