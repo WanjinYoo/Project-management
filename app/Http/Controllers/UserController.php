@@ -14,12 +14,6 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
-    public function get_all_users()
-    {
-        $users = Project::all();
-        return $users;
-    }
-
 
     public function verify(Request $request)
     {
@@ -44,7 +38,6 @@ class UserController extends Controller
                         -> first();
         return $user;
     }
-
 
     public function get_projects($id)
     {

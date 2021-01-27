@@ -79,7 +79,10 @@ const ProjectDashboard = props => {
                         {/* <OpenInNewIcon /> Project Description */}
 
                         <h5>
-                            <ViewTickets id={project.id} />
+                            <ViewTickets
+                                id={project.id}
+                                isManager={props.location.aboutProps.isManager}
+                            />
                         </h5>
 
                         <Viewmembers id={project.id} />

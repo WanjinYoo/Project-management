@@ -17,6 +17,7 @@ import "./app.scss";
 import ProjectDashboard from "./components/projects/projectDashboard";
 import addMember from "./components/addMember/addMember";
 import TicketSpecific from "./components/tickets/ticketSpecific";
+import projectTickets from "./components/projects/projectTickets";
 
 const mapStateToProps = state => {
     return {
@@ -71,6 +72,10 @@ function App(props) {
                                 <Route
                                     path="/tickedetails"
                                     component={TicketSpecific}
+                                />
+                                <Route
+                                    path="/projectticket"
+                                    component={projectTickets}
                                 />
                                 <Route path="/profile" component={Profile} />
                                 <Route
