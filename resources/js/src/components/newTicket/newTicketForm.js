@@ -2,19 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Button, TextField } from "@material-ui/core";
 import axios from "axios";
 import { connect } from "react-redux";
-import Grid from "@material-ui/core/Grid";
-
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker
-} from "@material-ui/pickers";
+import { Link } from "react-router-dom";
 const mapStateToProps = state => {
     return {
-        logIn: state.logIn
+        logIn: state.logIn,
+        pageContent: state.pageContent
     };
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        changeContent: content =>
+            dispatch({ type: "GET_CONTENT", content: content })
+    };
+};
 const ProfileForm = props => {
     const [values, setData] = useState([]);
     const [uvalues, setuData] = useState([]);
@@ -26,14 +27,8 @@ const ProfileForm = props => {
         });
     }, []);
 
-    const [selectedDate, setSelectedDate] = React.useState(
-        new Date("2014-08-18T21:11:54")
-    );
-    const handleDateChange = date => {
-        setSelectedDate(date);
-    };
     const onUpdate = () => {
-        alert("Ticket Created!");
+        alert("Ticket Created!"), props.changeContent("projectdashboard");
         // console.log(values);
         // axios.put(`/api/users/${userID}`, values).then(res => console.log(res));
     };
@@ -57,9 +52,9 @@ const ProfileForm = props => {
                     variant="outlined"
                 />
                 <TextField
-                    label="Last Name"
+                    label="Issuer Email"
                     style={{ margin: 8 }}
-                    value={"maybe delete lol"}
+                    value={values.issuer_email}
                     name="last_name"
                     fullWidth
                     margin="normal"
@@ -123,18 +118,18 @@ const ProfileForm = props => {
                     }}
                     variant="outlined"
                 />
-                <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
+                <TextField
+                    label="Start_at"
+                    style={{ margin: 8 }}
+                    value={values.team}
+                    onChange={handleInputChange}
+                    name="team"
+                    fullWidth
                     margin="normal"
-                    id="date-picker-inline"
-                    label="Date picker inline"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        "aria-label": "change date"
+                    InputLabelProps={{
+                        shrink: true
                     }}
+                    variant="outlined"
                 />
                 <TextField
                     label="Subject"
@@ -150,10 +145,22 @@ const ProfileForm = props => {
                     variant="outlined"
                 />
             </div>
-            <Button variant="contained" color="primary" onClick={onUpdate}>
+            <Button
+                variant="contained"
+                color="primary"
+                component={Link}
+                to={{
+                    pathname: "/projectdashboard",
+                    aboutProps: {
+                        id: props.Pid,
+                        isManager: 1
+                    }
+                }}
+                onClick={onUpdate}
+            >
                 CREATE
             </Button>
         </div>
     );
 };
-export default connect(mapStateToProps)(ProfileForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm);
