@@ -38,6 +38,11 @@ class UserController extends Controller
                         -> first();
         return $user;
     }
+    public function index()
+    {
+        $user = User::all();
+        return $user->toJSON();
+    }
 
     public function get_projects($id)
     {
