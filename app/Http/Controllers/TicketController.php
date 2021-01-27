@@ -65,6 +65,9 @@ class TicketController extends Controller
           $receiver = User::find($ticketInfo->receiver_id);
           $ticketInfo->receiver_firstname = $receiver->first_name;
           $ticketInfo->receiver_lastname = $receiver->last_name;
+          $issuer = User::find($ticketInfo->issuer_id);
+          $ticketInfo->issuer_firstname = $issuer->first_name;
+          $ticketInfo->issuer_lastname = $issuer->last_name;
 
          return $ticketInfo;
     }
