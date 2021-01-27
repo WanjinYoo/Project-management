@@ -70,6 +70,16 @@ export default function Viewmembers(props) {
             <b>Telephone no.</b> {` ${item.telephone}`} <br />
             <b>Slack Account</b> {` ${item.slack_account}`}
           </p>
+          <button
+          className = "btn btn-secondary"
+          onClick = {() => {
+              axios.delete(`api/projects/${prop.id}/member/${item.id}`,
+              )
+              .then(()=> {
+                  alert('The user has been removed from the project')
+              })
+          }}
+          > Remove Member</button>
           <hr />
         </React.Fragment>
           )

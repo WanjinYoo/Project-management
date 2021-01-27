@@ -40,6 +40,9 @@ const mapDispatchToProps = dispatch => {
 const ProjectDashboard = props => {
     const [project, setProject] = useState([]);
     const [progress, setProgress] = useState(0);
+    const [display, setDisplay] = useState('All');
+
+    const [Edit, setEdit] = useState(null)
     React.useEffect(() => {
         axios.get(`/api/projects/${props.location.aboutProps.id}`).then(res => {
             setProject(res.data);
@@ -57,9 +60,96 @@ const ProjectDashboard = props => {
     return (
         <React.Fragment>
             <div className="d-flex justify-content-around dashboard_header">
-                <h5>{`Status: ${project.status_name}`}</h5>
-                <h5>{`Start Date: ${project.start_date}`}</h5>
-                <h5>{`Deadline: ${project.deadline}`}</h5>
+                {props.location.aboutProps.isManager === 1 &&
+                <h5 className = "mt-1">{`Status: ${project.status_name}`} </h5>
+                }
+                 {props.location.aboutProps.isManager === 0 &&
+                <h5>{`Status: ${project.status_name}`} </h5>
+                }
+
+                { display === 'All' &&
+                <h5>{`Start Date: ${project.start_date}`} {props.location.aboutProps.isManager === 1 &&
+                <Button
+                variant="contained"
+                color="secondary"
+                onClick = {() => {
+                    setDisplay('Startdate');
+                }}
+                >
+                        Edit
+                </Button>
+                }
+                </h5>
+                }
+                { display === 'Startdate' &&
+                <React.Fragment>
+                <input
+                type="date"
+                defaultValue= {project.start_date}
+                onChange = {(event) => {
+                    setEdit(event.target.value);
+                }} >
+                </input>
+                <Button
+                variant="contained"
+                color="secondary"
+                onClick = {() => {
+                    axios.put(`api/projects/${project.id}/start/${props.location.aboutProps.id}`,{
+                        start_date: Edit
+                    })
+                    .then(()=> {
+                        alert(`The information has been changed`)
+                        setDisplay('All');
+                    })
+                }}
+                >
+                        Submit
+                </Button>
+                </React.Fragment>
+                }
+
+                { display === 'All' &&
+                <h5>{`Deadline: ${project.deadline}`} {props.location.aboutProps.isManager === 1 &&
+                <Button
+                variant="contained"
+                color="secondary"
+                onClick = {() => {
+
+                    setDisplay('Deadline')
+                }}>
+                        Edit
+                </Button>
+                }
+                </h5>
+                }
+                { display === 'Deadline' &&
+                <React.Fragment>
+                <input
+                type="date"
+                defaultValue= {project.deadline}
+                onChange = {(event) => {
+                    setEdit(event.target.value);
+                }} >
+                </input>
+                <Button
+                variant="contained"
+                color="secondary"
+                onClick = {() => {
+                    axios.put(`api/projects/${project.id}/deadline/${props.location.aboutProps.id}`,{
+                        start_date: Edit
+                    })
+                    .then(()=> {
+                        alert(`The information has been changed`)
+                        setDisplay('All');
+                    })
+                }}
+                >
+                        Submit
+                </Button>
+                </React.Fragment>
+                }
+
+
                 <div>
                     <GitHubIcon />
                     <a href="https://github.com/WanjinYoo/project-management">{` ${project.github}`}</a>
@@ -94,6 +184,9 @@ const ProjectDashboard = props => {
                             <Button variant="contained" color="secondary">
                                 Finish Project
                             </Button>
+                            <Button variant="contained" color="secondary">
+                                Cancel Project
+                            </Button>
                             <Button
                                 variant="contained"
                                 color="primary"
@@ -123,12 +216,7 @@ const ProjectDashboard = props => {
                             >
                                 Add Member
                             </Button>
-                            <Button variant="contained" color="secondary">
-                                Remove Member
-                        </Button>
-                        <Button variant="contained" color="primary">
-                                Edit Start/Deadline
-                            </Button>
+
                         </div>
 
                         </React.Fragment>

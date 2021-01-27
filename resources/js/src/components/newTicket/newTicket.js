@@ -40,7 +40,10 @@ const newTicket = props => {
                 />{" "}
                 GMT-0800 (Pacific Standard Time)
             </Typography>
-            <BewTicketForm Pid={props.location.aboutProps.id} />
+            <BewTicketForm
+                Pid={props.location.aboutProps.id}
+                Pemail={data.email}
+            />
         </div>
     );
 };
