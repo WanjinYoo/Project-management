@@ -188,10 +188,14 @@ class ProjectController extends Controller
         $user_email = $request->input('email');
         $user_id = User::where('email','=',$user_email)
                     ->first();
+
+        $user = $user_id->id;
+        $manager = $request->input('isManager');
+
         $member = new UsersProject;
-        $member->project_id = $project_id['id'];
-        $member->user_id = $user_id['id'];
-        $member->isManager = $request->input('isManager');
+        $member->project_id = $project_id->id;
+        $member->user_id = $user;
+        $member->isManager = $manager;
 
         $member->save();
 
