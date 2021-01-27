@@ -61,20 +61,11 @@ class TicketController extends Controller
                         ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
                         ->select('tickets.*', 'projects.name as project_name','status_names.name as status_name', 'status_names.description as status_description', 'priority_names.name as priority_name', 'priority_names.description as priority_description')
                         -> first();
-        // $ticketInfo = Ticket::where('id','=',$id)
-        //                 -> first();
-          $issuer = User::find($ticketInfo->issuer_id);
-          $ticketInfo->issuer_firstname = $issuer->first_name;
-          $ticketInfo->issuer_lasttname = $issuer->last_name;
-        //  $status = StatusName::find($ticketInfo->status_id);
-        //  $ticketInfo->status_name = $status->name;
-        //  $ticketInfo->status_description = $status->description;
+
           $receiver = User::find($ticketInfo->receiver_id);
           $ticketInfo->receiver_firstname = $receiver->first_name;
           $ticketInfo->receiver_lastname = $receiver->last_name;
-        //  $receiver = PriorityName::find($ticketInfo->receiver_id);
-        //  $ticketInfo->receiver_firstname = $receiver->first_name;
-        //  $ticketInfo->receiver_lastname = $receiver->last_name;
+
          return $ticketInfo;
     }
 
@@ -273,17 +264,19 @@ class TicketController extends Controller
 
         $current_priority_id = $ticketInfo->priority_level;
 
-        $current_priority_name = PriorityName::where('id','=', $current_priority)
+        $current_priority = PriorityName::where('id','=', $current_priority_id)
                         ->first();
 
+        $old_priority = $current_priority->name;
 
-        $old_priority = $priority_level->name;
+        $new_priority_name = $request->input('priority_level');
 
-        $new_priority = $request->input('priority_level');
+        $new_priority = PriorityName::where('name','=', $new_priority_name)
+        ->first();
 
-        $new_comment = "Ticket priority level changed from {$old_priority} to {$new_priority}.";
+        $new_comment = "Ticket priority level changed from {$old_priority} to {$new_priority_name}.";
 
-        $ticketInfo->priority_level = $priority_level->id;
+        $ticketInfo->priority_level = $new_priority->id;
         $ticketInfo->save();
 
         $comment = new CommentsTicket;
