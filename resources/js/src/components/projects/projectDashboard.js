@@ -5,7 +5,7 @@ import "./projectDashboard.scss";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
-import cards from "./cards";
+import Cards from "./cards";
 import Board from "./board";
 import Comment from "./commentinput";
 import Projectdescription from "./description";
@@ -57,6 +57,7 @@ const ProjectDashboard = props => {
     return (
         <React.Fragment>
             <div className="d-flex justify-content-around dashboard_header">
+                <h5>{`Status: ${project.status_name}`}</h5>
                 <h5>{`Start Date: ${project.start_date}`}</h5>
                 <h5>{`Deadline: ${project.deadline}`}</h5>
                 <div>
@@ -88,7 +89,8 @@ const ProjectDashboard = props => {
                         <Viewmembers id={project.id} />
                     </div>
                     {props.location.aboutProps.isManager === 1 && (
-                        <div className="justify-content-around d-flex manager_view">
+                        <React.Fragment>
+                        <div className="justify-content-between d-flex manager_view">
                             <Button variant="contained" color="secondary">
                                 Finish Project
                             </Button>
@@ -107,10 +109,18 @@ const ProjectDashboard = props => {
                             >
                                 Add Member
                             </Button>
+                            <Button variant="contained" color="secondary">
+                                Remove Member
+                        </Button>
+                        <Button variant="contained" color="primary">
+                                Edit Start/Deadline
+                            </Button>
                         </div>
+
+                        </React.Fragment>
                     )}
                 </div>
-                {cards}
+                <Cards userId = {props.location.aboutProps.id} projectId = {project.id}/>
             </div>
             <h3 className="text-center mt-3"> Bulletin Board</h3>
             <Comment project_id={project.id} />
