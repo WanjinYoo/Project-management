@@ -41,11 +41,15 @@ const ProjectDashboard = props => {
     const [project, setProject] = useState([]);
     const [progress, setProgress] = useState(0);
     const [display, setDisplay] = useState('All');
+    const [startdate, setStartdate] = useState(null);
+    const [deadline, setDeadline] = useState(null);
 
     const [Edit, setEdit] = useState(null)
     React.useEffect(() => {
         axios.get(`/api/projects/${props.location.aboutProps.id}`).then(res => {
             setProject(res.data);
+            setStartdate(res.data.start_date);
+            setDeadline(res.data.deadline);
         });
         axios
             .get(`/api/projects/${props.location.aboutProps.id}/tickets`)
@@ -68,7 +72,7 @@ const ProjectDashboard = props => {
                 }
 
                 { display === 'All' &&
-                <h5>{`Start Date: ${project.start_date}`} {props.location.aboutProps.isManager === 1 &&
+                <h5>{`Start Date: ${startdate}`} {props.location.aboutProps.isManager === 1 &&
                 <Button
                 variant="contained"
                 color="secondary"
@@ -99,6 +103,7 @@ const ProjectDashboard = props => {
                     })
                     .then(()=> {
                         alert(`The information has been changed`)
+                        setStartdate(Edit);
                         setDisplay('All');
                     })
                 }}
@@ -109,12 +114,11 @@ const ProjectDashboard = props => {
                 }
 
                 { display === 'All' &&
-                <h5>{`Deadline: ${project.deadline}`} {props.location.aboutProps.isManager === 1 &&
+                <h5>{`Deadline: ${deadline}`} {props.location.aboutProps.isManager === 1 &&
                 <Button
                 variant="contained"
                 color="secondary"
                 onClick = {() => {
-
                     setDisplay('Deadline')
                 }}>
                         Edit
@@ -136,10 +140,11 @@ const ProjectDashboard = props => {
                 color="secondary"
                 onClick = {() => {
                     axios.put(`api/projects/${project.id}/deadline/${props.location.aboutProps.id}`,{
-                        start_date: Edit
+                        deadline: Edit
                     })
                     .then(()=> {
                         alert(`The information has been changed`)
+                        setDeadline(Edit);
                         setDisplay('All');
                     })
                 }}

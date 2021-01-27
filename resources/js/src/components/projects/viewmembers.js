@@ -73,7 +73,7 @@ export default function Viewmembers(props) {
           <button
           className = "btn btn-secondary"
           onClick = {() => {
-              axios.delete(`api/projects/${prop.id}/member/${item.id}`,
+              axios.delete(`api/projects/${props.id}/member/${item.id}`
               )
               .then(()=> {
                   alert('The user has been removed from the project')
