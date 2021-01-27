@@ -31,128 +31,112 @@ const ProfileForm = props => {
     return (
         <div>
             <div>
-                {values.first_name && (
-                    <TextField
-                        label="First Name"
-                        style={{ margin: 8 }}
-                        value={values.first_name}
-                        name="first_name"
-                        fullWidth
-                        margin="normal"
-                        onChange={handleInputChange}
-                        InputLabelProps={{
-                            shrink: true
-                        }}
-                        variant="outlined"
-                    />
-                )}
-                {values.last_name && (
-                    <TextField
-                        label="Last Name"
-                        style={{ margin: 8 }}
-                        value={values.last_name}
-                        name="last_name"
-                        fullWidth
-                        margin="normal"
-                        onChange={handleInputChange}
-                        InputLabelProps={{
-                            shrink: true
-                        }}
-                        variant="outlined"
-                    />
-                )}
-                {values.email && (
-                    <TextField
-                        label="Email"
-                        required
-                        name="email"
-                        style={{ margin: 8 }}
-                        value={values.email}
-                        fullWidth
-                        onChange={handleInputChange}
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true
-                        }}
-                        variant="outlined"
-                    />
-                )}
-                {values.password && (
-                    <TextField
-                        label="Password"
-                        style={{ margin: 8 }}
-                        value={values.password}
-                        name="password"
-                        onChange={handleInputChange}
-                        fullWidth
-                        required
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true
-                        }}
-                        variant="outlined"
-                    />
-                )}
-                {values.telephone && (
-                    <TextField
-                        label="Telephone Number"
-                        style={{ margin: 8 }}
-                        value={values.telephone}
-                        name="telephone"
-                        fullWidth
-                        onChange={handleInputChange}
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true
-                        }}
-                        variant="outlined"
-                    />
-                )}
-                {values.slack_account && (
-                    <TextField
-                        label="Slack Account"
-                        style={{ margin: 8 }}
-                        value={values.slack_account}
-                        name="slack_account"
-                        onChange={handleInputChange}
-                        fullWidth
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true
-                        }}
-                        variant="outlined"
-                    />
-                )}
-                {values.team && (
-                    <TextField
-                        label="Teams"
-                        style={{ margin: 8 }}
-                        value={values.team}
-                        onChange={handleInputChange}
-                        name="team"
-                        fullWidth
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true
-                        }}
-                        variant="outlined"
-                    />
-                )}
-                {values.position && (
-                    <TextField
-                        label="Position"
-                        style={{ margin: 8 }}
-                        name="position"
-                        value={values.position}
-                        onChange={handleInputChange}
-                        fullWidth
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true
-                        }}
-                        variant="outlined"
-                    />
-                )}
+                <TextField
+                    label="First Name"
+                    style={{ margin: 8 }}
+                    value={values.first_name}
+                    name="first_name"
+                    fullWidth
+                    margin="normal"
+                    onChange={handleInputChange}
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Last Name"
+                    style={{ margin: 8 }}
+                    value={values.last_name}
+                    name="last_name"
+                    fullWidth
+                    margin="normal"
+                    onChange={handleInputChange}
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Email"
+                    required
+                    name="email"
+                    style={{ margin: 8 }}
+                    value={values.email}
+                    fullWidth
+                    onChange={handleInputChange}
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Password"
+                    style={{ margin: 8 }}
+                    value={values.password}
+                    name="password"
+                    onChange={handleInputChange}
+                    fullWidth
+                    required
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Telephone Number"
+                    style={{ margin: 8 }}
+                    value={values.telephone}
+                    name="telephone"
+                    fullWidth
+                    onChange={handleInputChange}
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Slack Account"
+                    style={{ margin: 8 }}
+                    value={values.slack_account}
+                    name="slack_account"
+                    onChange={handleInputChange}
+                    fullWidth
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Teams"
+                    style={{ margin: 8 }}
+                    value={values.team}
+                    onChange={handleInputChange}
+                    name="team"
+                    fullWidth
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Position"
+                    style={{ margin: 8 }}
+                    name="position"
+                    value={values.position}
+                    onChange={handleInputChange}
+                    fullWidth
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    variant="outlined"
+                />
             </div>
             <Button variant="contained" color="primary" onClick={onUpdate}>
                 UPDATE

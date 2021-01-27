@@ -10,12 +10,13 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import HorizontalNavbar from "./components/HorizontalNavbar";
 import Dashboard from "./components/dashboard/Dashboard";
-import Calendar from "./components/Calendar";
+import Calendar from "./components/Calendar/Calendar";
 import Home from "./components/home";
 import Profile from "./components/profile/profile";
 import "./app.scss";
 import ProjectDashboard from "./components/projects/projectDashboard";
-import TicketSpecific from "./components/tickets/ticketSpecific"
+import addMember from "./components/addMember/addMember";
+import TicketSpecific from "./components/tickets/ticketSpecific";
 import projectTickets from "./components/projects/projectTickets";
 
 const mapStateToProps = state => {
@@ -77,6 +78,10 @@ function App(props) {
                                     component={projectTickets}
                                 />
                                 <Route path="/profile" component={Profile} />
+                                <Route
+                                    path="/addmember"
+                                    component={addMember}
+                                />
                             </Switch>
                         </Container>
                     </main>
