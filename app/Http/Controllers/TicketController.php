@@ -23,7 +23,7 @@ class TicketController extends Controller
     {
         $project_id = Project::where('name','=',$request->input('project_name'))
                         ->first();
-        $user_id = User::where('email','=',$request->input('email'))
+        $user_id = User::where('email','=',$request->input('issuer_email'))
                         ->first();
         $receiver_id = User::where('email','=',$request->input('receiver_email'))
                         ->first();

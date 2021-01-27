@@ -94,7 +94,18 @@ const ProjectDashboard = props => {
                             <Button variant="contained" color="secondary">
                                 Finish Project
                             </Button>
-                            <Button variant="contained" color="primary">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                component={Link}
+                                to={{
+                                    pathname: "/newticket",
+                                    aboutProps: { id: project.id }
+                                }}
+                                onClick={() => {
+                                    props.changeContent("newticket");
+                                }}
+                            >
                                 Create New Ticket
                             </Button>
 
@@ -102,7 +113,10 @@ const ProjectDashboard = props => {
                                 variant="contained"
                                 startIcon={<AddIcon />}
                                 component={Link}
-                                to="/addmember"
+                                to={{
+                                    pathname: "/addmember",
+                                    aboutProps: { id: project.id }
+                                }}
                                 onClick={() => {
                                     props.changeContent("addMember");
                                 }}

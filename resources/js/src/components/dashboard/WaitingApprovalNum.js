@@ -30,7 +30,6 @@ export default function WaitingApprovalTicket(props) {
             <div id="ticketNumStats">
                 <NumWidget title="Pending Approval" stats={adata} />
             </div>
-            ;
         </React.Fragment>
     );
 }

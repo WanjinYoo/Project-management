@@ -37,7 +37,6 @@ export default function OverDueTicket(props) {
             <div id="ticketNumStats">
                 <NumWidget title="Overdue Tickets" stats={adata} />
             </div>
-            ;
         </React.Fragment>
     );
 }
