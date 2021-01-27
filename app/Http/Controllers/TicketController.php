@@ -44,6 +44,9 @@ class TicketController extends Controller
         $tickets->priority_level = $priority_level->id;
 
         $tickets->save();
+        $tickets->id;
+        return response()->json(array('success' => true, 'last_insert_id' => $tickets->id), 201);
+
     }
 
     public function delete($id) // get request
