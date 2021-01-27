@@ -40,8 +40,8 @@ const ProfileForm = props => {
             setuData(res.data),
                 setData({
                     project_name: res.data.name,
-                    status: 1,
-                    priority: 2
+                    status: "Pending",
+                    priority: "Medium"
                 });
         });
     }, []);
@@ -56,7 +56,7 @@ const ProfileForm = props => {
     };
     const handleInputChange = e => {
         const { name, value } = e.target;
-        setData({ ...values, [name]: value });
+        setData({ ...values, [name]: value, issuer_email: props.Pemail });
     };
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -141,7 +141,7 @@ const ProfileForm = props => {
                 />
                 <TextField
                     label="Receiver Email"
-                    name="email"
+                    name="receiver_email"
                     style={{ margin: 8 }}
                     value={values.receiver_email}
                     fullWidth
@@ -176,9 +176,10 @@ const ProfileForm = props => {
                     value={values.start_at}
                     onChange={handleInputChange}
                     name="start_at"
+                    type="datetime-local"
                     placeholder="yyyy-mm-dd hh:mm:ss"
-                    helperText="yyyy-mm-dd hh:mm:ss"
-                    fullWidth
+                    // helperText="yyyy-mm-dd hh:mm:ss"
+
                     InputLabelProps={{
                         shrink: true
                     }}
@@ -191,9 +192,11 @@ const ProfileForm = props => {
                     value={values.deadline}
                     onChange={handleInputChange}
                     name="deadline"
+                    type="date"
+                    type="datetime-local"
                     placeholder="yyyy-mm-dd hh:mm:ss"
-                    helperText="yyyy-mm-dd hh:mm:ss"
-                    fullWidth
+                    // helperText="yyyy-mm-dd hh:mm:ss"
+
                     InputLabelProps={{
                         shrink: true
                     }}
