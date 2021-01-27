@@ -29,7 +29,16 @@ function TabPanel(props) {
 
 TabPanel.propTypes = {
     children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired
 };
+
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        "aria-controls": `simple-tabpanel-${index}`
+    };
+}
 
 
 const mapStateToProps = state => {
@@ -40,7 +49,9 @@ const mapStateToProps = state => {
 
 const Tickets = props => {
     const [tickets, setTickets] = useState([]);
+    const [issuedtickets, setIssuedTickets] = useState([]);
     const [sortby, setSortby] = useState("All");
+    const [value, setValue] = useState(0);
     const [open, setOpen] = useState(false);
 
     const handleChange = event => {
@@ -54,9 +65,16 @@ const Tickets = props => {
     const handleOpen = () => {
         setOpen(true);
     };
+    const handleTabChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     const getData = () => {
         axios.get(`/api/users/tickets/${props.logIn.userId}`).then(res => {
             setTickets(res.data);
+        });
+        axios.get(`/api/users/tickets/${props.logIn.userId}/issuer`).then(res => {
+            setIssuedTickets(res.data);
         });
     };
     useEffect(() => {
@@ -90,7 +108,23 @@ const Tickets = props => {
                 <MenuItem value="Approved">Approved Tickets</MenuItem>
             </Select>
             <TableContainer component={Paper}>
-                <TabPanel>
+                    <Tabs
+                    value={value}
+                    onChange={handleTabChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                >
+                    <Tab label="Issuer" {...a11yProps(0)} />
+                    <Tab label="Receiver" {...a11yProps(1)} />
+                </Tabs>
+                <TabPanel value={value} index={0}>
+                    <TicketsTable
+                        tickets={issuedtickets}
+                        sort={sortby}
+                    />
+                </TabPanel>
+                <TabPanel value={value} index={1}>
                     <TicketsTable
                         tickets={tickets}
                         sort={sortby}
