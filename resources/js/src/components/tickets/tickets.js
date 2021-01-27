@@ -115,8 +115,8 @@ const Tickets = props => {
                     textColor="primary"
                     centered
                 >
-                    <Tab label="Issuer" {...a11yProps(0)} />
-                    <Tab label="Receiver" {...a11yProps(1)} />
+                    <Tab label="Issued Tickets" {...a11yProps(0)} />
+                    <Tab label="Received Tickets" {...a11yProps(1)} />
                 </Tabs>
                 <TabPanel value={value} index={0}>
                     <TicketsTable

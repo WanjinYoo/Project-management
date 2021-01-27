@@ -3,6 +3,7 @@ import axios from 'axios'
 import Cards from './card'
 import Timeline from './timeline'
 import { connect } from "react-redux";
+import Reassign from "./reassign";
 
 
 const mapStateToProps = state => {
@@ -19,7 +20,6 @@ const TicketSpecific = (props) => {
             setTickets(res.data);
         });
     },[])
-    console.log(comment);
     return (
     <React.Fragment>
         <div className = "d-flex justify-content-around">
@@ -32,7 +32,7 @@ const TicketSpecific = (props) => {
         <div className = "row">
             <div className = "col-4 border-right">
                 <br />
-                <h5><b>Issuer Name: </b> {` ${Tickets.issuer_firstname} ${Tickets.issuer_lasttname}`}</h5>
+                <h5><b>Issuer Name: </b> {` ${Tickets.issuer_firstname} ${Tickets.issuer_lastname}`}</h5>
                 <h5><b>Assigned to: </b> {` ${Tickets.receiver_firstname} ${Tickets.receiver_lastname}`}</h5>
                 <h5><b>Status: </b> {` ${Tickets.status_name}`}</h5>
                 <br />
@@ -48,8 +48,35 @@ const TicketSpecific = (props) => {
                  <React.Fragment>
                 <hr />
                 <div className = "d-flex justify-content-around">
-                    <button className = "btn btn-secondary"> Approve Ticket</button>
-                    <button className = "btn btn-secondary"> Reject Ticket</button>
+                    <button
+                    className = "btn btn-secondary"
+                    onClick = {() => {
+                        axios.put(`api/tickets/${Tickets.id}/approve/${props.logIn.userId}`)
+                        .then(() => {
+                            alert('This ticket has been approved');
+                            setTickets((prev) => {
+                                return {
+                                    ...prev,
+                                    status_name: "Approved"
+                                }
+                            })
+                        })
+                    }}> Approve Ticket</button>
+                    <button
+                    className = "btn btn-secondary"
+                    onClick = {() => {
+                        axios.put(`api/tickets/${Tickets.id}/reject/${props.logIn.userId}`)
+                        .then(() => {
+                            alert('This ticket has been rejected');
+                            setTickets((prev) => {
+                                return {
+                                    ...prev,
+                                    status_name: "Rejected"
+                                }
+                            })
+                        })
+                    }}
+                    > Reject Ticket</button>
                 </div>
                 </React.Fragment>
                 }
@@ -60,11 +87,28 @@ const TicketSpecific = (props) => {
                 description = {Tickets.description}
                 issuer_id = {Tickets.issuer_id}
                 user_id = {props.logIn.userId}
+                ticket_id = {Tickets.id}
+                key = {Tickets.id}
                 />
                 { Tickets.issuer_id === props.logIn.userId &&
                 <div className = "d-flex justify-content-around">
-                    <button className = "btn btn-outline-secondary"> Reassign Ticket</button>
-                    <button className = "btn btn-outline-secondary"> Cancel Ticket</button>
+
+                    <Reassign id = {Tickets.project_id} ticket_id = {Tickets.id} setTickets = {setTickets}/>
+                    <button
+                    className = "btn btn-outline-secondary"
+                    onClick = {() => {
+                        axios.put(`api/tickets/${Tickets.id}/cancel/${props.logIn.userId}`)
+                        .then(() => {
+                            alert('This ticket has been Cancelled');
+                            setTickets((prev) => {
+                                return {
+                                    ...prev,
+                                    status_name: "Cancelled"
+                                }
+                            })
+                        })
+                    }}
+                    > Cancel Ticket</button>
                 </div>
                 }
                 <br />
