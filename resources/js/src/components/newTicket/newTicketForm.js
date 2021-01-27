@@ -61,7 +61,7 @@ const ProfileForm = props => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(1);
-    const [Dvalue, setDValue] = React.useState(null);
+    const [Dvalue, setDValue] = useState(null);
     const handleClickListItem = event => {
         setAnchorEl(event.currentTarget);
     };
@@ -129,11 +129,14 @@ const ProfileForm = props => {
                 <TextField
                     label="Issuer Email"
                     style={{ margin: 8 }}
-                    value={values.issuer_email}
+                    value={props.Pemail}
                     name="issuer_email"
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    placeholder="please dont change this"
                     fullWidth
                     margin="normal"
-                    onChange={handleInputChange}
                     variant="outlined"
                 />
                 <TextField
@@ -173,6 +176,21 @@ const ProfileForm = props => {
                     value={values.start_at}
                     onChange={handleInputChange}
                     name="start_at"
+                    placeholder="yyyy-mm-dd hh:mm:ss"
+                    helperText="yyyy-mm-dd hh:mm:ss"
+                    fullWidth
+                    InputLabelProps={{
+                        shrink: true
+                    }}
+                    margin="normal"
+                    variant="outlined"
+                />
+                <TextField
+                    label="Deadline"
+                    style={{ margin: 8 }}
+                    value={values.deadline}
+                    onChange={handleInputChange}
+                    name="deadline"
                     placeholder="yyyy-mm-dd hh:mm:ss"
                     helperText="yyyy-mm-dd hh:mm:ss"
                     fullWidth
