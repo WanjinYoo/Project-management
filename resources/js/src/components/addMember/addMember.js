@@ -93,7 +93,10 @@ const addMember = props => {
                 </div>
             </div>
             <div className="memberTable">
-                <MemberTable data={filteredData} />
+                <MemberTable
+                    data={filteredData}
+                    id={props.location.aboutProps.id}
+                />
             </div>
         </div>
     );

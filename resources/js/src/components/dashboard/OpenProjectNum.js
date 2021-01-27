@@ -30,7 +30,6 @@ export default function OpenProjects(props) {
             <div id="ticketNumStats">
                 <NumWidget title="Open Projects" stats={adata} />
             </div>
-            ;
         </React.Fragment>
     );
 }

@@ -18,6 +18,7 @@ import ProjectDashboard from "./components/projects/projectDashboard";
 import addMember from "./components/addMember/addMember";
 import TicketSpecific from "./components/tickets/ticketSpecific";
 import projectTickets from "./components/projects/projectTickets";
+import Newticket from "./components/newTicket/newTicket";
 
 const mapStateToProps = state => {
     return {
@@ -81,6 +82,10 @@ function App(props) {
                                 <Route
                                     path="/addmember"
                                     component={addMember}
+                                />
+                                <Route
+                                    path="/newticket"
+                                    component={Newticket}
                                 />
                             </Switch>
                         </Container>

@@ -30,7 +30,6 @@ export default function RejectedTicekt(props) {
             <div id="ticketNumStats">
                 <NumWidget title="Rejected Tickets" stats={adata} />
             </div>
-            ;
         </React.Fragment>
     );
 }
