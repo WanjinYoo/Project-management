@@ -12,6 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import mainLogo from "./logo.png";
+import "./logo.scss";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -136,6 +138,7 @@ const SignInSide = props => {
                         Sign In
                     </Button>
                 </div>
+                <img src={mainLogo} className="Ilogo" />
             </Grid>
         </Grid>
     );
