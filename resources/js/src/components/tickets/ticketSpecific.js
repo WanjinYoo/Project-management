@@ -5,6 +5,7 @@ import Timeline from "./timeline";
 import { connect } from "react-redux";
 import Reassign from "./reassign";
 import Confirmation from "./confirmation";
+import Userinfo from "./userinfo";
 
 const mapStateToProps = state => {
     return {
@@ -15,6 +16,7 @@ const mapStateToProps = state => {
 const TicketSpecific = props => {
     const [Tickets, setTickets] = useState([]);
     const [comment, setComment] = useState("");
+    const [pull_request_number, setPull_request_number] = useState("");
     React.useEffect(() => {
         axios.get(`/api/tickets/${props.location.aboutProps.id}`).then(res => {
             setTickets(res.data);
@@ -23,8 +25,13 @@ const TicketSpecific = props => {
     return (
         <React.Fragment>
             <div className="d-flex justify-content-around">
-                <h5>Priority:{` ${Tickets.priority_name}`}</h5>
-                <h5>StartDate:{` ${Tickets.start_at}`}</h5>
+                <h5>
+                    Priority:{" "}
+                    <b
+                        style={{ color: "red" }}
+                    >{` ${Tickets.priority_name}`}</b>
+                </h5>
+                <h5>Start Date:{` ${Tickets.start_at}`}</h5>
                 <h5>Deadline:{` ${Tickets.deadline}`}</h5>
             </div>
             <h2>
@@ -34,16 +41,13 @@ const TicketSpecific = props => {
             <div className="row">
                 <div className="col-4 border-right">
                     <br />
+                    <Userinfo assign={false} id={Tickets.issuer_id} />
+                    <Userinfo assign={true} id={Tickets.receiver_id} />
                     <h5>
-                        <b>Issuer Name: </b>{" "}
-                        {` ${Tickets.issuer_firstname} ${Tickets.issuer_lastname}`}
-                    </h5>
-                    <h5>
-                        <b>Assigned to: </b>{" "}
-                        {` ${Tickets.receiver_firstname} ${Tickets.receiver_lastname}`}
-                    </h5>
-                    <h5>
-                        <b>Status: </b> {` ${Tickets.status_name}`}
+                        <b>Status: </b>{" "}
+                        <b
+                            style={{ color: "red" }}
+                        >{` ${Tickets.status_name}`}</b>
                     </h5>
                     <br />
                     {Tickets.status_name === "Pending" && (
@@ -51,11 +55,31 @@ const TicketSpecific = props => {
                             <input
                                 type="text"
                                 placeholder="Pull Request Number"
+                                onChange={event => {
+                                    setPull_request_number(event.target.value);
+                                }}
                             />
                             <div className="input-group-append">
                                 <button
                                     className="btn btn-outline-secondary"
                                     type="button"
+                                    onClick={() => {
+                                        axios
+                                            .put(
+                                                `api/tickets/${Tickets.id}/submit/${props.location.aboutProps.id}`,
+                                                {
+                                                    pull_request_number: pull_request_number
+                                                }
+                                            )
+                                            .then(() => {
+                                                setTickets(prev => {
+                                                    return {
+                                                        ...prev,
+                                                        status_name: "Submitted"
+                                                    };
+                                                });
+                                            });
+                                    }}
                                 >
                                     Submit
                                 </button>
@@ -166,6 +190,7 @@ const TicketSpecific = props => {
                                     }
                                 )
                                 .then(() => {
+                                    alert("comment saved");
                                     setComment("");
                                 });
                         }}

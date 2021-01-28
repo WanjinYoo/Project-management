@@ -56,14 +56,15 @@ const ProfileForm = props => {
         console.log(values);
         axios.post(`/api/tickets`, values).then(res => {
             console.log(res),
-                alert("Ticket Created!"),
-                props.changeContent("projectdashboard");
+                props.changeContent(`Ticket #${res.data.last_insert_id}`),
+                setticketD(res.data.last_insert_id);
         });
     };
     const handleInputChange = e => {
         const { name, value } = e.target;
         setData({ ...values, [name]: value, issuer_email: props.Pemail });
     };
+    const [ticketD, setticketD] = useState();
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(1);
@@ -266,13 +267,12 @@ const ProfileForm = props => {
                 color="primary"
                 component={Link}
                 to={{
-                    pathname: "/projectdashboard",
+                    pathname: "/tickedetails",
                     aboutProps: {
-                        id: props.Pid,
-                        isManager: 1
+                        id: ticketD
                     }
                 }}
-                onClick={onUpdate}
+                onMouseEnter={onUpdate}
             >
                 CREATE
             </Button>
