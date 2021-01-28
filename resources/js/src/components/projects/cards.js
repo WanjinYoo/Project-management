@@ -22,23 +22,29 @@ const cards = (props) => {
     })
 
     return (
-    <div className = "d-flex mt-5 justify-content-around">
-        <div className="card border-primary mb-3 ml-3 mr-3">
+    <div className = "col-12 d-flex mt-5 justify-content-around">
+        <div
+        className="card border-primary"
+        style = {{width: "20rem", borderWidth: "10px" }}>
             <div className="card-body text-primary">
-                <h3 className="card-title text-center">Upcoming Due Tickets</h3>
-                <h5 className="card-text text-center">{overdue}</h5>
+                <h3 className="card-title text-center"><b>Upcoming Due Tickets</b></h3>
+                <h5 className="card-text text-center"><b>{overdue}</b></h5>
             </div>
         </div>
-        <div className="card border-danger mb-3 ml-3 mr-3">
-            <div className="card-body text-danger   ">
-                <h3 className="card-title text-center">Overdue Tickets</h3>
-                <h5 className="card-text text-center">{upcoming}</h5>
+        <div
+        className="card border-danger"
+        style = {{width: "20rem", borderWidth: "10px"}}>
+            <div className="card-body text-danger">
+                <h3 className="card-title text-center"><b>Overdue Tickets</b></h3>
+                <h5 className="card-text text-center"><b>{upcoming}</b></h5>
             </div>
         </div>
-        <div className="card border-success mb-3 ml-3 mr-3">
+        <div
+        className="card border-success"
+        style = {{width: "20rem", borderWidth: "10px"}}>
             <div className="card-body text-success">
-                <h3 className="card-title text-center">Tickets Waiting For Approval</h3>
-                <h5 className="card-text text-center">{waiting}</h5>
+                <h3 className="card-title text-center"><b>Tickets Waiting For Approval</b></h3>
+                <h5 className="card-text text-center"><b>{waiting}</b></h5>
             </div>
         </div>
     </div>

@@ -63,10 +63,10 @@ const ProjectDashboard = props => {
         <React.Fragment>
             <div className="d-flex justify-content-around dashboard_header">
                 {props.location.aboutProps.isManager === 1 &&
-                <h5 className = "mt-1">{`Status: ${project.status_name}`} </h5>
+                <h5 className = "mt-1">Status: <b style={{color: "red"}}>{` ${project.status_name}`}</b></h5>
                 }
                  {props.location.aboutProps.isManager === 0 &&
-                <h5>{`Status: ${project.status_name}`} </h5>
+                <h5>Status: <b style={{color: "red"}}>{` ${project.status_name}`}</b></h5>
                 }
 
                 { display === 'All' &&
