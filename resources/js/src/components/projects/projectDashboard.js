@@ -59,8 +59,6 @@ const ProjectDashboard = props => {
             });
     }, []);
 
-    // console.log(progress);
-
     return (
         <React.Fragment>
             <div className="d-flex justify-content-around dashboard_header">
@@ -186,10 +184,38 @@ const ProjectDashboard = props => {
                     {props.location.aboutProps.isManager === 1 && (
                         <React.Fragment>
                         <div className="justify-content-between d-flex manager_view">
-                            <Button variant="contained" color="secondary">
+                            <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={()=> {
+                                axios.put(`api/projects/${props.location.aboutProps.id}/close/${props.logIn.userId}`)
+                                .then(()=> {
+                                    alert('Project finalized')
+                                    setProject((prev) => {
+                                        return {
+                                            ...prev,
+                                            status_name: 'Concluded'
+                                        }
+                                    })
+                                })
+                            }}>
                                 Finish Project
                             </Button>
-                            <Button variant="contained" color="secondary">
+                            <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={()=> {
+                                axios.put(`api/projects/${props.location.aboutProps.id}/cancel/${props.logIn.userId}`)
+                                .then(()=> {
+                                    alert('Project canceled')
+                                    setProject((prev) => {
+                                        return {
+                                            ...prev,
+                                            status_name: 'Canceled'
+                                        }
+                                    })
+                                })
+                            }}>
                                 Cancel Project
                             </Button>
                             <Button
