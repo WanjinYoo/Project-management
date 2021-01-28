@@ -25,7 +25,7 @@ const TicketSpecific = (props) => {
     <React.Fragment>
         <div className = "d-flex justify-content-around">
             <h5>Priority: <b style={{color: "red"}}>{` ${Tickets.priority_name}`}</b></h5>
-            <h5>StartDate:{` ${Tickets.start_at}`}</h5>
+            <h5>Start Date:{` ${Tickets.start_at}`}</h5>
             <h5>Deadline:{` ${Tickets.deadline}`}</h5>
         </div>
         <h2><b>{` ${Tickets.subject}`}</b></h2>

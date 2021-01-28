@@ -56,7 +56,7 @@ export default function Viewmembers(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Memebers</h2>
+      <h2 id="simple-modal-title">Members</h2>
       {member && member.map((item) => {
           return (
         <React.Fragment>
