@@ -4,6 +4,7 @@ import Cards from './card'
 import Timeline from './timeline'
 import { connect } from "react-redux";
 import Reassign from "./reassign";
+import Confirmation from "./confirmation"
 
 
 const mapStateToProps = state => {
@@ -62,21 +63,7 @@ const TicketSpecific = (props) => {
                             })
                         })
                     }}> Approve Ticket</button>
-                    <button
-                    className = "btn btn-secondary"
-                    onClick = {() => {
-                        axios.put(`api/tickets/${Tickets.id}/reject/${props.logIn.userId}`)
-                        .then(() => {
-                            alert('This ticket has been rejected');
-                            setTickets((prev) => {
-                                return {
-                                    ...prev,
-                                    status_name: "Rejected"
-                                }
-                            })
-                        })
-                    }}
-                    > Reject Ticket</button>
+                    <Confirmation setTickets = {setTickets} ticket_id = {Tickets.id} user_id = {props.logIn.userId}/>
                 </div>
                 </React.Fragment>
                 }
