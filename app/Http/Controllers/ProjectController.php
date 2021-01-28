@@ -7,6 +7,7 @@ use App\UsersProject;
 use App\User;
 use App\Ticket;
 use App\StatusName;
+use App\CommentsTicket;
 use Auth;
 use Carbon\Carbon;
 
