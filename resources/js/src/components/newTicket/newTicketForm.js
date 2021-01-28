@@ -35,11 +35,17 @@ const ProfileForm = props => {
     const [uvalues, setuData] = useState([]);
     let userID = props.logIn.userId;
     let ID = props.Pid;
+    const [Pusers, setPuser] = useState([]);
     useEffect(() => {
-        axios.get(`/api/projects/${ID}`).then(res => {
-            setuData(res.data),
+        const promise1 = axios.get(`/api/projects/${ID}`);
+        const promise2 = axios.get(`/api/projects/${ID}/member`);
+        axios.all([promise1, promise2]).then(resArr => {
+            const res1 = resArr[0];
+            const res2 = resArr[1];
+            setPuser(res2.data);
+            setuData(res1.data),
                 setData({
-                    project_name: res.data.name,
+                    project_name: res1.data.name,
                     status: "Pending",
                     priority: "Medium"
                 });
@@ -47,7 +53,7 @@ const ProfileForm = props => {
     }, []);
 
     const onUpdate = () => {
-        console.log(values);
+        console.log(Pusers);
         axios.post(`/api/tickets`, values).then(res => {
             console.log(res),
                 alert("Ticket Created!"),
@@ -75,6 +81,23 @@ const ProfileForm = props => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const pData = ["Low", "Medium", "High", "Urgent"];
+    const handleClickListItem3 = event => {
+        setAnchorE2(event.currentTarget);
+    };
+    const [anchorE2, setAnchorE2] = useState(null);
+    const [selectedIndexff3, setSelectedIndexff3] = useState(1);
+
+    const handleMenuItemClick3 = (event, indexff) => {
+        setSelectedIndexff3(indexff);
+        setData({ ...values, receiver_email: indexff + 1 });
+        setAnchorE2(null);
+    };
+
+    const handleClose3 = () => {
+        setAnchorE2(null);
+    };
+
     return (
         <div>
             <div>
@@ -149,7 +172,41 @@ const ProfileForm = props => {
                     margin="normal"
                     variant="outlined"
                 />
-
+                <div className={classes.root}>
+                    <List component="nav" aria-label="Device settings">
+                        <ListItem
+                            button
+                            aria-haspopup="true"
+                            aria-controls="lock-menu"
+                            aria-label="when device is locked"
+                            onClick={handleClickListItem3}
+                        >
+                            <ListItemText
+                                primary="Select Priority Level"
+                                secondary={pData[selectedIndexff3]}
+                            />
+                        </ListItem>
+                    </List>
+                    <Menu
+                        id="lock-menu"
+                        anchorE2={anchorE2}
+                        keepMounted
+                        open={Boolean(anchorE2)}
+                        onClose={handleClose3}
+                    >
+                        {pData.map((option, indexff) => (
+                            <MenuItem
+                                key={option}
+                                selected={indexff === selectedIndexff3}
+                                onClick={event =>
+                                    handleMenuItemClick3(event, indexff)
+                                }
+                            >
+                                {option}
+                            </MenuItem>
+                        ))}
+                    </Menu>
+                </div>
                 <TextField
                     label="Subject"
                     style={{ margin: 8 }}
