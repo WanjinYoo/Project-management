@@ -53,7 +53,7 @@ const ProfileForm = props => {
     }, []);
 
     const onUpdate = () => {
-        console.log(Pusers);
+        console.log(values);
         axios.post(`/api/tickets`, values).then(res => {
             console.log(res),
                 alert("Ticket Created!"),
@@ -74,28 +74,28 @@ const ProfileForm = props => {
 
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
-        setData({ ...values, priority: index + 1 });
+        setData({ ...values, priority: options[index] });
         setAnchorEl(null);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const pData = ["Low", "Medium", "High", "Urgent"];
+    const pData = Pusers.map(x => x.email);
     const handleClickListItem3 = event => {
-        setAnchorE2(event.currentTarget);
+        setAnchorE(event.currentTarget);
     };
-    const [anchorE2, setAnchorE2] = useState(null);
+    const [anchorE, setAnchorE] = useState(null);
     const [selectedIndexff3, setSelectedIndexff3] = useState(1);
 
     const handleMenuItemClick3 = (event, indexff) => {
         setSelectedIndexff3(indexff);
-        setData({ ...values, receiver_email: indexff + 1 });
-        setAnchorE2(null);
+        setData({ ...values, receiver_email: pData[indexff] });
+        setAnchorE(null);
     };
 
     const handleClose3 = () => {
-        setAnchorE2(null);
+        setAnchorE(null);
     };
 
     return (
@@ -162,7 +162,7 @@ const ProfileForm = props => {
                     margin="normal"
                     variant="outlined"
                 />
-                <TextField
+                {/* <TextField
                     label="Receiver Email"
                     name="receiver_email"
                     style={{ margin: 8 }}
@@ -171,27 +171,27 @@ const ProfileForm = props => {
                     onChange={handleInputChange}
                     margin="normal"
                     variant="outlined"
-                />
+                /> */}
                 <div className={classes.root}>
-                    <List component="nav" aria-label="Device settings">
+                    <List component="navf" aria-label="Device settingsf">
                         <ListItem
                             button
                             aria-haspopup="true"
                             aria-controls="lock-menu"
-                            aria-label="when device is locked"
+                            aria-label="when devifce is locked"
                             onClick={handleClickListItem3}
                         >
                             <ListItemText
-                                primary="Select Priority Level"
+                                primary="Select Receiver Email"
                                 secondary={pData[selectedIndexff3]}
                             />
                         </ListItem>
                     </List>
                     <Menu
                         id="lock-menu"
-                        anchorE2={anchorE2}
+                        anchorEl={anchorE}
                         keepMounted
-                        open={Boolean(anchorE2)}
+                        open={Boolean(anchorE)}
                         onClose={handleClose3}
                     >
                         {pData.map((option, indexff) => (
