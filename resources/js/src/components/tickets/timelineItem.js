@@ -9,7 +9,7 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-
+import Moment from 'react-moment';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +27,7 @@ export default function CustomTimelineItem(props) {
         <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            {props.comments.created_at}
+          <Moment fromNow>{props.comments.created_at}</ Moment>
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>

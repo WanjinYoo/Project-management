@@ -8,6 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
+import Moment from 'react-moment';
 
 const useStyles = makeStyles({
     table: {
@@ -27,21 +28,23 @@ export default function BasicTable(props) {
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Date</TableCell>
+                        <TableCell>Posted</TableCell>
                         <TableCell>User Name</TableCell>
                         <TableCell>Email</TableCell>
                         <TableCell>Comment</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map(row => (
+                    {rows.map(row =>{
+
+                    return (
                         <TableRow key={row.id}>
-                            <TableCell>{row.created_at}</TableCell>
+                            <TableCell width="20%" ><Moment fromNow>{row.created_at}</Moment></TableCell>
                             <TableCell>{`${row.user_first_name} ${row.user_last_name}`}</TableCell>
                             <TableCell>{row.user_email}</TableCell>
                             <TableCell>{row.comment}</TableCell>
                         </TableRow>
-                    ))}
+                    )})}
                 </TableBody>
             </Table>
         </TableContainer>
