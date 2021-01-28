@@ -49,6 +49,7 @@ class UserController extends Controller
         $projects = UsersProject::where('user_id','=',$id)
                         ->join('projects', 'projects.id', '=', 'users_projects.project_id')
                         ->join('status_names', 'status_names.id', '=', 'projects.status_id')
+                        ->orderBy('projects.created_at', 'DESC')
                         ->select('users_projects.*', 'projects.*', 'users_projects.id as users_projects_id', 'status_names.name as status_name', 'status_names.description as status_description')
                         -> get();
         return $projects;
@@ -60,6 +61,7 @@ class UserController extends Controller
                         ->join('projects', 'projects.id', '=', 'tickets.project_id')
                         ->join('status_names', 'status_names.id', '=', 'tickets.status_id')
                         ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
+                        ->orderBy('tickets.created_at', 'DESC')
                         ->select('tickets.*', 'projects.name as project_name','status_names.name as status_name', 'status_names.description as status_description', 'priority_names.name as priority_name', 'priority_names.description as priority_description')
                         -> get();
 
@@ -72,6 +74,7 @@ class UserController extends Controller
                         ->join('projects', 'projects.id', '=', 'tickets.project_id')
                         ->join('status_names', 'status_names.id', '=', 'tickets.status_id')
                         ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
+                        ->orderBy('tickets.created_at', 'DESC')
                         ->select('tickets.*', 'projects.name as project_name','status_names.name as status_name', 'status_names.description as status_description', 'priority_names.name as priority_name', 'priority_names.description as priority_description')
                         -> get();
 
@@ -108,6 +111,7 @@ class UserController extends Controller
                     ->where('tickets.status_id','=', $status)
                     ->join('projects', 'projects.id', '=', 'tickets.project_id')
                     ->join('users', 'users.id', '=', 'tickets.issuer_id')
+                    ->orderBy('tickets.created_at', 'DESC')
                     ->select('tickets.*', 'projects.name as project_name','users.first_name as user_first_name','users.last_name as user_last_name','users.email as user_email')
                     -> get();
         return $comments;
