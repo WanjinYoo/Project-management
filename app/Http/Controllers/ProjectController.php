@@ -164,6 +164,7 @@ class ProjectController extends Controller
                     ->join('projects', 'projects.id', '=', 'tickets.project_id')
                     ->join('status_names', 'status_names.id', '=', 'tickets.status_id')
                     ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
+                    ->orderBy('tickets.created_at', 'DESC')
                     ->select('tickets.*', 'projects.name as project_name','status_names.name as status_name', 'status_names.description as status_description', 'priority_names.name as priority_name', 'priority_names.description as priority_description')
                     -> get();
         return $tickets;
@@ -178,6 +179,7 @@ class ProjectController extends Controller
                     ->join('projects', 'projects.id', '=', 'tickets.project_id')
                     ->join('status_names', 'status_names.id', '=', 'tickets.status_id')
                     ->join('priority_names', 'priority_names.id', '=', 'tickets.priority_level')
+                    ->orderBy('tickets.created_at', 'DESC')
                     ->select('tickets.*', 'projects.name as project_name','status_names.name as status_name', 'status_names.description as status_description', 'priority_names.name as priority_name', 'priority_names.description as priority_description')
                     -> get();
          return $tickets;
