@@ -5,7 +5,7 @@ import Timeline from './timeline'
 import { connect } from "react-redux";
 import Reassign from "./reassign";
 import Confirmation from "./confirmation"
-
+import Userinfo from './userinfo'
 
 const mapStateToProps = state => {
     return {
@@ -24,7 +24,7 @@ const TicketSpecific = (props) => {
     return (
     <React.Fragment>
         <div className = "d-flex justify-content-around">
-            <h5>Priority:{` ${Tickets.priority_name}`}</h5>
+            <h5>Priority: <b style={{color: "red"}}>{` ${Tickets.priority_name}`}</b></h5>
             <h5>StartDate:{` ${Tickets.start_at}`}</h5>
             <h5>Deadline:{` ${Tickets.deadline}`}</h5>
         </div>
@@ -33,9 +33,10 @@ const TicketSpecific = (props) => {
         <div className = "row">
             <div className = "col-4 border-right">
                 <br />
-                <h5><b>Issuer Name: </b> {` ${Tickets.issuer_firstname} ${Tickets.issuer_lastname}`}</h5>
-                <h5><b>Assigned to: </b> {` ${Tickets.receiver_firstname} ${Tickets.receiver_lastname}`}</h5>
-                <h5><b>Status: </b> {` ${Tickets.status_name}`}</h5>
+                <Userinfo assign = {false} id = {Tickets.issuer_id}/>
+                <Userinfo assign = {true} id = {Tickets.receiver_id}/>
+                <h5><b>Status: </b> <b
+                style={{color: "red"}}>{` ${Tickets.status_name}`}</b></h5>
                 <br />
                 { Tickets.status_name ==='Pending' &&
                 <div class="input-group d-flex justify-content-center">
