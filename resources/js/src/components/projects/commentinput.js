@@ -5,13 +5,7 @@ import Button from "@material-ui/core/Button";
 import axios from 'axios'
 import { connect } from "react-redux";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    margin: theme.spacing(1),
-  },
-}));
+
 const mapStateToProps = state => {
     return {
         logIn: state.logIn
@@ -19,8 +13,7 @@ const mapStateToProps = state => {
 };
 
 const Commentinput = (props) => {
-    const classes = useStyles();
-    const [value, setValue] = React.useState('Controlled');
+    const [value, setValue] = React.useState('');
     const handleChange = (event) => {
          setValue(event.target.value);
     };
@@ -31,6 +24,7 @@ const Commentinput = (props) => {
                 id="standard-textarea"
                 label="Comment"
                 placeholder="Comment"
+                value = {value}
                 onChange={handleChange}
                 multiline
              />
@@ -42,6 +36,10 @@ const Commentinput = (props) => {
                  onClick = {() => {
                     axios.post(`api/projects/${props.project_id}/comment/${props.logIn.userId}`, {
                         comment: value
+                    })
+                    .then(()=> {
+                        alert('comment saved')
+                        setValue('');
                     })
                  }}
                     >

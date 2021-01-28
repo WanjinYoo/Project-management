@@ -10,6 +10,7 @@ use App\StatusName;
 use App\CommentsTicket;
 use Auth;
 use Carbon\Carbon;
+use App\CommentsTicket;
 
 use Illuminate\Http\Request;
 
@@ -68,7 +69,7 @@ class ProjectController extends Controller
         $project->status_id = $status;
         $project->save();
 
-        $comment = new CommentsTicket;
+        $comment = new ProjectBulletinBoard;
         $comment->project_id = $project->id;
         $comment->user_id = $user->id;
         $comment->comment = $new_comment;

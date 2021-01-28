@@ -42,7 +42,14 @@ const DonutChart = props => {
     //pending work teickets
     if (tdata[0] !== undefined) {
         for (let b in tdata) {
-            if (tdata[b].receiver_id === userID && tdata[b].status_id === 2) {
+            let ticketTime = new Date(tdata[b].deadline);
+            let currentTime = new Date();
+
+            if (
+                tdata[b].receiver_id === userID &&
+                tdata[b].status_id === 2 &&
+                currentTime < ticketTime
+            ) {
                 adata++;
             }
         }
