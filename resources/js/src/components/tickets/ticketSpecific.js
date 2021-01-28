@@ -107,6 +107,7 @@ const TicketSpecific = (props) => {
             className="form-control"
             type="text"
             placeholder="Comments"
+            value = {comment}
             onChange = {(event)=>  {
                 setComment(event.target.value)
             }}/>
@@ -119,7 +120,8 @@ const TicketSpecific = (props) => {
                         comment: comment
                     }
                     ).then(()=> {
-                        alert('comment saved')
+                        alert('comment saved');
+                        setComment('');
                     })
                 }}>Submit</button>
             </div>
