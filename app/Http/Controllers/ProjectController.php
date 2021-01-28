@@ -10,7 +10,7 @@ use App\StatusName;
 use App\CommentsTicket;
 use Auth;
 use Carbon\Carbon;
-use App\CommentsTicket;
+
 
 use Illuminate\Http\Request;
 
