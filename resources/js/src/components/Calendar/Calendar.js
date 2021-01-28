@@ -37,7 +37,7 @@ const fCalendar = props => {
 
         for (let a in dataF) {
             eventData.push({
-                title: dataF[a].description,
+                title: dataF[a].subject,
                 start: new Date(dataF[a].deadline),
                 end: new Date(dataF[a].deadline),
                 allDay: false
