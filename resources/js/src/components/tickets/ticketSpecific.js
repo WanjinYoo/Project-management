@@ -190,7 +190,6 @@ const TicketSpecific = props => {
                                     }
                                 )
                                 .then(() => {
-                                    alert("comment saved");
                                     setComment("");
                                 });
                         }}

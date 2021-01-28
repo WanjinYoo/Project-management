@@ -28,7 +28,7 @@ export default function OpenProjects(props) {
     return (
         <React.Fragment>
             <div id="ticketNumStats">
-                <NumWidget title="Open Projects" stats={adata} />
+                <NumWidget title="Open Projects" stats={3} />
             </div>
         </React.Fragment>
     );
