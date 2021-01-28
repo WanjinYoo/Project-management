@@ -16,6 +16,7 @@ const mapStateToProps = state => {
 const TicketSpecific = (props) => {
     const [Tickets, setTickets] = useState([]);
     const [comment, setComment] = useState('');
+    const [pull_request_number,setPull_request_number] = useState('');
     React.useEffect(()=> {
         axios.get(`/api/tickets/${props.location.aboutProps.id}`).then(res => {
             setTickets(res.data);
@@ -40,9 +41,29 @@ const TicketSpecific = (props) => {
                 <br />
                 { Tickets.status_name ==='Pending' &&
                 <div class="input-group d-flex justify-content-center">
-                <input type="text" placeholder="Pull Request Number" />
+                <input
+                type="text"
+                placeholder="Pull Request Number"
+                onChange ={(event)=> {
+                    setPull_request_number(event.target.value)
+                }}/>
                 <div className="input-group-append">
-                    <button className="btn btn-outline-secondary" type="button">Submit</button>
+                    <button
+                    className="btn btn-outline-secondary"
+                    type="button"
+                    onClick = {()=> {
+                        axios.put(`api/tickets/${Tickets.id}/submit/${props.location.aboutProps.id}`, {
+                            pull_request_number: pull_request_number
+                        })
+                        .then(()=> {
+                            setTickets((prev) => {
+                                return {
+                                    ...prev,
+                                    status_name: 'Submitted'
+                                }
+                            });
+                        });
+                    }}>Submit</button>
                 </div>
                 </div>
                 }
