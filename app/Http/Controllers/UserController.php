@@ -49,7 +49,7 @@ class UserController extends Controller
         $projects = UsersProject::where('user_id','=',$id)
                         ->join('projects', 'projects.id', '=', 'users_projects.project_id')
                         ->join('status_names', 'status_names.id', '=', 'projects.status_id')
-                        ->orderBy('projects.created_at', 'DESC')
+                        ->orderBy('projects.start_date', 'DESC')
                         ->select('users_projects.*', 'projects.*', 'users_projects.id as users_projects_id', 'status_names.name as status_name', 'status_names.description as status_description')
                         -> get();
         return $projects;
