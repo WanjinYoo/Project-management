@@ -50,6 +50,10 @@ const ProfileForm = props => {
                     priority: "Medium"
                 });
         });
+        return () => {
+            setPuser(null);
+            setData(null);
+        }
     }, []);
 
     const onUpdate = () => {

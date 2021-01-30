@@ -12,6 +12,9 @@ export default function WaitingApprovalTicket(props) {
         axios.get("/api/tickets").then(res => {
             setTicketData(res.data);
         });
+        return () => {
+            setTicketData(null);
+        }
     }, []);
 
     let adata = 0;

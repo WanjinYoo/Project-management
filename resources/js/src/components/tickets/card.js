@@ -5,6 +5,9 @@ export default function Card(props) {
     const [description,setDescription] =  React.useState('');
     React.useEffect(() => {
         setDescription(props.description);
+        return () => {
+            setDescription(null);
+        }
     }, [props.description])
 
     return (

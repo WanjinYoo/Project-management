@@ -12,6 +12,9 @@ export default function OpenProjects(props) {
         axios.get("/api/tickets").then(res => {
             setTicketData(res.data);
         });
+        return () => {
+            setTicketData(null);
+        }
     }, []);
 
     let adata = 0;

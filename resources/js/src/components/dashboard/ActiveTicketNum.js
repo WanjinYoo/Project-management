@@ -11,6 +11,9 @@ export default function ActiveTicket(props) {
         axios.get("/api/tickets").then(res => {
             setTicketData(res.data);
         });
+        return () => {
+            setTicketData(null);
+        }
     }, []);
 
     let adata = 0;

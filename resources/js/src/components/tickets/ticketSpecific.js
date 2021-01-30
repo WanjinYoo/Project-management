@@ -21,6 +21,9 @@ const TicketSpecific = (props) => {
         axios.get(`/api/tickets/${props.location.aboutProps.id}`).then(res => {
             setTickets(res.data);
         });
+        return ()=> {
+            setTickets(null);
+        }
     },[])
     return (
     <React.Fragment>

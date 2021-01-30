@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button, TextField } from "@material-ui/core";
-import axios from "axios";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {

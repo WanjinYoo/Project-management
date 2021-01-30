@@ -2,6 +2,7 @@ import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NumWidget from "../hyper/components/StatisticsWidget";
+import { set } from "lodash";
 
 export default function OverDueTicket(props) {
     const [tdata, setTicketData] = useState([]);
@@ -12,6 +13,9 @@ export default function OverDueTicket(props) {
         axios.get("/api/tickets").then(res => {
             setTicketData(res.data);
         });
+        return () => {
+            setTicketData(null);
+        }
     }, []);
 
     let adata = 0;

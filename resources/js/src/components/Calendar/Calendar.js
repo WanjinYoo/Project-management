@@ -23,6 +23,9 @@ const fCalendar = props => {
         axios.get(`/api/tickets`).then(res => {
             setData(res.data), filterData(res.data);
         });
+        return () => {
+            setData(null);
+        }
     }, []);
 
     const filterData = fdata => {

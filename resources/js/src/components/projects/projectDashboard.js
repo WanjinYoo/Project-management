@@ -57,6 +57,12 @@ const ProjectDashboard = props => {
                 const num = getProgress(res.data);
                 setProgress(Math.floor(num * 100));
             });
+        return () => {
+            setProject(null);
+            setStartdate(null);
+            setDeadline(null);
+            setProgress(null);
+        }
     }, []);
 
     return (
