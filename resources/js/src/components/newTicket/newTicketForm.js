@@ -53,9 +53,7 @@ const ProfileForm = props => {
     }, []);
 
     const onUpdate = () => {
-        console.log(values);
         axios.post(`/api/tickets`, values).then(res => {
-            console.log(res),
                 alert("Ticket Created!"),
                 props.changeContent("projectdashboard");
         });

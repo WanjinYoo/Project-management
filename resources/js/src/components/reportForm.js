@@ -10,23 +10,6 @@ const mapStateToProps = state => {
 };
 
 const ReportForm = props => {
-    // const [values, setData] = useState([]);
-    // let userID = props.logIn.userId;
-    // useEffect(() => {
-    //     axios.get(`/api/users/${userID}`).then(res => {
-    //         setData(res.data);
-    //     });
-    // }, []);
-
-    // const onUpdate = () => {
-    //     alert("Profile Updated");
-    //     console.log(values);
-    //     axios.put(`/api/users/${userID}`, values).then(res => console.log(res));
-    // };
-    // const handleInputChange = e => {
-    //     const { name, value } = e.target;
-    //     setData({ ...values, [name]: value });
-    // };
     return (
         <div>
             <div>

@@ -28,7 +28,6 @@ export default function AlmostTicket(props) {
                 ticketTime - currentTime > 0
             ) {
                 adata++;
-                // console.log(tdata[b]);
             }
         }
     }
@@ -42,7 +41,3 @@ export default function AlmostTicket(props) {
         </React.Fragment>
     );
 }
-// <div id="ticketNumStats">
-//     <p>Tickets Almost Due</p>
-//     <ul>{ticketData}</ul>
-// </div>

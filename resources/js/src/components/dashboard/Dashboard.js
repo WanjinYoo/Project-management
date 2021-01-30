@@ -35,10 +35,12 @@ const Dashboard = props => {
             const res1 = resArray[0];
             const res2 = resArray[1];
             const newData = { data1: res1, data2: res2 };
-            console.log(newData);
             setData(newData);
             setfirstName(newData.data2.data.first_name);
         });
+        return () => {
+            setData(null);
+        }
     }, []);
 
     return (

@@ -20,7 +20,6 @@ const ProfileForm = props => {
 
     const onUpdate = () => {
         alert("Profile Updated");
-        console.log(values);
         axios.put(`/api/users/${userID}`, values).then(res => console.log(res));
     };
     const handleInputChange = e => {
