@@ -1,12 +1,11 @@
 import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NumWidget from "../hyper/components/StatisticsWidget";
-import { set } from "lodash";
+import NumWidget from "../StatisticsWidget";
+
 
 export default function OverDueTicket(props) {
     const [tdata, setTicketData] = useState([]);
-    let projectID = props.projectid;
     let userID = props.id;
 
     useEffect(() => {

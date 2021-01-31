@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { Row, Col, Card, CardBody, Progress } from "reactstrap";
+import { Card, CardBody, Progress } from "reactstrap";
 
 const WithLabels = () => {
     return (
