@@ -53,9 +53,6 @@ php artisan serve
 !["Day view"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Day_view.png)
 **Edit profile**
 !["Edit profile"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Edit_profile.png)
-**DashBoard**
-!["DashBoard"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
-
 
 
 ## Dependencies
