@@ -1,137 +1,50 @@
-Database entities
+# Project Management
+Project Management app controls task flow via tickets. The app allows users to issue tickets and assign them 
 
-Users
-- id
-- name
-- position
-- department
-- is_project_manager?
+to other employees along with its deadline, start date, and priority-level. A project manager can handle
 
-Tickets
-- id
-- project_id (foreign key)
-- user_id (foreign key)
-- Deadline
-- images
-- Description
-- Assign_to
-- status_id
-- timestamp
+problems of the project easily and effectively and maximize the productivity of the project.
 
-Status
-- id
-- name (pending,submitted,completed,rejected)
+ReactJS/Redux, Material UI, and Bootstrap were used to design the front-end of the application.
 
-Project
-- id
-- name
-- product
-- Description
-- images
-- deadline
-- start date
+PHP Laravel and MySQL for API Routes and eloquent queries.
 
-project_users
-- id
-- project_id
-- user_id
+## Setup
 
-### Pages ###
+Install dependencies with `npm install`.
 
-## How a user interact with the app ##
-Goes to Welcome page where users can type their id and password.
-If logged in, user will go to the user landing page
+## Running Webpack Development Server
 
-# On the landing page # 
-- A list of the projects that a user is currently working on.
-- Clock
-- Upcoming due dates for projects should be placed on the top
-- Ability to filter the project list
-- Tiles that shows the overdue tickets number and upcoming tickets number.
-    
-# Dashboard of the specific project #
-- Projected Launch date that inludes that deadline
-- status
-- Progress bar
-- workload (graph)
-- project bulleting board (announcements)
-- upcoming deadlines for their tickets
-- Overdue tickets
-# Tickets page for a user #
-- A tab that displays all the tickets that have been assigned to ther user with the status.
-- A tab that displays submitted/pedning/recent tickets that have been assigned to ther user.
-- On the pendding tickets' tab, there will overdue/upcoming(1day) warnings
-
-# Ticket specific page #
-- display the properties of the ticket ex. name issuer id .
-- input box to enter the pull_request_number for the ticket (pending -> submmited)
-If not, stay on the same page with the message 
-- Timeline
-- can leave comments
-
-# Calendar #
-- tickets' deadline
-- When user clicks on the ticket on the calender, it takes users to the ticket specific page.
-- project's deadline
-# Progress #
-- Lets discuss later
-# Setting #
-- Lets discuss later
-# Report #
-- Generate a report based on the given period (2015/3-2016/3)
+```sh
+npm start
+npm run dev
+php composer install
+php artisan serve
+```
 
 
-## How a manger interact with the app ##
-Goes to Welcome page where users can type their id and password.
-If logged in, user will go to the user landing page
-
-# On the landing page # 
-- A list of the projects that a user is currently working on.
-- Clock
-- Upcoming due dates for projects should be placed on the top
-- Ability to filter the project list
-- Tiles that shows the overdue tickets number and upcoming tickets number.
-
-# Dashboard of the specific project (Manager) #
-- Projected Launch date that inludes that deadline
-- status
-- Progress bar
-- workload (graph)
-- ability to create a new announcement on the board.
-- upcoming tickets from all the tickets that belongs to the project.
-- Overdue tickets from all the tickets.
-
-# Ticket of the specific project (Manager) #
-- Create ticket
-- see All/Pending/Overdue/Upcoming tickets that are specific to the project
-
-# Ticket specific page (Manager)#
-- Approve button/reject button Ticket
-- Manager's (rejection message) (modal) = comment.
-- can change the deadline
-- Timeline
-
-# Calender #
-- tickets' deadline
-- When user clicks on the ticket on the calender, it takes users to the ticket specific page.
-- project's deadline
-
-# Progress #
-- Lets discuss later
-# Setting #
-- Lets discuss later
-# Report #
-- Generate a report based on the given period (2015/3-2016/3)
-
-
-
-
-
-
-
-Endpoints
-
-
+## Dependencies
+ - "@material-ui/core": "^4.11.2",
+ - "@material-ui/icons": "^4.11.2", 
+ - "@material-ui/lab": "^4.0.0-alpha.57",
+ - "apexcharts": "^3.19.2",
+ - "bootstrap": "^4.6.0",
+ - "britecharts-react": "^0.5.4",
+ - "classnames": "^2.2.6",
+ - "material-ui-search-bar": "^1.0.0",
+ - "moment-timezone": "^0.5.32",
+ - "prop-types": "^15.7.2",
+ - "react-apexcharts": "^1.3.7",
+ - "react-big-calendar": "^0.30.0",
+ - "react-bootstrap": "^1.4.3",
+ - "react-dom": "^16.13.1",
+ - "react-live-clock": "^5.0.13",
+ - "react-moment": "^1.1.1",
+ - "react-redux": "^7.2.2",
+ - "react-router-dom": "^5.2.0",
+ - "reactstrap": "^8.8.1",
+ - "redux": "^4.0.5",
+ - "redux-persist": "^6.0.0"
 
 
 
