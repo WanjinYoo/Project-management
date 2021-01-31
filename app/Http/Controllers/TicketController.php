@@ -163,7 +163,8 @@ class TicketController extends Controller
         $ticketInfo = Ticket::where('id','=',$id)
                     ->first();
         $pull_request = $request->input('pull_request_number');
-        $new_comment = "Pull Request #{$pull_request} submitted.";
+
+        $new_comment = "Pull Request # {$pull_request} submitted.";
 
         $ticketInfo->pull_request_number = $pull_request;
         $ticketInfo->status_id = $status;
