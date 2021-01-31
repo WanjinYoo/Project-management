@@ -34,25 +34,25 @@ php artisan serve
  **Project Bulleting board**
 !["Project Bulleting board"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Project_Bulleting_board.png)
  **Add member to the project**
-!["Add member to the project"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/deleted.png)
+!["Add member to the project"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Add_member_to_the_project.png)
   **Create new ticket for the project**
-!["Create new ticket for the project"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/fullybooked.png)
+!["Create new ticket for the project"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Create_new_ticket_for_the_project.png)
   **Ticket Specific Page**
-!["Ticket Specific Page"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
+!["Ticket Specific Page"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Ticket_Specific_page.png)
   **Reject Ticket**
-!["Reject Ticket"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
+!["Reject Ticket"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Reject_ticket.png)
   **Reassign the ticket to anoter member whos working for the same project**
-!["Reassign the ticket to anoter member whos working for the same project"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
+!["Reassign the ticket to anoter member whos working for the same project"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Reassign_ticket.png)
   **TimeLine for the ticket(All the changes are logged in the timeline automatically)**
-!["TimeLine for the ticket(All the changes are logged in the timeline automatically)"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
+!["TimeLine for the ticket(All the changes are logged in the timeline automatically)"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Timeline.png)
 **Ticket page**
-!["Ticket page"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
-**Calander**
-!["Calander"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
+!["Ticket page"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Ticket_page.png)
+**Calendar**
+!["Calendar"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Calander.png)
 **Day view**
-!["Day view"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
+!["Day view"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Day_view.png)
 **Edit profile**
-!["Edit profile"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
+!["Edit profile"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/Edit_profile.png)
 **DashBoard**
 !["DashBoard"](https://github.com/WanjinYoo/Project-management/blob/master/public/images/form.png)
 
