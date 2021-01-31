@@ -69,7 +69,7 @@ If not, stay on the same page with the message
 - Timeline
 - can leave comments
 
-# Calender #
+# Calendar #
 - tickets' deadline
 - When user clicks on the ticket on the calender, it takes users to the ticket specific page.
 - project's deadline
