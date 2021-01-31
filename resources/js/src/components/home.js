@@ -127,7 +127,6 @@ const SignInSide = props => {
                                 })
                                 .then(res => {
                                     if (res.data) {
-                                        console.log(res.data);
                                         props.loginUser(res.data);
                                     } else {
                                         alert("Invalid input");

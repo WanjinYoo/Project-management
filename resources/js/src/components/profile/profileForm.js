@@ -16,11 +16,13 @@ const ProfileForm = props => {
         axios.get(`/api/users/${userID}`).then(res => {
             setData(res.data);
         });
+        return () => {
+            setData(null);
+        }
     }, []);
 
     const onUpdate = () => {
         alert("Profile Updated");
-        console.log(values);
         axios.put(`/api/users/${userID}`, values).then(res => console.log(res));
     };
     const handleInputChange = e => {

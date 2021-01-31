@@ -81,6 +81,7 @@ const projects = props => {
             isMounted = false;
             setProjects([]);
         };
+
     }, []);
 
     return (

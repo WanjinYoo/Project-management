@@ -11,8 +11,7 @@ import PendingTicketNum from "./PendingTicketNum.js";
 import RejectedTicketNum from "./RejectedTicketNum.js";
 import NewTicketNum from "./NewTicketNum.js";
 import Chart from "./DonutChart.js";
-import NumWidget from "../hyper/components/StatisticsWidget";
-import { Button, Menu, MenuItem, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import "../../componentsstyling/dashboard.scss";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -35,10 +34,12 @@ const Dashboard = props => {
             const res1 = resArray[0];
             const res2 = resArray[1];
             const newData = { data1: res1, data2: res2 };
-            console.log(newData);
             setData(newData);
             setfirstName(newData.data2.data.first_name);
         });
+        return () => {
+            setData(null);
+        }
     }, []);
 
     return (

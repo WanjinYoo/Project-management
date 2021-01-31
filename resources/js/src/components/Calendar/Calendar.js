@@ -23,6 +23,9 @@ const fCalendar = props => {
         axios.get(`/api/tickets`).then(res => {
             setData(res.data), filterData(res.data);
         });
+        return () => {
+            setData(null);
+        }
     }, []);
 
     const filterData = fdata => {
@@ -33,7 +36,6 @@ const fCalendar = props => {
                 settData({ ...tvalues, b: fdata[b] });
             }
         }
-        console.log(dataF);
 
         for (let a in dataF) {
             eventData.push({
@@ -41,12 +43,9 @@ const fCalendar = props => {
                 start: new Date(dataF[a].deadline),
                 end: new Date(dataF[a].deadline),
                 allDay: false
-                // resource: undefined
             });
         }
         setdEvents(eventData);
-        console.log(eventData);
-        // let filtereD = fdata.filter(item => item.receiver_id.includes(userID));
     };
 
     return (

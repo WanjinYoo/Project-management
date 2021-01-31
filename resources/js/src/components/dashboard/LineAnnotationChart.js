@@ -12,6 +12,9 @@ const LineAnnotationChart = () => {
         axios.get("/api/tickets").then(res => {
             setGTicketData(res.data);
         });
+        return () => {
+            setGTicketData(null);
+        }
     }, []);
 
     const apexLineChartWithAnnotationOpts = {

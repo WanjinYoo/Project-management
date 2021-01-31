@@ -16,6 +16,9 @@ const Profile = props => {
         axios.get(`/api/users/${userID}`).then(res => {
             setData(res.data);
         });
+        return () => {
+            setData(null);
+        }
     }, []);
 
     let lastEdit;

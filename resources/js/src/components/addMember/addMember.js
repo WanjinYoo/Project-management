@@ -22,6 +22,10 @@ const addMember = props => {
             setData(res.data);
             setfilterData(res.data);
         });
+        return () => {
+            setData(null);
+            setfilterData(null);
+        }
     }, []);
 
     const onSearch = () => {

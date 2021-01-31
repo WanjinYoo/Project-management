@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -8,8 +8,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import { withStyles } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
 import axios from "axios";
 import { connect } from "react-redux";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -39,22 +37,10 @@ const mapDispatchToProps = dispatch => {
 
 const BasicTable = props => {
     const [state, setState] = useState({ checked: false });
-    const handleClick = asd => {
-        // let managerIs = state[event.target.name];
-        // console.log(mangerIs);
-        let pushData = { email: asd.email, is_manager: "sdljfsldk" };
-        console.log(pushData);
-        // axios
-        //     .put(`/api/projects/${props.id}/member`, pushData)
-        //     .then(alert("Successfully Added!"));
-    };
-
     const handleChange = event => {
         setState({ ...state, checked: event.target.checked });
-        console.log(props);
     };
     const classes = useStyles();
-    const [rows, getRows] = useState([]);
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
@@ -121,10 +107,6 @@ const BasicTable = props => {
                                             )
                                             .then(alert("Successfully Added!"));
                                         props.changeContent("projectdashboard");
-                                        // console.log({
-                                        //     email: row.email,
-                                        //     is_manager: state.checked
-                                        // });
                                     }}
                                     className="ml-5"
                                 >

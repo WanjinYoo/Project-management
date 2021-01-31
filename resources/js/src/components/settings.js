@@ -1,7 +1,7 @@
 import React from 'react';
 import ReportForm from "./reportForm";
 import { connect } from "react-redux";
-import axios from "axios";
+
 
 const mapStateToProps = state => {
     return {
@@ -11,13 +11,6 @@ const mapStateToProps = state => {
 
 
 const Settings = props => {
-    // const [values, setData] = useState([]);
-    // let userID = props.logIn.userId;
-    // useEffect(() => {
-    //     axios.get(`/api/users/${userID}`).then(res => {
-    //         setData(res.data);
-    //     });
-    // }, []);
 
     return (
         <p>

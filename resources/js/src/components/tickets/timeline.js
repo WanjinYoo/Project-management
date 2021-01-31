@@ -11,6 +11,7 @@ export default function CustomTimeline(props) {
         .then((res) => {
             Setcomments(res.data);
         })
+
     })
   return (
     <Timeline align="alternate">

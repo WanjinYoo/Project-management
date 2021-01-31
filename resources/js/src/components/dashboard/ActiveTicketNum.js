@@ -1,7 +1,7 @@
 import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NumWidget from "../hyper/components/StatisticsWidget";
+import NumWidget from "../StatisticsWidget";
 
 export default function ActiveTicket(props) {
     const [tdata, setTicketData] = useState([]);
@@ -11,6 +11,9 @@ export default function ActiveTicket(props) {
         axios.get("/api/tickets").then(res => {
             setTicketData(res.data);
         });
+        return () => {
+            setTicketData(null);
+        }
     }, []);
 
     let adata = 0;

@@ -1,7 +1,7 @@
 import RenderStats from "./RenderTicketStat";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NumWidget from "../hyper/components/StatisticsWidget";
+import NumWidget from "../StatisticsWidget";
 
 export default function AlmostTicket(props) {
     const [tdata, setTicketData] = useState([]);
@@ -12,6 +12,9 @@ export default function AlmostTicket(props) {
         axios.get("/api/tickets").then(res => {
             setTicketData(res.data);
         });
+        return () => {
+            setTicketData(null);
+        }
     }, []);
 
     let adata = 0;
@@ -28,7 +31,6 @@ export default function AlmostTicket(props) {
                 ticketTime - currentTime > 0
             ) {
                 adata++;
-                // console.log(tdata[b]);
             }
         }
     }
@@ -42,7 +44,3 @@ export default function AlmostTicket(props) {
         </React.Fragment>
     );
 }
-// <div id="ticketNumStats">
-//     <p>Tickets Almost Due</p>
-//     <ul>{ticketData}</ul>
-// </div>
